@@ -1,7 +1,6 @@
-＃前言
-# Foreword
+# 前言
 
-我是如何从webpack开始的，这是一个有趣的故事。在沉迷于JavaScript之前，我也是用Java开发的。我当时尝试过GWT（Google Web Toolkit）。 GWT是一个Java-to-JavaScript编译器，它有一个很棒的特性：[代码分割]（http://www.gwtproject.org/doc/latest/DevGuideCodeSplitting.html）。我喜欢这个功能，但在现有的JavaScript工具中错过了它。我打开[问题]（https://github.com/medikoo/modules-webmake/issues/7）到现有的模块捆绑器，但它没有继续。 Webpack诞生了。
+我是如何从webpack开始的，这是一个有趣的故事。在沉迷于 JavaScript 之前，我也是用 Java 开发的。我当时尝试过GWT（Google Web Toolkit）。 GWT 是一个 Java-to-JavaScript 编译器，它有一个很棒的特性：[代码分割](http://www.gwtproject.org/doc/latest/DevGuideCodeSplitting.html)。我喜欢这个功能，但在现有的JavaScript 工具中错过了它。我打开[问题](https://github.com/medikoo/modules-webmake/issues/7)到现有的模块捆绑器，但它没有继续。 Webpack诞生了。
 It’s a funny story how I started with webpack. Before getting addicted to JavaScript, I also developed in Java. I tried GWT (Google Web Toolkit) in that time. GWT is a Java-to-JavaScript Compiler, which has a great feature: [code splitting](http://www.gwtproject.org/doc/latest/DevGuideCodeSplitting.html). I liked this feature and missed it in existing JavaScript tooling. I opened [an issue](https://github.com/medikoo/modules-webmake/issues/7) to an existing module bundler, but it did not go forward. Webpack was born.
 
 不知何故，Instagram前端团队发现了webpack的早期版本，并开始将其用于instagram.com。管理Instagram网络团队的Facebook员工Pete Hunt在OSCON 2014上发表了[关于webpack的第一次重要讨论]（https://www.youtube.com/watch?v=VkTCL6Nqm6Y）。这次谈话提升了webpack的受欢迎程度。 Instagram采用webpack的原因之一是**代码拆分**。

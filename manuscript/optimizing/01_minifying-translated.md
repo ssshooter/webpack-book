@@ -1,29 +1,20 @@
-#Minifying
 # Minifying
 
-从webpack 4开始，默认情况下使用UglifyJS缩小生产输出。也就是说，了解技术和进一步的可能性是很好的。
-Since webpack 4, the production output gets minified using UglifyJS by default. That said, it's good to understand the technique and further possibilities.
+从 webpack 4 开始，生产环境默认使用 UglifyJS 压缩输出。所以，了解这项技术和进一步的可能性是很好的。
 
-##缩小JavaScript
-## Minifying JavaScript
+## 压缩 JavaScript
 
-**缩小**的目的是将代码转换为更小的形式。安全**转换**通过重写代码而不会失去任何意义。这方面的好例子包括重命名变量，甚至根据它们无法访问的事实删除整个代码块（`if（false）`）。
-The point of **minification** is to convert the code into a smaller form. Safe **transformations** do this without losing any meaning by rewriting code. Good examples of this include renaming variables or even removing entire blocks of code based on the fact that they are unreachable (`if (false)`).
+**压缩**的目的是将代码转换为更小的形式。安全**转换**通过重写代码而不会失去任何意义。例如：重命名变量，甚至在判定确实无法访问后删除整个代码块（`if（false）`）。
 
-不安全的转换可能会破坏代码，因为它们可能会丢失底层代码所依赖的隐含内容。例如，Angular 1在使用模块时需要特定的函数参数命名。除非在这种情况下采取预防措施，否则重写参数会破坏代码。
-Unsafe transformations can break code as they can lose something implicit the underlying code relies upon. For example, Angular 1 expects specific function parameter naming when using modules. Rewriting the parameters breaks code unless you take precautions against it in this case.
+不安全的转换可能会破坏代码，因为它们可能会丢失底层代码所依赖的隐含内容。例如，Angular 1 在使用模块时需要特定的函数参数命名。这种情况下需要采取预防措施，否则重写参数会破坏代码。
 
-###修改JavaScript缩小过程
-### Modifying JavaScript Minification Process
+### 修改 JavaScript 压缩处理
 
-在webpack 4中，通过两个配置字段控制缩小过程：`optimization.minimize`标志以切换它和`optimization.minimizer`数组来配置过程。
-In webpack 4, minification process is controlled through two configuration fields: `optimization.minimize` flag to toggle it and `optimization.minimizer` array to configure the process.
+在 webpack 4 中，通过两个配置字段控制压缩处理：`optimization.minimize` 用于开关此功能；`optimization.minimizer` 数组用于配置项。
 
-为了调整默认值，我们将[uglifyjs-webpack-plugin]（https://www.npmjs.com/package/uglifyjs-webpack-plugin）附加到项目中，以便可以对其进行调整。
-To tune the defaults, we'll attach [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) to the project so that it's possible to tune it.
+为了调整默认值，我们将 [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) 添加到项目中，以便可以对其进行调整。
 
-要开始，请将插件包含在项目中：
-To get started, include the plugin to the project:
+第一步，先将插件包含在项目中：
 
 ```bash
 npm install uglifyjs-webpack-plugin --save-dev
@@ -31,10 +22,8 @@ npm install uglifyjs-webpack-plugin --save-dev
 
 {pagebreak}
 
-要将其附加到配置，请首先为其定义一个部件：
-To attach it to the configuration, define a part for it first:
+要将其附加到配置，首先为其定义一个部件：
 
-** ** webpack.parts.js
 **webpack.parts.js**
 
 ```javascript
@@ -48,9 +37,7 @@ exports.minifyJavaScript = () => ({
 ```
 
 将其连接到配置：
-Hook it up to the configuration:
 
-** ** webpack.config.js
 **webpack.config.js**
 
 ```javascript
@@ -63,14 +50,13 @@ leanpub-end-insert
 ]);
 ```
 
-如果你现在执行`npm run build`，你应该看到与之前相同的结果。结果可能略好一些，因为您可能会以这种方式使用较新版本的UglifyJS。
+如果你现在执行 `npm run build`，你应该看到与之前相同的结果。结果可能略好一些，因为您可能会以这种方式使用较新版本的 UglifyJS。
 If you execute `npm run build` now, you should see result close to the same as before. The outcome may be a slightly better as you are likely using a newer version of UglifyJS this way.
 
-T>默认情况下禁用源映射。您可以通过`sourceMap`标志启用它们。您应该查看* uglifyjs-webpack-plugin *以获取更多选项。
+T> 默认情况下禁用源映射。您可以通过 `sourceMap` 标志启用它们。您应该查看 *uglifyjs-webpack-plugin* 以获取更多选项。
 T> Source maps are disabled by default. You can enable them through the `sourceMap` flag. You should check *uglifyjs-webpack-plugin* for more options.
 
-T>要从结果源中删除`console.log`调用，将`uglifyOptions.compress.drop_console`设置为`true`，如[Stack Overflow上讨论]（https://stackoverflow.com/questions/49101152/webpack-v4 -remove-控制台日志与 - 的WebPack-丑化）。
-T> To strip `console.log` calls from the resulting source, set `uglifyOptions.compress.drop_console` to `true` as [discussed on Stack Overflow](https://stackoverflow.com/questions/49101152/webpack-v4-remove-console-logs-with-webpack-uglify).
+T> 要从源中删除 `console.log` 调用，可以将 `uglifyOptions.compress.drop_console` 设置为 `true`，如[discussed on Stack Overflow](https://stackoverflow.com/questions/49101152/webpack-v4-remove-console-logs-with-webpack-uglify) 提到。
 
 {pagebreak}
 

@@ -1,4 +1,3 @@
-＃webpack-dev-server
 # webpack-dev-server
 
 诸如[LiveReload]（http://livereload.com/）或[Browsersync]（http://www.browsersync.io/）之类的工具允许在开发应用程序时刷新浏览器并避免刷新CSS更改。可以通过[browser-sync-webpack-plugin]（https://www.npmjs.com/package/browser-sync-webpack-plugin）设置Browsersync以使用webpack，但webpack在商店中有更多技巧。
