@@ -1,5 +1,4 @@
-＃ 环境变量
-# Environment Variables
+# 环境变量
 
 有时，您的代码的一部分应该仅在开发期间执行。或者您可以在构建中具有尚未准备好进行生产的实验性功能。控制**环境变量**变得有价值，因为您可以使用它们切换功能。
 Sometimes a part of your code should execute only during development. Or you could have experimental features in your build that are not ready for production yet. Controlling **environment variables** becomes valuable as you can toggle functionality using them.
@@ -96,7 +95,6 @@ Elimination is the core idea of `DefinePlugin` and it allows toggling. A minifie
 和以前一样，将这个想法封装到一个函数中。由于webpack替换free变量的方式，你应该通过`JSON.stringify`推送它。你最终会得到一个类似`'“demo”'的字符串，然后webpack将它插入它找到的插槽中：
 As before, encapsulate this idea to a function. Due to the way webpack replaces the free variable, you should push it through `JSON.stringify`. You end up with a string like `'"demo"'` and then webpack inserts that into the slots it finds:
 
-** ** webpack.parts.js
 **webpack.parts.js**
 
 ```javascript
@@ -132,7 +130,6 @@ leanpub-end-insert
 最后，添加要替换的内容：
 Finally, add something to replace:
 
-** SRC / component.js **
 **src/component.js**
 
 ```javascript
@@ -154,7 +151,7 @@ If you run the application, you should see a new message on the button.
 T> [webpack-conditional-loader]（https://www.npmjs.com/package/webpack-conditional-loader）根据代码注释执行类似的操作。它可以用来消除整个代码块。
 T> [webpack-conditional-loader](https://www.npmjs.com/package/webpack-conditional-loader) performs something similar based on code comments. It can be used to eliminate entire blocks of code.
 
-T>`webpack.EnvironmentPlugin（[“NODE_ENV”]）`是一个允许您引用环境变量的快捷方式。它使用下面的`DefinePlugin`，你可以通过传递`process.env.NODE_ENV`来达到同样的效果。
+T> `webpack.EnvironmentPlugin（[“NODE_ENV”]）`是一个允许您引用环境变量的快捷方式。它使用下面的`DefinePlugin`，你可以通过传递`process.env.NODE_ENV`来达到同样的效果。
 T> `webpack.EnvironmentPlugin(["NODE_ENV"])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath, and you can achieve the same effect by passing `process.env.NODE_ENV`.
 
 ##通过Babel替换自由变量
@@ -165,7 +162,7 @@ T> `webpack.EnvironmentPlugin(["NODE_ENV"])` is a shortcut that allows you to re
 
 {pagebreak}
 
-##选择要使用的模块
+## 选择要使用的模块
 ## Choosing Which Module to Use
 
 本章中讨论的技术可用于根据环境选择整个模块。如上所示，基于“DefinePlugin”的拆分允许您选择要使用的代码分支以及要丢弃的代码。这个想法可用于在模块级别实现分支。考虑下面的文件结构：
@@ -193,13 +190,11 @@ if (process.env.NODE_ENV === "production") {
 Webpack可以根据`DefinePlugin`声明和这段代码选择正确的代码。你必须在这里使用CommonJS模块定义样式，因为ES2015`import`s不允许按设计进行动态行为。
 Webpack can pick the right code based on the `DefinePlugin` declaration and this code. You have to use CommonJS module definition style here as ES2015 `import`s don't allow dynamic behavior by design.
 
-T>相关技术，**别名**，在*消费包*章节中讨论。
-T> A related technique, **aliasing**, is discussed in the *Consuming Packages* chapter.
+T> 相关技术，**别名**，会在 *Consuming Packages* 章节中讨论。
 
 {pagebreak}
 
-##结论
-## Conclusion
+## 结论
 
 设置环境变量是一种允许您控制构建中包含源的哪些路径的技术。
 Setting environment variables is a technique that allows you to control which paths of the source are included in the build.
