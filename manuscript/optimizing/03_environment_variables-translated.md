@@ -113,7 +113,6 @@ exports.setFreeVariable = (key, value) => {
 将其与配置连接：
 Connect this with the configuration:
 
-** ** webpack.config.js
 **webpack.config.js**
 
 ```javascript

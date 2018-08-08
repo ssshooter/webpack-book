@@ -1,41 +1,29 @@
-＃将哈希添加到文件名
-# Adding Hashes to Filenames
+# 文件名中加入哈希
 
 即使生成的构建工作，它使用的文件名也是有问题的。它不允许有效利用客户端级别缓存，因为无法判断文件是否已更改。可以通过在文件名中包含哈希来实现缓存失效。
 Even though the generated build works the file names it uses is problematic. It doesn't allow to leverage client level cache efficiently as there's no way tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to the filenames.
 
-##占位符
+## 占位符
 ## Placeholders
 
-Webpack为此提供**占位符**。这些字符串用于将特定信息附加到webpack输出。最有价值的是：
-Webpack provides **placeholders** for this purpose. These strings are used to attach specific information to webpack output. The most valuable ones are:
+Webpack 为此提供**占位符**。这些字符串用于将特定信息附加到 webpack 输出。其中最有价值的是：
 
-*`[id]` - 返回块ID。
-* `[id]` - Returns the chunk id.
-*`[path]` - 返回文件路径。
-* `[path]` - Returns the file path.
-*`[name]` - 返回文件名。
-* `[name]` - Returns the file name.
-*`[ext]` - 返回扩展名。 `[ext]`适用于大多数可用字段。 `MiniCssExtractPlugin`是这条规则的一个值得注意的例外。
-* `[ext]` - Returns the extension. `[ext]` works for most available fields. `MiniCssExtractPlugin` is a notable exception to this rule.
-*`[hash]` - 返回构建哈希。如果构建的任何部分发生变化，这也会发生变化。
-* `[hash]` - Returns the build hash. If any portion of the build changes, this changes as well.
-*`[chunkhash]` - 返回一个特定于条目块的哈希。配置中定义的每个“条目”都会收到自己的哈希值。如果条目的任何部分发生更改，则哈希值也会更改。根据定义，`[chunkhash]`比`[hash]`更精细。
-* `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined in the configuration receives a hash of its own. If any portion of the entry changes, the hash will change as well. `[chunkhash]` is more granular than `[hash]` by definition.
-*`[contenthash]` - 返回根据内容生成的哈希。
-* `[contenthash]` - Returns a hash generated based on content.
+* `[id]` - 返回 chunk id。
+* `[path]` - 返回文件路径。
+* `[name]` - 返回文件名。
+* `[ext]` - 返回扩展名。 `[ext]`适用于大多数可用字段。`MiniCssExtractPlugin`是一个值得注意的例外。
+* `[hash]` - 返回构建哈希。如果构建的任何部分发生变化，哈希值也会发生变化。
+* `[chunkhash]` - 返回一个 entry chunk-specific 哈希。配置中定义的每个 `entry` 都会收到自己的哈希值。如果条目的任何部分发生更改，则哈希值也会更改。根据定义，`[chunkhash]` 比 `[hash]` 更精细。
+* `[contenthash]` - 返回根据内容生成的哈希。
 
-特别是'hash`和`chunkhash`最好仅用于生产目的，因为散列在开发过程中没有太大作用。
-It's preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing doesn't do much good during development.
+`hash` 和 `chunkhash` 用在生产环境是极好的，但哈希在开发环境没有太大作用。
 
-T>可以使用特定语法对`hash`和`chunkhash`进行切片：`[chunkhash：4]`。而不是像'8c4cbfdb91ff93f3f3c5`这样的散列，这将产生'8c4c`。
-T> It's possible to slice `hash` and `chunkhash` using specific syntax: `[chunkhash:4]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4c`.
+T> 可以使用特定语法对 `hash` 和 `chunkhash` 进行分割：`[chunkhash：4]`。这样会生成 `8c4c`，而不是像 `8c4cbfdb91ff93f3f3c5` 这样的哈希。
 
 T>有更多可用选项，您甚至可以修改散列和摘要类型，如[loader-utils]（https://www.npmjs.com/package/loader-utils#interpolatename）文档中所述。
 T> There are more options available, and you can even modify the hashing and digest type as discussed at [loader-utils](https://www.npmjs.com/package/loader-utils#interpolatename) documentation.
 
-###示例占位符
-### Example Placeholders
+### 占位符的一个例子
 
 假设您具有以下配置：
 Assume you have the following configuration:
@@ -49,8 +37,7 @@ Assume you have the following configuration:
 },
 ```
 
-Webpack会基于它生成这些文件名：
-Webpack would generate filenames like these based on it:
+Webpack 会基于这个配置生成文件名：
 
 ```bash
 main.d587bbd6e38337f5accd.js
@@ -65,13 +52,12 @@ The same result can be achieved by generating static filenames and invalidating 
 
 {pagebreak}
 
-##设置哈希
+## 设置哈希
 ## Setting Up Hashing
 
 构建需要调整以生成适当的哈希。图像和字体应该接收`hash`，而块应该在名称中使用`chunkhash`来正确地使它们无效：
 The build needs tweaking to generate proper hashes. Images and fonts should receive `hash` while chunks should use `chunkhash` in their names to invalidate them correctly:
 
-** ** webpack.config.js
 **webpack.config.js**
 
 ```javascript
@@ -111,7 +97,6 @@ If you used `chunkhash` for the extracted CSS as well, this would lead to proble
 因此，您可以使用基于提取的内容生成的`contenthash`而不是`chunkhash`：
 Therefore, instead of `chunkhash`, you can use `contenthash` that is generated based on the extracted content:
 
-** ** webpack.parts.js
 **webpack.parts.js**
 
 ```javascript
@@ -161,8 +146,7 @@ The files have neat hashes now. To prove that it works for styling, you could tr
 但是有一个问题。如果更改应用程序代码，它也会使供应商文件无效！解决这个问题需要提取**清单**，但在此之前，您可以改进生产构建处理模块ID的方式。
 There's one problem, though. If you change the application code, it invalidates the vendor file as well! Solving this requires extracting a **manifest**, but before that, you can improve the way the production build handles module IDs.
 
-##结论
-## Conclusion
+## 结论
 
 将与文件内容相关的哈希包括在其名称中允许在客户端使它们无效。如果哈希值已更改，则会强制客户端再次下载该资产。
 Including hashes related to the file contents to their names allows to invalidate them on the client side. If a hash has changed, the client is forced to download the asset again.
