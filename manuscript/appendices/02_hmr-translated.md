@@ -28,7 +28,7 @@ The following steps need to be enabled for HMR to work:
 使用`webpack-dev-server --hot`解决了前两个问题。在这种情况下，如果要修补JavaScript应用程序代码，则必须自己处理最后一个。跳过`--hot`标志并通过webpack配置可以提供更大的灵活性。
 Using `webpack-dev-server --hot` solves the first two problems. In this case, you have to handle only the last one yourself if you want to patch JavaScript application code. Skipping the `--hot` flag and going through webpack configuration gives more flexibility.
 
-以下清单包含与此方法相关的基本部分。您必须从此处进行调整以匹配您的配置样式：
+以下清单包含与此方法相关的基本部分。你必须从此处进行调整以匹配你的配置样式：
 The following listing contains the essential parts related to this approach. You will have to adapt from here to match your configuration style:
 
 ```javascript
@@ -59,16 +59,16 @@ If you implement configuration like above without implementing the client interf
 该消息告诉我即使HMR接口通知客户端部分热更新的代码，也没有做任何事情，这是接下来要解决的问题。
 The message tells that even though the HMR interface notified the client portion of the code of a hot update, nothing was done about it and this is something to fix next.
 
-T>设置假设您已启用`webpack.NamedModulesPlugin（）`。如果您在`development`模式下运行webpack，默认情况下它将处于打开状态。
+T>设置假设你已启用`webpack.NamedModulesPlugin（）`。如果你在`development`模式下运行webpack，默认情况下它将处于打开状态。
 T> The setup assumes you have enabled `webpack.NamedModulesPlugin()`. If you run webpack in `development` mode, it will be on by default.
 
 W> * webpack-dev-server *可以挑剔路径。 Webpack [问题＃675]（https://github.com/webpack/webpack/issues/675）更详细地讨论了这个问题。
 W> *webpack-dev-server* can be picky about paths. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses the problem in more detail.
 
-W>您应该**不要**为您的生产配置启用HMR。它可能有效，但它使你的捆绑比它们应该更重要。
+W>你应该**不要**为你的生产配置启用HMR。它可能有效，但它使你的捆绑比它们应该更重要。
 W> You should **not** enable HMR for your production configuration. It likely works, but it makes your bundles more significant than they should be.
 
-W>如果您使用的是Babel，请将其配置为允许webpack控制模块生成，否则HMR逻辑将无法正常工作！
+W>如果你使用的是Babel，请将其配置为允许webpack控制模块生成，否则HMR逻辑将无法正常工作！
 W> If you are using Babel, configure it so that it lets webpack control module generation as otherwise, HMR logic won't work!
 
 ##实现HMR接口
@@ -104,7 +104,7 @@ if (module.hot) {
 }
 ```
 
-如果刷新浏览器，尝试在此更改后修改* src / component.js *，并将文本更改为其他内容，您应该注意到浏览器根本不刷新。相反，它应该替换DOM节点，同时保留应用程序的其余部分。
+如果刷新浏览器，尝试在此更改后修改* src / component.js *，并将文本更改为其他内容，你应该注意到浏览器根本不刷新。相反，它应该替换DOM节点，同时保留应用程序的其余部分。
 If you refresh the browser, try to modify *src/component.js* after this change, and alter the text to something else, you should notice that the browser does not refresh at all. Instead, it should replace the DOM node while retaining the rest of the application as is.
 
 {pagebreak}
@@ -114,7 +114,7 @@ The image below shows possible output:
 
 ![Patched a module successfully through HMR](images/hmr.png)
 
-这个想法与造型，React，Redux和其他技术相同。有时您不必自己实现界面，即使可用的工具为您处理。
+这个想法与造型，React，Redux和其他技术相同。有时你不必自己实现界面，即使可用的工具为你处理。
 The idea is the same with styling, React, Redux, and other technologies. Sometimes you don't have to implement the interface yourself even as available tooling takes care of that for you.
 
 T>要证明HMR保留应用程序状态，请在原始文件旁边设置[复选框]（https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox）组件。 `module.hot.accept`代码必须发展以捕获对它的更改。
@@ -128,7 +128,7 @@ T> The `if(module.hot)` block is eliminated entirely from the production build a
 ##手动设置WDS入口点
 ## Setting WDS Entry Points Manually
 
-在上面的设置中，自动注入与WDS相关的条目。假设您正在通过Node使用WDS，您必须自己设置它们，因为Node API不支持注入。以下示例说明了如何实现此目的：
+在上面的设置中，自动注入与WDS相关的条目。假设你正在通过Node使用WDS，你必须自己设置它们，因为Node API不支持注入。以下示例说明了如何实现此目的：
 In the setup above, the WDS-related entries were injected automatically. Assuming you are using WDS through Node, you would have to set them yourself as the Node API doesn't support injecting. The example below illustrates how to achieve this:
 
 ```javascript

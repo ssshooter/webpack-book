@@ -13,7 +13,7 @@ Because a book focusing only on a single technology can stand taller, I ended up
 在这些年里，webpack已经转变为一个项目。包括我自己在内的核心团队不再依赖于单一的多产作者，而是围绕该项目发展壮大，吸引了更多人来支持这项工作。
 During these years webpack has transformed as a project. Instead of relying on a single prolific author, a core team including myself has grown around the project, and has attracted more people to support the effort.
 
-有一个[开放的集体活动]（https://opencollective.com/webpack）来帮助项目在财务上取得成功。此外，我将30％的账面收益捐赠给托比亚斯，因为他已经超过了托比亚斯。通过支持本书，您可以帮助webpack开发，因为大部分利润都归于其核心团队。
+有一个[开放的集体活动]（https://opencollective.com/webpack）来帮助项目在财务上取得成功。此外，我将30％的账面收益捐赠给托比亚斯，因为他已经超过了托比亚斯。通过支持本书，你可以帮助webpack开发，因为大部分利润都归于其核心团队。
 There is an [open collective campaign](https://opencollective.com/webpack) to help the project to succeed financially. Also, I am donating 30% of the book earnings to Tobias as he has more than earned it. By supporting the book, you help webpack development as most of the profit goes to its core team.
 
 JuhoVepsäläinen

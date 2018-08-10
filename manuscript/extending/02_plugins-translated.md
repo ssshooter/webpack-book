@@ -1,25 +1,24 @@
-＃使用插件扩展
-# Extending with Plugins
+# 扩展 Plugins
 
-与加载器相比，插件是一种更灵活的扩展webpack的方法。您可以访问webpack的**编译器**和**编译**进程。可以运行子编译器，插件可以与加载器一起工作，如“MiniCssExtractPlugin”所示。
+与加载器相比，插件是一种更灵活的扩展webpack的方法。你可以访问webpack的**编译器**和**编译**进程。可以运行子编译器，插件可以与加载器一起工作，如“MiniCssExtractPlugin”所示。
 Compared to loaders, plugins are a more flexible means to extend webpack. You have access to webpack's **compiler** and **compilation** processes. It's possible to run child compilers, and plugins can work in tandem with loaders as `MiniCssExtractPlugin` shows.
 
-插件允许您通过挂钩拦截webpack的执行。 Webpack本身已经实现为插件集合。它下面依赖于[tapable]（https://www.npmjs.com/package/tapable）插件接口，允许webpack以不同的方式应用插件。
+插件允许你通过挂钩拦截webpack的执行。 Webpack本身已经实现为插件集合。它下面依赖于[tapable]（https://www.npmjs.com/package/tapable）插件接口，允许webpack以不同的方式应用插件。
 Plugins allow you to intercept webpack's execution through hooks. Webpack itself has been implemented as a collection of plugins. Underneath it relies on [tapable](https://www.npmjs.com/package/tapable) plugin interface that allows webpack to apply plugins in different ways.
 
-接下来你将学会开发几个小插件。与加载器不同，没有单独的环境可以运行插件，因此您必须针对webpack本身运行它们。但是，可以将较小的逻辑推到面向webpack的部分之外，因为这允许您单独对其进行单元测试。
+接下来你将学会开发几个小插件。与加载器不同，没有单独的环境可以运行插件，因此你必须针对webpack本身运行它们。但是，可以将较小的逻辑推到面向webpack的部分之外，因为这允许你单独对其进行单元测试。
 You'll learn to develop a couple of small plugins next. Unlike for loaders, there is no separate environment where you can run plugins, so you have to run them against webpack itself. It's possible to push smaller logic outside of the webpack facing portion, though, as this allows you to unit test it in isolation.
 
 ## Webpack插件的基本流程
 ## The Basic Flow of Webpack Plugins
 
-Webpack插件应该公开`apply（编译器）`方法。 JavaScript允许多种方式来执行此操作。你可以使用一个函数，然后将方法附加到它的`prototype`。要遵循最新的语法，您可以使用`class`来建模相同的想法。
+Webpack插件应该公开`apply（编译器）`方法。 JavaScript允许多种方式来执行此操作。你可以使用一个函数，然后将方法附加到它的`prototype`。要遵循最新的语法，你可以使用`class`来建模相同的想法。
 A webpack plugin is expected to expose an `apply(compiler)` method. JavaScript allows multiple ways to do this. You could use a function and then attach methods to its `prototype`. To follow the newest syntax, you could use a `class` to model the same idea.
 
-无论您采用何种方法，都应捕获用户在构造函数中传递的可能选项。声明一个模式以将它们传达给用户是个好主意。 [schema-utils]（https://www.npmjs.com/package/schema-utils）允许验证并与加载器一起使用。
+无论你采用何种方法，都应捕获用户在构造函数中传递的可能选项。声明一个模式以将它们传达给用户是个好主意。 [schema-utils]（https://www.npmjs.com/package/schema-utils）允许验证并与加载器一起使用。
 Regardless of your approach, you should capture possible options passed by a user at the constructor. It's a good idea to declare a schema to communicate them to the user. [schema-utils](https://www.npmjs.com/package/schema-utils) allows validation and works with loaders too.
 
-当插件连接到webpack配置时，webpack将运行其构造函数并使用传递给它的编译器对象调用`apply`。该对象公开了webpack的插件API，并允许您使用[官方编译器参考]（https://webpack.js.org/api/plugins/compiler/）列出的钩子。
+当插件连接到webpack配置时，webpack将运行其构造函数并使用传递给它的编译器对象调用`apply`。该对象公开了webpack的插件API，并允许你使用[官方编译器参考]（https://webpack.js.org/api/plugins/compiler/）列出的钩子。
 When the plugin is connected to webpack configuration, webpack will run its constructor and call `apply` with a compiler object passed to it. The object exposes webpack's plugin API and allows you to use its hooks as listed by [the official compiler reference](https://webpack.js.org/api/plugins/compiler/).
 
 T> [webpack-defaults]（https://www.npmjs.com/package/webpack-defaults）是webpack插件的起点。它包含用于开发官方webpack加载器和插件的基础结构。
@@ -28,7 +27,7 @@ T> [webpack-defaults](https://www.npmjs.com/package/webpack-defaults) works as a
 ##设置开发环境
 ## Setting Up a Development Environment
 
-由于插件必须针对webpack运行，因此您必须设置一个以运行将进一步开发的演示插件：
+由于插件必须针对webpack运行，因此你必须设置一个以运行将进一步开发的演示插件：
 Since plugins have to be run against webpack, you have to set up one to run a demo plugin that will be developed further:
 
 ** ** webpack.plugin.js
@@ -55,7 +54,7 @@ module.exports = {
 };
 ```
 
-T>如果您还没有设置`lib`条目文件，请写一个。只要是webpack可以解析的JavaScript，内容就无所谓了。
+T>如果你还没有设置`lib`条目文件，请写一个。只要是webpack可以解析的JavaScript，内容就无所谓了。
 T> If you don't have a `lib` entry file set up yet, write one. The contents don't matter as long as it's JavaScript that webpack can parse.
 
 为方便运行，请设置构建快捷方式：
@@ -76,7 +75,7 @@ leanpub-end-insert
 执行它应该导致“错误：无法找到模块”失败，因为实际的插件仍然缺失。
 Executing it should result in an `Error: Cannot find module` failure as the actual plugin is still missing.
 
-T>如果您想要一个交互式开发环境，请考虑针对构建设置[nodemon]（https://www.npmjs.com/package/nodemon）。在这种情况下，Webpack的观察者将无法工作。
+T>如果你想要一个交互式开发环境，请考虑针对构建设置[nodemon]（https://www.npmjs.com/package/nodemon）。在这种情况下，Webpack的观察者将无法工作。
 T> If you want an interactive development environment, consider setting up [nodemon](https://www.npmjs.com/package/nodemon) against the build. Webpack's watcher won't work in this case.
 
 ##实现基本插件
@@ -168,10 +167,10 @@ module.exports = class DemoPlugin {
 };
 ```
 
-运行后，您应该会看到很多数据。特别是`options`应该看起来很熟悉，因为它包含webpack配置。您还可以看到熟悉的名称，如`records`。
+运行后，你应该会看到很多数据。特别是`options`应该看起来很熟悉，因为它包含webpack配置。你还可以看到熟悉的名称，如`records`。
 After running, you should see a lot of data. Especially `options` should look familiar as it contains webpack configuration. You can also see familiar names like `records`.
 
-如果你浏览webpack的[插件开发文档]（https://webpack.js.org/api/plugins/），你会发现编译器提供了大量的钩子。每个钩子对应一个特定的阶段。例如，要发出文件，您可以监听`emit`事件然后写。
+如果你浏览webpack的[插件开发文档]（https://webpack.js.org/api/plugins/），你会发现编译器提供了大量的钩子。每个钩子对应一个特定的阶段。例如，要发出文件，你可以监听`emit`事件然后写。
 If you go through webpack's [plugin development documentation](https://webpack.js.org/api/plugins/), you'll see a compiler provides a large number of hooks. Each hook corresponds to a specific stage. For example, to emit files, you could listen to the `emit` event and then write.
 
 更改实现以侦听和捕获`编译`：
@@ -203,7 +202,7 @@ leanpub-end-insert
 W>忘记回调并运行插件会让webpack无声地失败！
 W> Forgetting the callback and running the plugin makes webpack fail silently!
 
-运行构建应该显示比以前更多的信息，因为编译对象包含webpack遍历的整个依赖关系图。您可以访问与此相关的所有内容，包括条目，块，模块，资产等。
+运行构建应该显示比以前更多的信息，因为编译对象包含webpack遍历的整个依赖关系图。你可以访问与此相关的所有内容，包括条目，块，模块，资产等。
 Running the build should show more information than before because a compilation object contains whole dependency graph traversed by webpack. You have access to everything related to it here including entries, chunks, modules, assets, and more.
 
 T>许多可用的钩子暴露了编译，但有时它们揭示了更具体的结构，并且需要更具体的研究才能理解这些。
@@ -215,10 +214,10 @@ T> Loaders have dirty access to `compiler` and `compilation` through underscore 
 ##通过编译编写文件
 ## Writing Files Through Compilation
 
-编译的`assets`对象可用于编写新文件。您还可以捕获已创建的资产，对其进行操作并将其写回。
+编译的`assets`对象可用于编写新文件。你还可以捕获已创建的资产，对其进行操作并将其写回。
 The `assets` object of compilation can be used for writing new files. You can also capture already created assets, manipulate them, and write them back.
 
-要编写资产，您必须使用[webpack-sources]（https://www.npmjs.com/package/webpack-sources）文件抽象。首先安装它：
+要编写资产，你必须使用[webpack-sources]（https://www.npmjs.com/package/webpack-sources）文件抽象。首先安装它：
 To write an asset, you have to use [webpack-sources](https://www.npmjs.com/package/webpack-sources) file abstraction. Install it first:
 
 ```bash
@@ -261,7 +260,7 @@ leanpub-end-insert
 };
 ```
 
-构建之后，您应该看到输出：
+构建之后，你应该看到输出：
 After building, you should see output:
 
 ```bash
@@ -274,7 +273,7 @@ lib.js   2.9 kB       0  [emitted]  lib
    [0] ./app/shake.js 107 bytes {0} [built]
 ```
 
-如果您检查* build / demo *文件，您将看到它包含* demo *，如上面的代码所示。
+如果你检查* build / demo *文件，你将看到它包含* demo *，如上面的代码所示。
 If you examine *build/demo* file, you'll see it contains the word *demo* as per code above.
 
 T> Compilation有一组自己的钩子，如[官方编译参考]（https://webpack.js.org/api/plugins/compiler/）所述。
@@ -286,7 +285,7 @@ T> Compilation has a set of hooks of its own as covered in [the official compila
 可以通过抛出（`throw new Error（“Message”）`）使插件执行失败。如果验证选项，则可以使用此方法。
 Plugin execution can be caused to fail by throwing (`throw new Error("Message")`). If you validate options, you can use this method.
 
-如果您想在编译期间向用户发出警告或错误消息，您应该使用`compilation.warnings`和`compilation.errors`。例：
+如果你想在编译期间向用户发出警告或错误消息，你应该使用`compilation.warnings`和`compilation.errors`。例：
 In case you want to give the user a warning or an error message during compilation, you should use `compilation.warnings` and `compilation.errors`. Example:
 
 ```javascript
@@ -312,7 +311,7 @@ In special cases, like [offline-plugin](https://www.npmjs.com/package/offline-pl
 ##结论
 ## Conclusion
 
-当您开始设计插件时，花时间研究足够接近的现有插件。分段开发插件，以便您一次验证一件。研究webpack源代码可以提供更多的洞察力，因为它是一组插件本身。
+当你开始设计插件时，花时间研究足够接近的现有插件。分段开发插件，以便你一次验证一件。研究webpack源代码可以提供更多的洞察力，因为它是一组插件本身。
 When you begin to design a plugin, spend time studying existing plugins that are close enough. Develop plugins piece-wise so that you validate one piece at a time. Studying webpack source can give more insight given it's a collection of plugins itself.
 
 回顾一下：
@@ -322,7 +321,7 @@ To recap:
 * **Plugins** can intercept webpack's execution and extend it making them more flexible than loaders.
 *插件可与装载机组合使用。 `MiniCssExtractPlugin`就是这样的。随附的加载程序用于标记要提取的资产。
 * Plugins can be combined with loaders. `MiniCssExtractPlugin` works this way. The accompanying loader is used to mark assets to extract.
-*插件可以访问webpack的**编译器**和**编译**进程。两者都为webpack的执行流程的不同阶段提供了钩子，并允许您操作它。 Webpack本身就是这样运作的。
+*插件可以访问webpack的**编译器**和**编译**进程。两者都为webpack的执行流程的不同阶段提供了钩子，并允许你操作它。 Webpack本身就是这样运作的。
 * Plugins have access to webpack's **compiler** and **compilation** processes. Both provide hooks for different stages of webpack's execution flow and allow you to manipulate it. Webpack itself works this way.
 *插件可以发出新资产并塑造现有资产。
 * Plugins can emit new assets and shape existing assets.

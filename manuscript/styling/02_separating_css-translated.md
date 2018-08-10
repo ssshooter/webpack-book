@@ -4,7 +4,7 @@
 即使现在有一个很好的构建设置，所有的CSS都去了哪里？根据配置，它已被内联到JavaScript！虽然这在开发过程中很方便，但听起来并不理想。
 Even though there is a nice build set up now, where did all the CSS go? As per configuration, it has been inlined to JavaScript! Even though this can be convenient during development, it doesn't sound ideal.
 
-当前的解决方案不允许缓存CSS。您还可以获得** Flash of Unstyled Content **（FOUC）。发生FOUC是因为浏览器需要一段时间才能加载JavaScript，并且只会应用样式。将CSS分离到自己的文件可以让浏览器单独管理它，从而避免了这个问题。
+当前的解决方案不允许缓存CSS。你还可以获得** Flash of Unstyled Content **（FOUC）。发生FOUC是因为浏览器需要一段时间才能加载JavaScript，并且只会应用样式。将CSS分离到自己的文件可以让浏览器单独管理它，从而避免了这个问题。
 The current solution doesn't allow cache CSS. You can also get a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser takes a while to load JavaScript and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
 
 Webpack提供了一种使用[mini-css-extract-plugin]（https://www.npmjs.com/package/mini-css-extract-plugin）（MCEP）生成单独的CSS包的方法。它可以将多个CSS文件聚合为一个。因此，它配备了一个处理提取过程的装载机。然后，插件会获取加载器聚合的结果并发出单独的文件。
@@ -107,15 +107,15 @@ leanpub-end-insert
 ]);
 ```
 
-使用此设置，您仍然可以在开发过程中受益于HMR。但是对于生产构建，可以生成单独的CSS。 `HtmlWebpackPlugin`自动选择它并将其注入`index.html`。
+使用此设置，你仍然可以在开发过程中受益于HMR。但是对于生产构建，可以生成单独的CSS。 `HtmlWebpackPlugin`自动选择它并将其注入`index.html`。
 Using this setup, you can still benefit from the HMR during development. For a production build, it's possible to generate a separate CSS, though. `HtmlWebpackPlugin` picks it up automatically and injects it into `index.html`.
 
-T>如果您正在使用* CSS Modules *，请记住相应地调整`use`，如* Loading Styles *章节中所述。您可以为标准CSS和CSS模块维护单独的设置，以便通过离散逻辑加载它们。
+T>如果你正在使用* CSS Modules *，请记住相应地调整`use`，如* Loading Styles *章节中所述。你可以为标准CSS和CSS模块维护单独的设置，以便通过离散逻辑加载它们。
 T> If you are using *CSS Modules*, remember to tweak `use` accordingly as discussed in the *Loading Styles* chapter. You can maintain separate setups for standard CSS and CSS Modules so that they get loaded through discrete logic.
 
 {pagebreak}
 
-运行`npm run build`后，您应该看到类似于以下内容的输出：
+运行`npm run build`后，你应该看到类似于以下内容的输出：
 After running `npm run build`, you should see output similar to the following:
 
 ```bash
@@ -167,10 +167,10 @@ const commonConfig = merge([
 ]);
 ```
 
-在进行此类更改后，您不必从应用程序代码中引用样式。这也意味着CSS模块停止工作。你也必须小心CSS排序。
+在进行此类更改后，你不必从应用程序代码中引用样式。这也意味着CSS模块停止工作。你也必须小心CSS排序。
 After this type of change, you would not have to refer to styling from your application code. It also means that CSS Modules stop working. You have to be careful with CSS ordering as well.
 
-因此，您应该同时获得* style.css *和* style.js *。后一个文件包含的内容如`webpackJsonp（[1,3]，[function（n，c）{}]）;`它没有做任何事情，如[webpack issue 1967]（https：// github）所述.COM /的WebPack /的WebPack /问题/ 1967）。
+因此，你应该同时获得* style.css *和* style.js *。后一个文件包含的内容如`webpackJsonp（[1,3]，[function（n，c）{}]）;`它没有做任何事情，如[webpack issue 1967]（https：// github）所述.COM /的WebPack /的WebPack /问题/ 1967）。
 As a result, you should get both *style.css* and *style.js*. The latter file contains content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything as discussed in the [webpack issue 1967](https://github.com/webpack/webpack/issues/1967).
 
 如果要严格控制排序，可以设置一个CSS条目，然后使用`@ import`通过它将其余部分带到项目中。另一个选择是设置一个JavaScript条目并通过`import`来获得相同的效果。
@@ -182,7 +182,7 @@ T> [css-entry-webpack-plugin](https://www.npmjs.com/package/css-entry-webpack-pl
 ##结论
 ## Conclusion
 
-当前的设置将样式与JavaScript整齐地分开。即使该技术对CSS最有价值，它也可用于提取HTML模板或您使用的任何其他文件类型。关于`MiniCssExtractPlugin`的难点在于它的设置，但复杂性可以隐藏在抽象背后。
+当前的设置将样式与JavaScript整齐地分开。即使该技术对CSS最有价值，它也可用于提取HTML模板或你使用的任何其他文件类型。关于`MiniCssExtractPlugin`的难点在于它的设置，但复杂性可以隐藏在抽象背后。
 The current setup separates styling from JavaScript neatly. Even though the technique is most valuable with CSS, it can be used to extract HTML templates or any other files types you consume. The hard part about `MiniCssExtractPlugin` has to do with its setup, but the complexity can be hidden behind an abstraction.
 
 回顾一下：
@@ -190,9 +190,9 @@ To recap:
 
 *使用带有样式的“MiniCssExtractPlugin”解决了无格式内容Flash（FOUC）的问题。从JavaScript中分离CSS还可以改善缓存行为并删除潜在的攻击媒介。
 * Using `MiniCssExtractPlugin` with styling solves the problem of Flash of Unstyled Content (FOUC). Separating CSS from JavaScript also improves caching behavior and removes a potential attack vector.
-*如果您不希望通过JavaScript维护对样式的引用，则可以选择通过条目来处理它们。不过，在这种情况下你必须小心样式排序。
+*如果你不希望通过JavaScript维护对样式的引用，则可以选择通过条目来处理它们。不过，在这种情况下你必须小心样式排序。
 * If you don't prefer to maintain references to styling through JavaScript, an alternative is to handle them through an entry. You have to be careful with style ordering in this case, though.
 
-在下一章中，您将学习如何从项目中消除未使用的CSS。
+在下一章中，你将学习如何从项目中消除未使用的CSS。
 In the next chapter, you'll learn to eliminate unused CSS from the project.
 

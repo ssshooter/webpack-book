@@ -1,20 +1,17 @@
-＃使用Loaders进行扩展
-# Extending with Loaders
+# 扩展 Loader
 
-正如您所看到的那样，加载器是webpack的构建块之一。如果要加载资产，则很可能需要设置匹配的加载程序定义。虽然有很多[可用的装载机]（https://webpack.js.org/loaders/），但是你可能错过了一个符合你目的的装载机。
+正如你所看到的那样，加载器是webpack的构建块之一。如果要加载资产，则很可能需要设置匹配的加载程序定义。虽然有很多[可用的装载机]（https://webpack.js.org/loaders/），但是你可能错过了一个符合你目的的装载机。
 As you have seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it's possible you are missing one fitting your purposes.
 
 接下来你将学会开发几个小型装载机。但在此之前，了解如何单独调试它们是很好的。
 You'll learn to develop a couple of small loaders next. But before that, it's good to understand how to debug them in isolation.
 
-T>如果您想要一个独立的加载器或插件项目的良好起点，请考虑使用[webpack-defaults]（https://github.com/webpack-contrib/webpack-defaults）。它提供了一个固有的起点，包括linting，测试和其他好东西。
+T>如果你想要一个独立的加载器或插件项目的良好起点，请考虑使用[webpack-defaults]（https://github.com/webpack-contrib/webpack-defaults）。它提供了一个固有的起点，包括linting，测试和其他好东西。
 T> If you want a good starting point for a standalone loader or plugin project, consider using [webpack-defaults](https://github.com/webpack-contrib/webpack-defaults). It provides an opinionated starting point that comes with linting, testing, and other goodies.
 
-##使用* loader-runner *调试装载程序
-## Debugging Loaders with *loader-runner*
+## 使用 *loader-runner* 调试 Loader
 
-[loader-runner]（https://www.npmjs.com/package/loader-runner）允许您运行没有webpack的加载器，让您可以了解有关加载器开发的更多信息。首先安装它：
-[loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run loaders without webpack allowing you to learn more about loader development. Install it first:
+[loader-runner](https://www.npmjs.com/package/loader-runner) 可以让你在没有 webpack 的情况下运行 loader，有了它你可以更方便地进行 loader 开发。首先安装它：
 
 ```bash
 npm install loader-runner --save-dev
@@ -25,27 +22,22 @@ npm install loader-runner --save-dev
 要测试一些东西，设置一个返回传递给它的两倍的加载器：
 To have something to test with, set up a loader that returns twice what's passed to it:
 
-**装载机/演示loader.js **
 **loaders/demo-loader.js**
 
 ```javascript
 module.exports = input => input + input;
 ```
 
-设置要处理的文件：
-Set up a file to process:
+准备待处理文件：
 
-** ** demo.txt
 **demo.txt**
 
 ```
 foobar
 ```
 
-代码中没有特定的webpack。下一步是通过* loader-runner *运行加载器：
-There's nothing webpack specific in the code yet. The next step is to run the loader through *loader-runner*:
+代码中暂时没有任何 webpack 规范。下一步是通过 *loader-runner* 运行 loader：
 
-**运行loader.js **
 **run-loader.js**
 
 ```javascript
@@ -65,8 +57,7 @@ runLoaders(
 
 {pagebreak}
 
-如果你现在运行脚本（`node run-loader.js`），你应该看到输出：
-If you run the script now (`node run-loader.js`), you should see output:
+如果你现在运行脚本（`node run-loader.js`），你应该可以看到输出：
 
 ```javascript
 { result: [ 'foobar\nfoobar\n' ],
@@ -85,10 +76,9 @@ T> If you want to capture the output to a file, use either `fs.writeFileSync("./
 T>可以通过名称引用安装到本地项目的加载器，而不是解析它们的完整路径。示例：`loaders：[“raw-loader”]`。
 T> It's possible to refer to loaders installed to the local project by name instead of resolving a full path to them. Example: `loaders: ["raw-loader"]`.
 
-##实现异步加载器
-## Implementing an Asynchronous Loader
+## 实现异步 Loader
 
-即使您可以使用同步接口实现许多加载器，但有时需要进行异步计算。将第三方软件包包装为加载程序可以强制您执行此操作。
+即使你可以使用同步接口实现许多加载器，但有时需要进行异步计算。将第三方软件包包装为加载程序可以强制你执行此操作。
 Even though you can implement a lot of loaders using the synchronous interface, there are times when an asynchronous calculation is required. Wrapping a third party package as a loader can force you to this.
 
 上面的例子可以通过`this.async（）`使用webpack特定的API来适应异步形式。 Webpack设置了这个，并且该函数返回遵循Node约定的回调（错误优先，结果秒）。
@@ -99,7 +89,6 @@ The example above can be adapted to asynchronous form by using webpack specific 
 调整如下：
 Tweak as follows:
 
-**装载机/演示loader.js **
 **loaders/demo-loader.js**
 
 ```javascript
@@ -141,7 +130,7 @@ The result should contain `Error: Demo error` with a stack trace showing where t
 ##仅返回输出
 ## Returning Only Output
 
-装载程序可用于单独输出代码。您可以拥有如下实现：
+装载程序可用于单独输出代码。你可以拥有如下实现：
 Loaders can be used to output code alone. You could have an implementation as below:
 
 **装载机/演示loader.js **
@@ -153,7 +142,7 @@ module.exports = function() {
 };
 ```
 
-但重点是什么？您可以通过webpack条目传递给加载器。您可以给动态生成代码的加载器，而不是像在大多数情况下那样指向预先存在的文件。
+但重点是什么？你可以通过webpack条目传递给加载器。你可以给动态生成代码的加载器，而不是像在大多数情况下那样指向预先存在的文件。
 But what's the point? You can pass to loaders through webpack entries. Instead of pointing to pre-existing files as you would in a majority of the cases, you could give to a loader that generates code dynamically.
 
 T>如果要返回`Buffer`输出，请设置`module.exports.raw = true`。该标志将覆盖期望返回字符串的默认行为。
@@ -263,7 +252,7 @@ leanpub-end-insert
 );
 ```
 
-要捕获该选项，您需要使用[loader-utils]（https://www.npmjs.com/package/loader-utils）。它旨在解析加载程序选项和查询。安装它：
+要捕获该选项，你需要使用[loader-utils]（https://www.npmjs.com/package/loader-utils）。它旨在解析加载程序选项和查询。安装它：
 To capture the option, you need to use [loader-utils](https://www.npmjs.com/package/loader-utils). It has been designed to parse loader options and queries. Install it:
 
 ```bash
@@ -310,16 +299,16 @@ After running (`node ./run-loader.js`), you should see something:
   contextDependencies: [] }
 ```
 
-您可以看到结果与加载程序应返回的内容相匹配。您可以尝试将更多选项传递给加载器或使用查询参数来查看不同组合会发生什么。
+你可以看到结果与加载程序应返回的内容相匹配。你可以尝试将更多选项传递给加载器或使用查询参数来查看不同组合会发生什么。
 You can see that the result matches what the loader should have returned. You can try to pass more options to the loader or use query parameters to see what happens with different combinations.
 
-T>如果选项不符合您的预期，那么验证选项是一个好主意，而不是默默地失败。 [schema-utils]（https://www.npmjs.com/package/schema-utils）专为此目的而设计。
+T>如果选项不符合你的预期，那么验证选项是一个好主意，而不是默默地失败。 [schema-utils]（https://www.npmjs.com/package/schema-utils）专为此目的而设计。
 T> It's a good idea to validate options and rather fail hard than silently if the options aren't what you expect. [schema-utils](https://www.npmjs.com/package/schema-utils) has been designed for this purpose.
 
 ##使用Webpack连接自定义加载器
 ## Connecting Custom Loaders with Webpack
 
-要充分利用加载器，必须将它们与webpack连接起来。要实现这一目标，您可以通过导入：
+要充分利用加载器，必须将它们与webpack连接起来。要实现这一目标，你可以通过导入：
 To get most out of loaders, you have to connect them with webpack. To achieve this, you can go through imports:
 
 ** SRC / component.js **
@@ -370,7 +359,7 @@ import "!demo-loader?name=foo!./main.css";
 leanpub-end-insert
 ```
 
-您还可以通过`rules`处理加载器定义。一旦加载器足够稳定，建立一个基于* webpack-defaults *的项目，在那里推送逻辑，并开始将加载器作为包使用。
+你还可以通过`rules`处理加载器定义。一旦加载器足够稳定，建立一个基于* webpack-defaults *的项目，在那里推送逻辑，并开始将加载器作为包使用。
 You could also handle the loader definition through `rules`. Once the loader is stable enough, set up a project based on *webpack-defaults*, push the logic there, and begin to consume the loader as a package.
 
 W>尽管使用* loader-runner *可以方便地开发和测试加载器，但实现针对webpack运行的集成测试。环境之间的微妙差异使这一点至关重要。
@@ -381,12 +370,12 @@ W> Although using *loader-runner* can be convenient for developing and testing l
 
 ![Webpack loader processing](images/loader-processing.png)
 
-Webpack分两个阶段评估加载器：投球和评估。如果您习惯于Web事件语义，则这些映射到捕获和冒泡。我们的想法是webpack允许您在投球（捕捉）阶段拦截执行。它首先从左到右穿过装载机，然后从右到左执行。
+Webpack分两个阶段评估加载器：投球和评估。如果你习惯于Web事件语义，则这些映射到捕获和冒泡。我们的想法是webpack允许你在投球（捕捉）阶段拦截执行。它首先从左到右穿过装载机，然后从右到左执行。
 Webpack evaluates loaders in two phases: pitching and evaluating. If you are used to web event semantics, these map to capturing and bubbling. The idea is that webpack allows you to intercept execution during the pitching (capturing) phase. It goes through the loaders left to right first and executes them from right to left after that.
 
 {pagebreak}
 
-音调加载器允许您调整请求甚至终止请求。设置它：
+音调加载器允许你调整请求甚至终止请求。设置它：
 A pitch loader allows you shape the request and even terminate it. Set it up:
 
 **装载机/俯仰loader.js **
@@ -497,7 +486,7 @@ T> The [official documentation](https://webpack.js.org/api/loaders/) covers the 
 ##结论
 ## Conclusion
 
-编写加载器很有趣，因为它们描述了从格式到另一种格式的转换。通常，您可以通过研究API文档或现有的加载器来弄清楚如何实现某些特定的东西。
+编写加载器很有趣，因为它们描述了从格式到另一种格式的转换。通常，你可以通过研究API文档或现有的加载器来弄清楚如何实现某些特定的东西。
 Writing loaders is fun in the sense that they describe transformations from a format to another. Often you can figure out how to achieve something specific by either studying either the API documentation or the existing loaders.
 
 回顾一下：
@@ -507,17 +496,17 @@ To recap:
 * *loader-runner* is a valuable tool for understanding how loaders work. Use it for debugging how loaders work.
 * Webpack **加载器**接受输入并基于它生成输出。
 * Webpack **loaders** accept input and produce output based on it.
-*加载器可以是同步的也可以是异步的。在后一种情况下，您应该使用`this.async（）`webpack API来捕获webpack公开的回调。
+*加载器可以是同步的也可以是异步的。在后一种情况下，你应该使用`this.async（）`webpack API来捕获webpack公开的回调。
 * Loaders can be either synchronous or asynchronous. In the latter case, you should use `this.async()` webpack API to capture the callback exposed by webpack.
-*如果您想为webpack条目动态生成代码，那么加载器可以派上用场。加载器不必接受输入。在这种情况下，它只返回输出是可以接受的。
+*如果你想为webpack条目动态生成代码，那么加载器可以派上用场。加载器不必接受输入。在这种情况下，它只返回输出是可以接受的。
 * If you want to generate code dynamically for webpack entries, that's where loaders can come in handy. A loader does not have to accept input. It's acceptable that it returns only output in this case.
 *使用** loader-utils **来解析传递给加载器的可能选项，并考虑使用** schema-utils **验证它们。
 * Use **loader-utils** to parse possible options passed to a loader and consider validating them using **schema-utils**.
 *在本地开发加载器时，请考虑设置`resolveLoader.alias`来清理引用。
 * When developing loaders locally, consider setting up a `resolveLoader.alias` to clean up references.
-*投球阶段补充了默认行为，允许您拦截和附加元数据。
+*投球阶段补充了默认行为，允许你拦截和附加元数据。
 * Pitching stage complements the default behavior allowing you to intercept and to attach metadata.
 
-您将学习在下一章编写插件。插件允许您拦截webpack的执行过程，并且它们可以与加载器组合以开发更高级的功能。
+你将学习在下一章编写插件。插件允许你拦截webpack的执行过程，并且它们可以与加载器组合以开发更高级的功能。
 You'll learn to write plugins in the next chapter. Plugins allow you to intercept webpack's execution process and they can be combined with loaders to develop more advanced functionality.
 

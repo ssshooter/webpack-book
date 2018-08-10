@@ -63,6 +63,6 @@ Given webpack comes with specific terminology, the principal terms and their exp
 
 * **输出**是指webpack发出的文件。更具体地说，webpack根据输出设置发出**包**和**资产**。
 * **Output** refers to files emitted by webpack. More specifically, webpack emits **bundles** and **assets** based on the output settings.
-* ** webpack的目标**选项允许您覆盖默认的Web目标。您可以使用webpack为特定的JavaScript平台开发代码。
+* ** webpack的目标**选项允许你覆盖默认的Web目标。你可以使用webpack为特定的JavaScript平台开发代码。
 * **Target** options of webpack allow you to override the default web target. You can use webpack to develop code for specific JavaScript platforms.
 

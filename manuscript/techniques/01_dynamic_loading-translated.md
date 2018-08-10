@@ -7,7 +7,7 @@ Even though you can get far with webpack's code splitting features covered in th
 ##使用`require.context`动态加载
 ## Dynamic Loading with `require.context`
 
-[require.context]（https://webpack.js.org/api/module-methods/#require-context）提供了一种代码分割的一般形式。假设您正在webpack上编写静态站点生成器。您可以通过包含Markdown文件的`./ pages /`目录在目录结构中建模您的站点内容。
+[require.context]（https://webpack.js.org/api/module-methods/#require-context）提供了一种代码分割的一般形式。假设你正在webpack上编写静态站点生成器。你可以通过包含Markdown文件的`./ pages /`目录在目录结构中建模你的站点内容。
 [require.context](https://webpack.js.org/api/module-methods/#require-context) provides a general form of code splitting. Let's say you are writing a static site generator on top of webpack. You could model your site contents within a directory structure by having a `./pages/` directory which would contain the Markdown files.
 
 这些文件中的每一个都有一个用于元数据的YAML前端。可以基于文件名确定每个页面的URL并将其映射为站点。要使用`require.context`对这个想法进行建模，你可能会得到如下代码：
@@ -28,7 +28,7 @@ const req = require.context(
 T>可以将加载器定义推送到webpack配置。内联表单用于保持示例最小化。
 T> The loader definition could be pushed to webpack configuration. The inline form is used to keep the example minimal.
 
-`require.context`将函数返回给`require`。它还知道它的模块`id`，它提供了一个`keys（）`方法来计算上下文的内容。为了给您一个更好的示例，请考虑以下代码：
+`require.context`将函数返回给`require`。它还知道它的模块`id`，它提供了一个`keys（）`方法来计算上下文的内容。为了给你一个更好的示例，请考虑以下代码：
 `require.context` returns a function to `require` against. It also knows its module `id` and it provides a `keys()` method for figuring out the contents of the context. To give you a better example, consider the code below:
 
 ```javascript
@@ -39,7 +39,7 @@ req.id; // 42
 const demoPage = req("./demo.md");
 ```
 
-该技术可用于其他目的，例如测试或添加webpack以供观看的文件。在这种情况下，您可以在文件中设置`require.context`，然后通过webpack`条目指向该文件。
+该技术可用于其他目的，例如测试或添加webpack以供观看的文件。在这种情况下，你可以在文件中设置`require.context`，然后通过webpack`条目指向该文件。
 The technique can be valuable for other purposes, such as testing or adding files for webpack to watch. In that case, you would set up a `require.context` within a file which you then point to through a webpack `entry`.
 
 T>这些信息足以生成[Antwar]（https://github.com/antwarjs/antwar）中展示的整个网站。
@@ -48,7 +48,7 @@ T> The information is enough for generating an entire site as showcased in [Antw
 ##动态路径与动态`导入`
 ## Dynamic Paths with a Dynamic `import`
 
-同样的想法适用于动态`import`。您可以传递部分路径，而不是传递完整路径。 Webpack在内部设置上下文。这是一个简短的例子：
+同样的想法适用于动态`import`。你可以传递部分路径，而不是传递完整路径。 Webpack在内部设置上下文。这是一个简短的例子：
 The same idea works with dynamic `import`. Instead of passing a complete path, you can pass a partial one. Webpack sets up a context internally. Here's a brief example:
 
 ```javascript
@@ -97,7 +97,7 @@ const combineContexts = (...contexts) => {
 ##处理动态路径
 ## Dealing with Dynamic Paths
 
-鉴于这里讨论的方法依赖于静态分析，webpack必须找到有问题的文件，它并不适用于所有可能的情况。如果您需要的文件在另一台服务器上或必须通过特定端点访问，那么webpack是不够的。
+鉴于这里讨论的方法依赖于静态分析，webpack必须找到有问题的文件，它并不适用于所有可能的情况。如果你需要的文件在另一台服务器上或必须通过特定端点访问，那么webpack是不够的。
 Given the approaches discussed here rely on static analysis and webpack has to find the files in question, it doesn't work for every possible case. If the files you need are on another server or have to be accessed through a particular end-point, then webpack isn't enough.
 
 考虑使用浏览器端加载器，如[$ script.js]（https://www.npmjs.com/package/scriptjs）或[little-loader]（https://www.npmjs.com/package/little-loader ）在这种情况下，在webpack之上。
@@ -106,7 +106,7 @@ Consider using browser-side loaders like [$script.js](https://www.npmjs.com/pack
 ##结论
 ## Conclusion
 
-尽管`require.context`是一个小众特色，但要注意它是件好事。如果您必须对文件系统中可用的多个文件执行查找，这将变得很有价值。如果您的查找比这更复杂，则必须使用其他允许您执行加载运行时的替代方法。
+尽管`require.context`是一个小众特色，但要注意它是件好事。如果你必须对文件系统中可用的多个文件执行查找，这将变得很有价值。如果你的查找比这更复杂，则必须使用其他允许你执行加载运行时的替代方法。
 Even though `require.context` is a niche feature, it's good to be aware of it. It becomes valuable if you have to perform lookups against multiple files available within the file system. If your lookup is more complicated than that, you have to resort to other alternatives that allow you to perform loading runtime.
 
 回顾一下：
@@ -116,7 +116,7 @@ To recap:
 * `require.context` is an advanced feature that's often hidden behind the scenes. Use it if you have to perform a lookup against a large number of files.
 *如果以某种形式编写动态`import`，webpack会生成`require.context`调用。在这种情况下，代码读取稍微好一些。
 * If you write a dynamic `import` in a certain form, webpack generates a `require.context` call. The code reads slightly better in this case.
-*这些技术仅适用于文件系统。如果您必须对网址进行操作，则应该考虑客户端解决方案。
+*这些技术仅适用于文件系统。如果你必须对网址进行操作，则应该考虑客户端解决方案。
 * The techniques work only against the file system. If you have to operate against urls, you should look into client-side solutions.
 
 下一章将介绍如何将web worker与webpack一起使用。

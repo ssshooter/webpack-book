@@ -1,10 +1,10 @@
 ＃国际化
 # Internationalization
 
-**国际化**（i18n）本身就是一个很大的话题。最广泛的定义与将用户界面转换为其他语言有关。 **本地化**（l10n）是一个更具体的术语，它描述了如何使您的应用程序适应特定的区域或市场。不同的语言环境可以使用相同的语言，但它们仍然具有其习惯，例如日期格式或度量。
+**国际化**（i18n）本身就是一个很大的话题。最广泛的定义与将用户界面转换为其他语言有关。 **本地化**（l10n）是一个更具体的术语，它描述了如何使你的应用程序适应特定的区域或市场。不同的语言环境可以使用相同的语言，但它们仍然具有其习惯，例如日期格式或度量。
 **Internationalization** (i18n) is a big topic by itself. The broadest definition has to do with translating your user interface to other languages. **Localization** (l10n) is a more specific term, and it describes how to adapt your application to a particular locale or market. Different locales can have the same language, but they still have their customs, like date formatting or measures.
 
-这个问题可以通过推动端点后面的翻译并动态加载它们来解决webpack的问题来解决。这样做还可以让您在应用程序中实现翻译界面，使翻译人员甚至用户能够翻译应用程序。这种方法的缺点是，你有一个翻译后端来维护。
+这个问题可以通过推动端点后面的翻译并动态加载它们来解决webpack的问题来解决。这样做还可以让你在应用程序中实现翻译界面，使翻译人员甚至用户能够翻译应用程序。这种方法的缺点是，你有一个翻译后端来维护。
 The problem could be solved by pushing the translations behind an endpoint and loading them dynamically to decouple the issue from webpack. Doing this would also allow you to implement a translation interface within your application to enable your translators, or even users, to translate the application. The downside of this approach is that then you have a translation backend to maintain.
 
 另一种方法是让webpack生成每种语言的静态构建。问题是每次翻译更改时都必须更新应用程序。
@@ -13,7 +13,7 @@ Another approach is to let webpack generate static builds, each per language. Th
 ## i18n与Webpack
 ## i18n with Webpack
 
-i18n与webpack的基本思想通常是一样的。您有一个转换定义，然后通过替换映射到应用程序。结果包含应用程序的翻译版本。您可以通过几种解决方案使用多种翻译格式：
+i18n与webpack的基本思想通常是一样的。你有一个转换定义，然后通过替换映射到应用程序。结果包含应用程序的翻译版本。你可以通过几种解决方案使用多种翻译格式：
 The basic idea of i18n with webpack is often the same. You have a translation definition that is then mapped to the application through replacements. The result contains a translated version of the application. You can use multiple translation formats through a couple of solutions:
 
 * [i18n-webpack-plugin]（https://www.npmjs.com/package/i18n-webpack-plugin）依赖于纯JSON定义，并通过`__（“Hello”）`占位符执行替换。
@@ -69,7 +69,7 @@ Install *i18n-webpack-plugin* and *glob* helper first. The latter is needed for 
 npm install glob i18n-webpack-plugin --save-dev
 ```
 
-在webpack方面，您应该遍历可用语言，然后为每个语言设置配置：
+在webpack方面，你应该遍历可用语言，然后为每个语言设置配置：
 On the webpack side, you should iterate through the available languages, and then set up a configuration for each:
 
 ** ** webpack.i18n.js
@@ -123,7 +123,7 @@ If you build now (`npm run build:i18n`), you should end up with a new directory 
 要进一步举例，请按照* Multiple Pages *章节中的说明为每个翻译生成一个页面，然后添加一个语言选择器。语言定义可以通过webpack的“DefinePlugin”来处理。用户界面小部件可以依赖于该小部件并基于页面或目录命名约定来加载语言。
 To take the example further, generate a page for each translation as described in the *Multiple Pages* chapter and add a language selector. The language definition can be handled through webpack's `DefinePlugin`. A user interface widget could rely on that and load languages based on a page or directory naming convention.
 
-* Code Splitting *章节中讨论的技术对i18n有效。您可以定义动态`import`s以按需加载翻译文件。这样做会推动在其他地方加载和维护翻译的问题。
+* Code Splitting *章节中讨论的技术对i18n有效。你可以定义动态`import`s以按需加载翻译文件。这样做会推动在其他地方加载和维护翻译的问题。
 The techniques discussed in the *Code Splitting* chapter are valid with i18n. You could define dynamic `import`s to load translation files on demand. Doing this would push the problem of loading and maintaining translations elsewhere.
 
 {pagebreak}
@@ -131,17 +131,17 @@ The techniques discussed in the *Code Splitting* chapter are valid with i18n. Yo
 ##结论
 ## Conclusion
 
-其他webpack方法遵循类似的想法，更灵活，但需要更多的工作。如果您使用基于加载器的解决方案，则可以设置拆分点以按需加载语言。
+其他webpack方法遵循类似的想法，更灵活，但需要更多的工作。如果你使用基于加载器的解决方案，则可以设置拆分点以按需加载语言。
 The other webpack approaches follow a similar idea and are more flexible but require more work. If you go with a loader based solution, then you can set up split points to load languages on demand.
 
 回顾一下：
 To recap:
 
-* **国际化**（i18n）和**本地化**（l10n）是您在申请时针对多个市场的重要问题。
+* **国际化**（i18n）和**本地化**（l10n）是你在申请时针对多个市场的重要问题。
 * **Internationalization** (i18n) and **localization** (l10n) are important problems if you target multiple markets with your application.
-* Webpack支持多种i18n方法。作为起点，您可以替换特定注释，尽管可以使用更复杂的替代方案。
+* Webpack支持多种i18n方法。作为起点，你可以替换特定注释，尽管可以使用更复杂的替代方案。
 * Webpack supports multiple approaches to i18n. As a starting point you can replace specific annotations although more sophisticated alternatives are available.
-*可以通过将其推送到服务器来解决问题。它还允许您通过相同的API处理实际应用程序的转换。
+*可以通过将其推送到服务器来解决问题。它还允许你通过相同的API处理实际应用程序的转换。
 * The problem can be handled by pushing it to a server. It would also allow you to handle translating the actual application through the same API.
 
 下一章将介绍与webpack一起使用的各种测试设置和工具。

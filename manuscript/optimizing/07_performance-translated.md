@@ -16,13 +16,13 @@ There are a couple of ground rules when it comes to optimization:
 4.衡量影响。
 4. Measure impact.
 
-有时优化需要成本。它们可以使您的配置更难理解或将其与特定解决方案联系起来。通常，最好的优化是减少工作量或更聪明地做。基本说明将在下一节中介绍，以便您知道在何时处理性能。
+有时优化需要成本。它们可以使你的配置更难理解或将其与特定解决方案联系起来。通常，最好的优化是减少工作量或更聪明地做。基本说明将在下一节中介绍，以便你知道在何时处理性能。
 Sometimes optimizations come with a cost. They can make your configuration harder to understand or tie it to a particular solution. Often the best optimization is to do less work or do it more smartly. The basic directions are covered in the next sections, so you know where to look when it's time to work on performance.
 
 ##衡量影响力
 ## Measuring Impact
 
-如前一章所述，生成统计数据可用于衡量构建时间。 [speed-measure-webpack-plugin]（https://www.npmjs.com/package/speed-measure-webpack-plugin）为每个插件和加载器提供更详细的信息，以便您知道哪些过程大部分时间都在您的过程中。
+如前一章所述，生成统计数据可用于衡量构建时间。 [speed-measure-webpack-plugin]（https://www.npmjs.com/package/speed-measure-webpack-plugin）为每个插件和加载器提供更详细的信息，以便你知道哪些过程大部分时间都在你的过程中。
 As discussed in the previous chapter, generating stats can be used to measure build time. [speed-measure-webpack-plugin](https://www.npmjs.com/package/speed-measure-webpack-plugin) gives more granular information per plugin and loader so you know which take most of the time in your process.
 
 {pagebreak}
@@ -30,16 +30,16 @@ As discussed in the previous chapter, generating stats can be used to measure bu
 ##高级优化
 ## High-Level Optimizations
 
-默认情况下，Webpack仅使用单个实例，这意味着您无需额外工作就无法从多核处理器中受益。这是第三方解决方案，例如[parallel-webpack]（https://www.npmjs.com/package/parallel-webpack）和[HappyPack]（https://www.npmjs.com/package/happypack）进来。
+默认情况下，Webpack仅使用单个实例，这意味着你无需额外工作就无法从多核处理器中受益。这是第三方解决方案，例如[parallel-webpack]（https://www.npmjs.com/package/parallel-webpack）和[HappyPack]（https://www.npmjs.com/package/happypack）进来。
 Webpack uses only a single instance by default meaning you aren't able to benefit from a multi-core processor without extra effort. This where third-party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
 
 ### parallel-webpack  - 并行运行多个Webpack实例
 ### parallel-webpack - Run Multiple Webpack Instances in Parallel
 
-* parallel-webpack *允许您以两种方式并行化webpack配置。假设您已将webpack配置定义为数组，它可以并行运行配置。除此之外，* parallel-webpack *可以基于给定的**变体**生成构建。
+* parallel-webpack *允许你以两种方式并行化webpack配置。假设你已将webpack配置定义为数组，它可以并行运行配置。除此之外，* parallel-webpack *可以基于给定的**变体**生成构建。
 *parallel-webpack* allows you to parallelize webpack configuration in two ways. Assuming you have defined your webpack configuration as an array, it can run the configurations in parallel. In addition to this, *parallel-webpack* can generate builds based on given **variants**.
 
-使用变体可以同时生成生产和开发构建。变体还允许您生成具有不同目标的包，以便根据环境更容易使用它们。如'EnvironmentPlugin`结合使用时，变量可用于实现功能标志，如*环境变量*章节中所述。
+使用变体可以同时生成生产和开发构建。变体还允许你生成具有不同目标的包，以便根据环境更容易使用它们。如'EnvironmentPlugin`结合使用时，变量可用于实现功能标志，如*环境变量*章节中所述。
 Using variants allows you to generate both production and development builds at once. Variants also allow you to generate bundles with different targets to make them easier to consume depending on the environment. Variants can be used to implement feature flags when combined with `DefinePlugin` as discussed in the *Environment Variables* chapter.
 
 可以使用[worker-farm]（https://www.npmjs.com/package/worker-farm）实现基本思想。事实上，* parallel-webpack *依赖于* worker-farm *。
@@ -53,7 +53,7 @@ The underlying idea can be implemented using a [worker-farm](https://www.npmjs.c
 ### HappyPack  - 文件级并行
 ### HappyPack - File Level Parallelism
 
-与* parallel-webpack *相比，HappyPack是一个更为复杂的选择。我们的想法是，HappyPack拦截您指定的加载程序调用，然后并行运行它们。你必须先设置插件：
+与* parallel-webpack *相比，HappyPack是一个更为复杂的选择。我们的想法是，HappyPack拦截你指定的加载程序调用，然后并行运行它们。你必须先设置插件：
 Compared to *parallel-webpack*, HappyPack is a more involved option. The idea is that HappyPack intercepts the loader calls you specify and then runs them in parallel. You have to set up the plugin first:
 
 ** ** webpack.config.js
@@ -81,7 +81,7 @@ const commonConfig = merge([{
 
 {pagebreak}
 
-要完成连接，您必须使用HappyPack替换原始Babel加载程序定义：
+要完成连接，你必须使用HappyPack替换原始Babel加载程序定义：
 To complete the connection, you have to replace the original Babel loader definition with a HappyPack one:
 
 ```javascript
@@ -106,22 +106,22 @@ leanpub-end-insert
 上面的示例包含足够的信息，以便webpack运行给定的loader并行。 HappyPack带有更高级的选项，但应用这个想法就足以开始了。
 The example above contains enough information for webpack to run the given loader parallel. HappyPack comes with more advanced options, but applying this idea is enough to get started.
 
-也许HappyPack的问题在于它将您的配置与它结合在一起。有可能通过设计克服这个问题并使注入更容易。一种选择是构建更高级别的抽象，可以在vanilla配置之上执行替换。
+也许HappyPack的问题在于它将你的配置与它结合在一起。有可能通过设计克服这个问题并使注入更容易。一种选择是构建更高级别的抽象，可以在vanilla配置之上执行替换。
 Perhaps the problem with HappyPack is that it couples your configuration with it. It would be possible to overcome this issue by design and make it easier to inject. One option would be to build a higher level abstraction that can perform the replacement on top of vanilla configuration.
 
 ##低级优化
 ## Low-Level Optimizations
 
-特定的低级优化可以很好地了解。关键是允许webpack执行更少的工作。您已经实现了其中的几个，但枚举它们是个好主意：
+特定的低级优化可以很好地了解。关键是允许webpack执行更少的工作。你已经实现了其中的几个，但枚举它们是个好主意：
 Specific lower-level optimizations can be good to know. The key is to allow webpack to perform less work. You have already implemented a couple of these, but it's a good idea to enumerate them:
 
-*考虑在开发过程中使用更快的源地图变体或跳过它们。如果您不以任何方式处理代码，则可以跳过。
+*考虑在开发过程中使用更快的源地图变体或跳过它们。如果你不以任何方式处理代码，则可以跳过。
 * Consider using faster source map variants during development or skip them. Skipping is possible if you don't process the code in any way.
 *在开发期间使用[babel-preset-env]（https://www.npmjs.com/package/babel-preset-env）代替源地图，以便为现代浏览器转换更少的功能，并使代码更具可读性和更舒适调试。
 * Use [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) during development instead of source maps to transpile fewer features for modern browsers and make the code more readable and more comfortable to debug.
 *在开发过程中跳过polyfill。将[babel-polyfill]（https://www.npmjs.com/package/babel-polyfill）等软件包附加到应用程序的开发版本会增加开销。
 * Skip polyfills during development. Attaching a package, such as [babel-polyfill](https://www.npmjs.com/package/babel-polyfill), to the development version of an application adds to the overhead.
-*禁用开发期间不需要的应用程序部分。编译您正在处理的一小部分可能是一个有效的想法，因为您可以减少捆绑。
+*禁用开发期间不需要的应用程序部分。编译你正在处理的一小部分可能是一个有效的想法，因为你可以减少捆绑。
 * Disable the portions of the application you don't need during development. It can be a valid idea to compile only a small fraction you are working on as then you have less to bundle.
 * Polyfill less of Node并且不提供任何内容。例如，一个包可以使用Node`process`，这反过来会使你的包膨胀。要禁用它，请将`node.process`设置为`false`。要完全禁用polyfilling，请将`node`直接设置为`false`。 [请参阅webpack文档]（https://webpack.js.org/configuration/node/）获取默认值。
 * Polyfill less of Node and provide nothing instead. For example, a package could use Node `process` which in turn will bloat your bundle. To disable it, set `node.process` to `false`. To disable polyfilling entirely, set `node` to `false` directly. [See webpack documentation](https://webpack.js.org/configuration/node/) for the default values.
@@ -147,7 +147,7 @@ There are a series of plugin specific optimizations to consider:
 加载器也有它们的优化：
 Loaders have their optimizations as well:
 
-*通过在开发期间跳过装载机来执行较少的处理。特别是如果您使用的是现代浏览器，则可以跳过使用* babel-loader *或完全相同的内容。
+*通过在开发期间跳过装载机来执行较少的处理。特别是如果你使用的是现代浏览器，则可以跳过使用* babel-loader *或完全相同的内容。
 * Perform less processing by skipping loaders during development. Especially if you are using a modern browser, you can skip using *babel-loader* or equivalent altogether.
 *对JavaScript特定的加载器使用`include`或`exclude`。 Webpack默认遍历* node_modules *并对文件执行* babel-loader *，除非它已正确配置。
 * Use either `include` or `exclude` with JavaScript specific loaders. Webpack traverses *node_modules* by default and executes *babel-loader* over the files unless it has been configured correctly.
@@ -159,7 +159,7 @@ Loaders have their optimizations as well:
 ##优化开发过程中的重新绑定速度
 ## Optimizing Rebundling Speed During Development
 
-通过将开发设置指向库的缩小版本（例如React），可以在开发期间优化重新绑定时间。在React的情况下，您将失去基于“propType”的验证。如果速度很重要，这种技术是值得的。
+通过将开发设置指向库的缩小版本（例如React），可以在开发期间优化重新绑定时间。在React的情况下，你将失去基于“propType”的验证。如果速度很重要，这种技术是值得的。
 It's possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React's case, you lose `propType`-based validation. If speed is important, this technique is worth it.
 
 `module.noParse`接受RegExp或RegExps数组。除了告诉webpack不要解析你想要使用的缩小文件之外，你还必须使用`resolve.alias`指向它`react`。别名的想法将在* Consuming Packages *章节中详细讨论。
@@ -186,7 +186,7 @@ exports.dontParse = ({ name, path }) => {
 };
 ```
 
-要使用该功能，您可以按如下方式调用它：
+要使用该功能，你可以按如下方式调用它：
 To use the function, you would call it as follows:
 
 ```javascript
@@ -210,7 +210,7 @@ W> Not all modules support `module.noParse`. They should not have a reference to
 ##结论
 ## Conclusion
 
-您可以通过多种方式优化webpack的性能。在转向涉及更多的技术之前，通常最好先使用更易于理解的技术。您必须使用的确切方法取决于项目。
+你可以通过多种方式优化webpack的性能。在转向涉及更多的技术之前，通常最好先使用更易于理解的技术。你必须使用的确切方法取决于项目。
 You can optimize webpack's performance in multiple ways. Often it's a good idea to start with more accessible techniques before moving to more involved ones. The exact methods you have to use, depend on the project.
 
 回顾一下：

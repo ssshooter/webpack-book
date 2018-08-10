@@ -1,10 +1,10 @@
 ＃构建工具的比较
 # Comparison of Build Tools
 
-在当天，将脚本连接在一起就足够了。但是，时代已经发生了变化，现在分发您的JavaScript代码可能是一项复杂的工作。随着单页应用程序（SPA）的兴起，这个问题已经升级。他们倾向于依赖许多庞大的图书馆。
+在当天，将脚本连接在一起就足够了。但是，时代已经发生了变化，现在分发你的JavaScript代码可能是一项复杂的工作。随着单页应用程序（SPA）的兴起，这个问题已经升级。他们倾向于依赖许多庞大的图书馆。
 Back in the day, it was enough to concatenate scripts together. Times have changed, though, and now distributing your JavaScript code can be a complicated endeavor. This problem has escalated with the rise of single-page applications (SPAs). They tend to rely on many hefty libraries.
 
-出于这个原因，有多种策略可以加载它们。您可以一次加载它们或考虑根据需要加载库。 Webpack支持许多这样的策略。
+出于这个原因，有多种策略可以加载它们。你可以一次加载它们或考虑根据需要加载库。 Webpack支持许多这样的策略。
 For this reason, there are multiple strategies on how to load them. You could load them all at once or consider loading libraries as you need them. Webpack supports many of these sorts of strategies.
 
 Node和[npm]（https://www.npmjs.com/）（它的包管理器）的流行提供了更多的上下文。在npm开始流行之前，很难消耗依赖关系。有一段时间人们开发了前端特定的包裹经理，但最终赢了。现在依赖管理比以前更舒服，尽管仍有挑战需要克服。
@@ -21,7 +21,7 @@ Historically speaking, there have been many build tools. *Make* is perhaps the b
 ### Make
 ### Make
 
-[Make]（https://en.wikipedia.org/wiki/Make_%28software%29）可以追溯到最近，因为它最初是在1977年发布的。即使它是一个旧工具，它仍然具有相关性。 Make允许您为各种目的编写单独的任务。例如，您可以使用不同的任务来创建生成构建，缩小JavaScript或运行测试。您可以在许多其他工具中找到相同的想法。
+[Make]（https://en.wikipedia.org/wiki/Make_%28software%29）可以追溯到最近，因为它最初是在1977年发布的。即使它是一个旧工具，它仍然具有相关性。 Make允许你为各种目的编写单独的任务。例如，你可以使用不同的任务来创建生成构建，缩小JavaScript或运行测试。你可以在许多其他工具中找到相同的想法。
 [Make](https://en.wikipedia.org/wiki/Make_%28software%29) goes way back, as it was initially released in 1977. Even though it's an old tool, it has remained relevant. Make allows you to write separate tasks for various purposes. For instance, you could have different tasks for creating a production build, minifying your JavaScript or running tests. You can find the same idea in many other tools.
 
 尽管Make主要用于C项目，但它并没有以任何方式与C相关联。 James Coglan详细讨论了[如何使用Make with JavaScript]（https://blog.jcoglan.com/2014/02/05/building-javascript-projects-with-make/）。考虑基于James的帖子的缩写代码：
@@ -59,7 +59,7 @@ clean:
     rm -rf build
 ```
 
-使用Make，您可以使用特定于Make的语法和终端命令对任务进行建模，从而可以与webpack集成。
+使用Make，你可以使用特定于Make的语法和终端命令对任务进行建模，从而可以与webpack集成。
 With Make, you model your tasks using Make-specific syntax and terminal commands making it possible to integrate with webpack.
 
 ### npm`scripts`作为任务运行器
@@ -79,10 +79,10 @@ Even though npm CLI wasn't primarily designed to be used as a task runner, it wo
 },
 ```
 
-这些脚本可以使用`npm run`列出，然后使用`npm run <script>`执行。您还可以使用`test：watch`之类的约定命名脚本。这种方法的问题在于它需要保持跨平台。
+这些脚本可以使用`npm run`列出，然后使用`npm run <script>`执行。你还可以使用`test：watch`之类的约定命名脚本。这种方法的问题在于它需要保持跨平台。
 These scripts can be listed using `npm run` and then executed using `npm run <script>`. You can also namespace your scripts using a convention like `test:watch`. The problem with this approach is that it takes care to keep it cross-platform.
 
-您可能希望使用[rimraf]（https://www.npmjs.com/package/rimraf）等实用程序而不是`rm -rf`。可以在此处调用其他任务运行程序来隐藏您正在使用的任务。这样，您可以在保持界面相同的同时重构工具。
+你可能希望使用[rimraf]（https://www.npmjs.com/package/rimraf）等实用程序而不是`rm -rf`。可以在此处调用其他任务运行程序来隐藏你正在使用的任务。这样，你可以在保持界面相同的同时重构工具。
 Instead of `rm -rf`, you likely want to use utilities such as [rimraf](https://www.npmjs.com/package/rimraf) and so on. It's possible to invoke other tasks runners here to hide the fact that you are using one. This way you can refactor your tooling while keeping the interface as the same.
 
 ###土地
@@ -93,7 +93,7 @@ Instead of `rm -rf`, you likely want to use utilities such as [rimraf](https://w
 [Grunt]（http://gruntjs.com/）是前端开发人员的第一个着名任务选手。它的插件架构有助于它的流行。插件通常很复杂。因此，当配置增长时，很难理解发生了什么。
 [Grunt](http://gruntjs.com/) was the first famous task runner for frontend developers. Its plugin architecture contributed towards its popularity. Plugins are often complicated by themselves. As a result, when configuration grows, it can become difficult to understand what's going on.
 
-以下是[Grunt文档]（http://gruntjs.com/sample-gruntfile）中的示例。在此配置中，您可以定义linting和watcher任务。当* watch *任务运行时，它也会触发* lint *任务。这样，当您运行Grunt时，您在编辑源代码时会在终端中实时收到警告。
+以下是[Grunt文档]（http://gruntjs.com/sample-gruntfile）中的示例。在此配置中，你可以定义linting和watcher任务。当* watch *任务运行时，它也会触发* lint *任务。这样，当你运行Grunt时，你在编辑源代码时会在终端中实时收到警告。
 Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, you define a linting and watcher tasks. When the *watch* task gets run, it triggers the *lint* task as well. This way, as you run Grunt, you get warnings in real-time in the terminal as you edit the source code.
 
 {pagebreak}
@@ -125,13 +125,13 @@ module.exports = grunt => {
 };
 ```
 
-在实践中，您将有许多小任务用于特定目的，例如构建项目。 Grunt强大功能的一个重要组成部分就是隐藏了很多线路。
+在实践中，你将有许多小任务用于特定目的，例如构建项目。 Grunt强大功能的一个重要组成部分就是隐藏了很多线路。
 In practice, you would have many small tasks for specific purposes, such as building the project. An essential part of the power of Grunt is that it hides a lot of the wiring from you.
 
 太过分了，这可能会有问题。很难理解幕后发生了什么。这是Grunt的建筑课程。
 Taken too far, this can get problematic. It can become hard to understand what's going on under the hood. That's the architectural lesson to take from Grunt.
 
-T> [grunt-webpack]（https://www.npmjs.com/package/grunt-webpack）插件允许您在Grunt环境中使用webpack，同时将繁重的工作留给webpack。
+T> [grunt-webpack]（https://www.npmjs.com/package/grunt-webpack）插件允许你在Grunt环境中使用webpack，同时将繁重的工作留给webpack。
 T> [grunt-webpack](https://www.npmjs.com/package/grunt-webpack) plugin allows you to use webpack in a Grunt environment while you leave the heavy lifting to webpack.
 
 ### Gulp
@@ -139,10 +139,10 @@ T> [grunt-webpack](https://www.npmjs.com/package/grunt-webpack) plugin allows yo
 
 ![Gulp](images/gulp.png)
 
-[Gulp]（http://gulpjs.com/）采取了不同的方法。您不必依赖每个插件的配置，而是处理实际代码。如果你熟悉Unix和管道，你会喜欢Gulp。你有* sources *来匹配文件，*过滤器*来操作这些源，* sinks *来管道构建结果。
+[Gulp]（http://gulpjs.com/）采取了不同的方法。你不必依赖每个插件的配置，而是处理实际代码。如果你熟悉Unix和管道，你会喜欢Gulp。你有* sources *来匹配文件，*过滤器*来操作这些源，* sinks *来管道构建结果。
 [Gulp](http://gulpjs.com/) takes a different approach. Instead of relying on configuration per plugin, you deal with actual code. If you are familiar with Unix and piping, you'll like Gulp. You have *sources* to match files, *filters* to operate on these sources, and *sinks* to pipe the build results.
 
-这是一个缩写的示例* Gulpfile *，它改编自项目的自述文件，让您更好地了解该方法：
+这是一个缩写的示例* Gulpfile *，它改编自项目的自述文件，让你更好地了解该方法：
 Here's an abbreviated sample *Gulpfile* adapted from the project's README to give you a better idea of the approach:
 
 ** ** Gulpfile.js
@@ -183,10 +183,10 @@ gulp.task("watch", () => gulp.watch(paths.scripts, ["scripts"]));
 gulp.task("default", ["watch", "scripts"]);
 ```
 
-鉴于配置是代码，如果遇到麻烦，你总是可以破解它。您可以将现有Node包打包为Gulp插件，依此类推。与Grunt相比，您可以更清楚地知道发生了什么。不过，你仍然会为休闲任务编写大量样板文件。这就是新方法的用武之地。
+鉴于配置是代码，如果遇到麻烦，你总是可以破解它。你可以将现有Node包打包为Gulp插件，依此类推。与Grunt相比，你可以更清楚地知道发生了什么。不过，你仍然会为休闲任务编写大量样板文件。这就是新方法的用武之地。
 Given the configuration is code, you can always hack it if you run into troubles. You can wrap existing Node packages as Gulp plugins, and so on. Compared to Grunt, you have a clearer idea of what's going on. You still end up writing a lot of boilerplate for casual tasks, though. That is where newer approaches come in.
 
-T> [webpack-stream]（https://www.npmjs.com/package/webpack-stream）允许您在Gulp环境中使用webpack。
+T> [webpack-stream]（https://www.npmjs.com/package/webpack-stream）允许你在Gulp环境中使用webpack。
 T> [webpack-stream](https://www.npmjs.com/package/webpack-stream) allows you to use webpack in a Gulp environment.
 
 ##脚本加载器
@@ -225,7 +225,7 @@ define(["require"], function (require) {
 });
 ```
 
-后一种方法消除了一部分杂乱。您仍然会遇到感觉多余的代码。 ES2015和其他标准解决了这个问题。
+后一种方法消除了一部分杂乱。你仍然会遇到感觉多余的代码。 ES2015和其他标准解决了这个问题。
 This latter approach eliminates a part of the clutter. You still end up with code that feels redundant. ES2015 and other standards solve this.
 
 T> Jamund Ferguson写了一篇关于如何从[RequireJS到webpack]（https://gist.github.com/xjamundx/b1c800e9282e16a6a18e）移植的优秀博客系列。
@@ -236,13 +236,13 @@ T> Jamund Ferguson has written an excellent blog series on how to port from [Req
 
 ![JSPM](images/jspm.png)
 
-使用[JSPM]（http://jspm.io/）与以前的工具完全不同。它附带了一个自己的命令行工具，用于将新包安装到项目中，创建生产包等等。它支持[SystemJS插件]（https://github.com/systemjs/systemjs#plugins），允许您为项目加载各种格式。
+使用[JSPM]（http://jspm.io/）与以前的工具完全不同。它附带了一个自己的命令行工具，用于将新包安装到项目中，创建生产包等等。它支持[SystemJS插件]（https://github.com/systemjs/systemjs#plugins），允许你为项目加载各种格式。
 Using [JSPM](http://jspm.io/) is entirely different than previous tools. It comes with a command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
 
 ## Bundlers
 ## Bundlers
 
-任务跑步者是高水平的伟大工具。它们允许您以跨平台方式执行操作。当您需要将各种资产拼接在一起并生成捆绑包时，问题就开始了。 * bundlers *，例如Br​​owserify，Brunch或webpack，因此存在，并且它们在较低的抽象级别上运行。它们不是对文件进行操作，而是对模块和资产进行操作。
+任务跑步者是高水平的伟大工具。它们允许你以跨平台方式执行操作。当你需要将各种资产拼接在一起并生成捆绑包时，问题就开始了。 * bundlers *，例如Br​​owserify，Brunch或webpack，因此存在，并且它们在较低的抽象级别上运行。它们不是对文件进行操作，而是对模块和资产进行操作。
 Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. *bundlers*, such as Browserify, Brunch, or webpack, exist for this reason and they operate on a lower level of abstraction. Instead of operating on files, they operate on modules and assets.
 
 ### Browserify
@@ -253,7 +253,7 @@ Task runners are great tools on a high level. They allow you to perform operatio
 处理JavaScript模块一直是个问题。在ES2015之前，语言本身没有模块的概念。因此，当涉及到浏览器环境时，语言被困在90年代。已经提出了各种解决方案，包括[AMD]（http://requirejs.org/docs/whyamd.html）。
 Dealing with JavaScript modules has always been a bit of a problem. The language itself didn't have the concept of modules till ES2015. Ergo, the language was stuck in the '90s when it comes to browser environments. Various solutions, including [AMD](http://requirejs.org/docs/whyamd.html), have been proposed.
 
-[Browserify]（http://browserify.org/）是模块问题的一种解决方案。它允许将CommonJS模块捆绑在一起。您可以使用Gulp进行连接，您可以找到更小的转换工具，使您可以超越基本用途。例如，[watchify]（https://www.npmjs.com/package/watchify）提供了一个文件监视器，可在开发节省期间为您创建捆绑包。
+[Browserify]（http://browserify.org/）是模块问题的一种解决方案。它允许将CommonJS模块捆绑在一起。你可以使用Gulp进行连接，你可以找到更小的转换工具，使你可以超越基本用途。例如，[watchify]（https://www.npmjs.com/package/watchify）提供了一个文件监视器，可在开发节省期间为你创建捆绑包。
 [Browserify](http://browserify.org/) is one solution to the module problem. It allows CommonJS modules to be bundled together. You can hook it up with Gulp, and you can find smaller transformation tools that allow you to move beyond the basic usage. For example, [watchify](https://www.npmjs.com/package/watchify) provides a file watcher that creates bundles for you during development saving effort.
 
 Browserify生态系统由许多小模块组成。通过这种方式，Browserify坚持Unix哲学。采用Browserify比使用webpack更加舒适，事实上，它是一个很好的替代方案。
@@ -319,10 +319,10 @@ T> There's a whole category of zero configuration bundlers like Parcel. These to
 
 ![webpack](images/webpack.png)
 
-您可以说[webpack]（https://webpack.js.org/）采用比Browserify更统一的方法。虽然Browserify包含多个小工具，但webpack附带的核心提供了大量开箱即用的功能。
+你可以说[webpack]（https://webpack.js.org/）采用比Browserify更统一的方法。虽然Browserify包含多个小工具，但webpack附带的核心提供了大量开箱即用的功能。
 You could say [webpack](https://webpack.js.org/) takes a more unified approach than Browserify. Whereas Browserify consists of multiple small tools, webpack comes with a core that provides a lot of functionality out of the box.
 
-Webpack核心可以使用特定的* loaders *和* plugins *进行扩展。它可以控制*解析模块的方式，从而可以调整您的构建以匹配特定情况和解决方案无法正常使用的软件包。
+Webpack核心可以使用特定的* loaders *和* plugins *进行扩展。它可以控制*解析模块的方式，从而可以调整你的构建以匹配特定情况和解决方案无法正常使用的软件包。
 Webpack core can be extended using specific *loaders* and *plugins*. It gives control over how it *resolves* the modules, making it possible to adapt your build to match specific situations and workaround packages that don't work correctly out of the box.
 
 与其他工具相比，webpack具有最初的复杂性，但它通过其广泛的功能集弥补了这一点。这是一个需要耐心的高级工具。但是一旦你理解了它背后的基本思想，webpack就会变得强大。
@@ -333,12 +333,12 @@ Compared to the other tools, webpack comes with initial complexity, but it makes
 ##其他选项
 ## Other Options
 
-您可以找到更多替代方案，如下所示：
+你可以找到更多替代方案，如下所示：
 You can find more alternatives as listed below:
 
 * [pundle]（https://www.npmjs.com/package/pundle）宣称自己是下一代捆绑商，并特别注意其性能。
 * [pundle](https://www.npmjs.com/package/pundle) advertises itself as a next-generation bundler and notes particularly its performance.
-* [Rollup]（https://www.npmjs.com/package/rollup）专注于捆绑ES2015代码。 *树摇*是其卖点之一，它也支持代码分割。您可以通过[rollup-loader]（https://www.npmjs.com/package/rollup-loader）将Rollup与webpack一起使用。
+* [Rollup]（https://www.npmjs.com/package/rollup）专注于捆绑ES2015代码。 *树摇*是其卖点之一，它也支持代码分割。你可以通过[rollup-loader]（https://www.npmjs.com/package/rollup-loader）将Rollup与webpack一起使用。
 * [Rollup](https://www.npmjs.com/package/rollup) focuses on bundling ES2015 code. *Tree shaking* is one of its selling points and it supports code splitting as well. You can use Rollup with webpack through [rollup-loader](https://www.npmjs.com/package/rollup-loader).
 * [AssetGraph]（https://www.npmjs.com/package/assetgraph）采用完全不同的方法，并建立在HTML语义之上，使其成为[超级分析]的理想选择（https://www.npmjs.com/包/超链接）或[结构分析]（https://www.npmjs.com/package/assetviz）。 [webpack-assetgraph-plugin]（https://www.npmjs.com/package/webpack-assetgraph-plugin）将webpack和AssetGraph连接在一起。
 * [AssetGraph](https://www.npmjs.com/package/assetgraph) takes an entirely different approach and builds on top of HTML semantics making it ideal for [hyperlink analysis](https://www.npmjs.com/package/hyperlink) or [structural analysis](https://www.npmjs.com/package/assetviz). [webpack-assetgraph-plugin](https://www.npmjs.com/package/webpack-assetgraph-plugin) bridges webpack and AssetGraph together.
@@ -356,17 +356,17 @@ You can find more alternatives as listed below:
 ##结论
 ## Conclusion
 
-从历史上看，有很多用于JavaScript的构建工具。每个人都试图以其方式解决特定问题。标准已经开始迎头赶上，并且围绕基本语义需要更少的努力。相反，工具可以在更高层次上竞争并推动更好的用户体验。通常，您可以一起使用几个单独的解决方案。
+从历史上看，有很多用于JavaScript的构建工具。每个人都试图以其方式解决特定问题。标准已经开始迎头赶上，并且围绕基本语义需要更少的努力。相反，工具可以在更高层次上竞争并推动更好的用户体验。通常，你可以一起使用几个单独的解决方案。
 Historically there have been a lot of build tools for JavaScript. Each has tried to solve a specific problem in its way. The standards have begun to catch up, and less effort is required around basic semantics. Instead, tools can compete on a higher level and push towards better user experience. Often you can use a couple of separate solutions together.
 
 回顾一下：
 To recap:
 
-* **任务跑步者**和**捆绑者**解决不同的问题。您可以使用两者获得类似的结果，但通常最好将它们一起使用以相互补充。
+* **任务跑步者**和**捆绑者**解决不同的问题。你可以使用两者获得类似的结果，但通常最好将它们一起使用以相互补充。
 * **Task runners** and **bundlers** solve different problems. You can achieve similar results with both, but often it's best to use them together to complement each other.
 *旧的工具，例如Make或RequireJS，即使它们在Web开发中不像以前那样流行，它们仍然具有影响力。
 * Older tools, such as Make or RequireJS, still have influence even if they aren't as popular in web development as they once were.
-* Browserify或webpack等捆绑包解决了一个重要问题，可帮助您管理复杂的Web应用程序。
+* Browserify或webpack等捆绑包解决了一个重要问题，可帮助你管理复杂的Web应用程序。
 * Bundlers like Browserify or webpack solve an important problem and help you to manage complex web applications.
 *新兴技术从不同角度解决问题。有时它们构建在其他工具之上，有时它们可​​以一起使用。
 * Emerging technologies approach the problem from different angles. Sometimes they build on top of other tools, and at times they can be used together.

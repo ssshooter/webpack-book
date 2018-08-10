@@ -150,8 +150,7 @@ leanpub-end-insert
 
 *0.js* 是你的拆分点。打开该文件可以看到，webpack 已将代码包装在 `webpackJsonp` 块中并处理了代码位（code bit）。
 
-T> 如果要调整块的名称，请设置`output.chunkFilename`。例如，将其设置为“chunk。[id] .js”`将为每个拆分块添加单词“chunk”。
-T> If you want to adjust the name of the chunk, set `output.chunkFilename`. For example, setting it to `"chunk.[id].js"` would prefix each split chunk with the word "chunk".
+T> 如果要调整块的名称，请设置 `output.chunkFilename`。例如，将其设置为 `"chunk.[id].js"` 将为每个拆分块添加单词 `chunk`。
 
 T> [bundle-loader]（https://www.npmjs.com/package/bundle-loader）给出了类似的结果，但是通过加载器接口。它通过`name`选项支持bundle命名。
 T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface. It supports bundle naming through its `name` option.
@@ -199,8 +198,7 @@ T> [react-async-component](https://www.npmjs.com/package/react-async-component) 
 
 ## 禁用代码拆分
 
-尽管代码拆分是默认情况下的良好行为，但它总是不正确，尤其是在服务器端使用时。因此，可以将其禁用如下：
-Although code splitting is good behavior to have by default, it's not correct always, especially on server-side usage. For this reason, it can be disabled as below:
+一般来说代码拆分表现不错，但不总是如此，尤其是在服务器端使用时。为此，可以将其禁用：
 
 ```javascript
 const webpack = require("webpack");
@@ -216,8 +214,7 @@ module.exports = {
 };
 ```
 
-T>参见[Glenn Reyes的详细解释]（https://medium.com/@glennreyes/how-to-disable-code-splitting-in-webpack-1c0b1754a3c5）。
-T> See [Glenn Reyes' detailed explanation](https://medium.com/@glennreyes/how-to-disable-code-splitting-in-webpack-1c0b1754a3c5).
+T> 参见[Glenn Reyes的详细解释](https://medium.com/@glennreyes/how-to-disable-code-splitting-in-webpack-1c0b1754a3c5)。
 
 {pagebreak}
 

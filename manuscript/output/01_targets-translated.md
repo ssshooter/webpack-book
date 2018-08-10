@@ -1,27 +1,27 @@
 ＃构建目标
 # Build Targets
 
-尽管webpack最常用于捆绑Web应用程序，但它可以做得更多。您可以使用它来定位节点或桌面环境，例如Electron。 Webpack还可以捆绑为库，同时编写适当的输出包装器，从而可以使用库。
+尽管webpack最常用于捆绑Web应用程序，但它可以做得更多。你可以使用它来定位节点或桌面环境，例如Electron。 Webpack还可以捆绑为库，同时编写适当的输出包装器，从而可以使用库。
 Even though webpack is used most commonly for bundling web applications, it can do more. You can use it to target Node or desktop environments, such as Electron. Webpack can also bundle as a library while writing an appropriate output wrapper making it possible to consume the library.
 
-Webpack的输出目标由`target`字段控制。您将了解下一个主要目标，然后深入了解库特定选项。
+Webpack的输出目标由`target`字段控制。你将了解下一个主要目标，然后深入了解库特定选项。
 Webpack's output target is controlled by the `target` field. You'll learn about the primary targets next and dig into library specific options after that.
 
 ## Web Targets
 ## Web Targets
 
-Webpack默认使用* web *目标。该目标非常适合您在本书中开发的Web应用程序。 Webpack引导应用程序并加载其模块。要加载的模块的初始列表在清单中维护，然后模块可以按照定义相互加载。
+Webpack默认使用* web *目标。该目标非常适合你在本书中开发的Web应用程序。 Webpack引导应用程序并加载其模块。要加载的模块的初始列表在清单中维护，然后模块可以按照定义相互加载。
 Webpack uses the *web* target by default. The target is ideal for a web application like the one you have developed in this book. Webpack bootstraps the application and loads its modules. The initial list of modules to load is maintained in a manifest, and then the modules can load each other as defined.
 
 ### Web Workers
 ### Web Workers
 
-* webworker *目标将您的应用程序包装为[Web worker]（https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API）。如果要在应用程序的主线程之外执行计算而不降低用户界面的速度，则使用Web worker非常有用。您应该注意以下几个限制：
+* webworker *目标将你的应用程序包装为[Web worker]（https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API）。如果要在应用程序的主线程之外执行计算而不降低用户界面的速度，则使用Web worker非常有用。你应该注意以下几个限制：
 The *webworker* target wraps your application as a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Using web workers is valuable if you want to execute computation outside of the main thread of the application without slowing down the user interface. There are a couple of limitations you should be aware of:
 
 *使用* webworker *目标时，无法使用webpack的散列功能。
 * You cannot use webpack's hashing features when the *webworker* target is used.
-*您无法操纵Web工作者的DOM。如果您将图书项目包装为工人，则不会显示任何内容。
+*你无法操纵Web工作者的DOM。如果你将图书项目包装为工人，则不会显示任何内容。
 * You cannot manipulate the DOM from a web worker. If you wrapped the book project as a worker, it would not display anything.
 
 T> Web Worker及其用法将在* Web Workers *章节中详细讨论。
@@ -70,6 +70,6 @@ To recap:
 *如果特别是在服务器端渲染设置中，节点目标会派上用场。
 * The Node targets come in handy if especially in Server Side Rendering setups.
 
-您将在下一章学习如何处理多页设置。
+你将在下一章学习如何处理多页设置。
 You'll learn how to handle multi-page setups in the next chapter.
 

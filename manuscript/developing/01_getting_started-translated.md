@@ -1,7 +1,7 @@
 ＃ 入门
 # Getting Started
 
-在开始之前，请确保您使用的是[Node]（http://nodejs.org/）的最新版本。您应该至少使用最新的LTS（长期支持）版本。本书的配置考虑了LTS Node功能。你的终端应该有`node`和`npm`命令。 [Yarn]（https://yarnpkg.com/）是npm的一个很好的替代品，也适用于本教程。
+在开始之前，请确保你使用的是[Node]（http://nodejs.org/）的最新版本。你应该至少使用最新的LTS（长期支持）版本。本书的配置考虑了LTS Node功能。你的终端应该有`node`和`npm`命令。 [Yarn]（https://yarnpkg.com/）是npm的一个很好的替代品，也适用于本教程。
 Before getting started, make sure you are using a recent version of [Node](http://nodejs.org/). You should use at least the most current LTS (long-term support) version. The configuration of the book has been written with the LTS Node features in mind. You should have `node` and `npm` commands available at your terminal. [Yarn](https://yarnpkg.com/) is a good alternative to npm and works for the tutorial as well.
 
 通过使用[Docker]（https://www.docker.com/），[Vagrant]（https://www.vagrantup.com/）或[nvm]等解决方案，可以获得更加可控的环境（ https://www.npmjs.com/package/nvm）。 Vagrant因依赖虚拟机而受到性能损失。 Vagrant在团队中很有价值：每个开发人员都可以拥有通常接近生产的相同环境。
@@ -15,7 +15,7 @@ T> The completed configuration is available at [GitHub](https://github.com/survi
 ##设置项目
 ## Setting Up the Project
 
-要获得起点，您应该为项目创建一个目录并在那里设置* package.json *。 npm使用它来管理项目依赖项。以下是基本命令：
+要获得起点，你应该为项目创建一个目录并在那里设置* package.json *。 npm使用它来管理项目依赖项。以下是基本命令：
 To get a starting point, you should create a directory for the project and set up a *package.json* there. npm uses that to manage project dependencies. Here are the basic commands:
 
 ```bash
@@ -24,13 +24,13 @@ cd webpack-demo
 npm init -y # -y generates *package.json*, skip for more control
 ```
 
-您可以手动调整生成的* package.json *以对其进行进一步更改，即使部分操作会自动为您修改文件。官方文档更详细地解释了[package.json选项]（https://docs.npmjs.com/files/package.json）。
+你可以手动调整生成的* package.json *以对其进行进一步更改，即使部分操作会自动为你修改文件。官方文档更详细地解释了[package.json选项]（https://docs.npmjs.com/files/package.json）。
 You can tweak the generated *package.json* manually to make further changes to it even though a part of the operations modify the file automatically for you. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
 
-T>您可以在*〜/ .npmrc *中设置那些`npm init`默认值。
+T>你可以在*〜/ .npmrc *中设置那些`npm init`默认值。
 T> You can set those `npm init` defaults at *~/.npmrc*.
 
-T>这是使用[Git]（https://git-scm.com/）设置版本控制的绝佳机会。您可以为每个步骤创建一个提交和每章标记，因此如果您愿意，可以更轻松地来回移动。
+T>这是使用[Git]（https://git-scm.com/）设置版本控制的绝佳机会。你可以为每个步骤创建一个提交和每章标记，因此如果你愿意，可以更轻松地来回移动。
 T> This is an excellent chance to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter, so it's easier to move back and forth if you want.
 
 T>本书的例子已经使用[Prettier]（https://www.npmjs.com/package/prettier）格式化了“trailingComma”：“es5”，`和`“printWidth”：68`选项可以使差异清理并适合页面。
@@ -39,7 +39,7 @@ T> The book examples have been formatted using [Prettier](https://www.npmjs.com/
 ##安装Webpack
 ## Installing Webpack
 
-即使webpack可以全局安装（`npm install webpack -g`），最好将它作为项目的依赖项来维护，以避免出现问题，因为您可以控制正在运行的确切版本。该方法也适用于**持续集成**（CI）设置。 CI系统可以安装本地依赖项，使用它们编译项目，然后将结果推送到服务器。
+即使webpack可以全局安装（`npm install webpack -g`），最好将它作为项目的依赖项来维护，以避免出现问题，因为你可以控制正在运行的确切版本。该方法也适用于**持续集成**（CI）设置。 CI系统可以安装本地依赖项，使用它们编译项目，然后将结果推送到服务器。
 Even though webpack can be installed globally (`npm install webpack -g`), it's a good idea to maintain it as a dependency of your project to avoid issues, as then you have control over the exact version you are running. The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
 
 要将webpack添加到项目中，请执行：
@@ -52,19 +52,19 @@ npm install webpack webpack-cli --save-dev # -D to type less
 你应该在你的* package.json *`devDependencies`部分看到webpack。除了在* node_modules *目录下本地安装软件包之外，npm还会为可执行文件生成一个条目。
 You should see webpack at your *package.json* `devDependencies` section after this. In addition to installing the package locally below the *node_modules* directory, npm also generates an entry for the executable.
 
-T>您可以使用`--save`和`--save-dev`来分离应用程序和开发依赖项。前者安装并写入* package.json *`dependencies`字段，而后者则写入`devDependencies`。
+T>你可以使用`--save`和`--save-dev`来分离应用程序和开发依赖项。前者安装并写入* package.json *`dependencies`字段，而后者则写入`devDependencies`。
 T> You can use `--save` and `--save-dev` to separate application and development dependencies. The former installs and writes to *package.json* `dependencies` field whereas the latter writes to `devDependencies` instead.
 
-T> [webpack-cli]（https://www.npmjs.com/package/webpack-cli）附带了其他功能，包括`init`和`migrate`命令，允许您快速创建新的webpack配置并从旧版本更新版本。
+T> [webpack-cli]（https://www.npmjs.com/package/webpack-cli）附带了其他功能，包括`init`和`migrate`命令，允许你快速创建新的webpack配置并从旧版本更新版本。
 T> [webpack-cli](https://www.npmjs.com/package/webpack-cli) comes with additional functionality including `init` and `migrate` commands that allow you to create new webpack configuration fast and update from an older version to a newer one.
 
 ##执行Webpack
 ## Executing Webpack
 
-您可以使用`npm bin`显示可执行文件的确切路径。最有可能的是它指向*。/ node_modules / .bin *。尝试使用`node_modules / .bin / webpack`或类似命令从终端通过终端运行webpack。
+你可以使用`npm bin`显示可执行文件的确切路径。最有可能的是它指向*。/ node_modules / .bin *。尝试使用`node_modules / .bin / webpack`或类似命令从终端通过终端运行webpack。
 You can display the exact path of the executables using `npm bin`. Most likely it points at *./node_modules/.bin*. Try running webpack from there through the terminal using `node_modules/.bin/webpack` or a similar command.
 
-运行后，您应该看到一个版本，一个指向命令行界面指南的链接以及一个广泛的选项列表。大多数都没有在这个项目中使用，但是很高兴知道这个工具包含了其他功能。
+运行后，你应该看到一个版本，一个指向命令行界面指南的链接以及一个广泛的选项列表。大多数都没有在这个项目中使用，但是很高兴知道这个工具包含了其他功能。
 After running, you should see a version, a link to the command line interface guide and an extensive list of options. Most aren't used in this project, but it's good to know that this tool is packed with functionality if nothing else.
 
 ```bash
@@ -90,7 +90,7 @@ To get a quick idea of webpack output, we should fix both:
 1. Set up *src/index.js* so that it contains `console.log("Hello world");`.
 2.执行`node_modules / .bin / webpack --mode development`。 Webpack将按节点约定发现源文件。
 2. Execute `node_modules/.bin/webpack --mode development`. Webpack will discover the source file by Node convention.
-3.检查* dist / main.js *。您应该看到开始执行代码的webpack引导代码。在引导程序下面，你应该找到熟悉的东西。
+3.检查* dist / main.js *。你应该看到开始执行代码的webpack引导代码。在引导程序下面，你应该找到熟悉的东西。
 3. Examine *dist/main.js*. You should see webpack bootstrap code that begins executing the code. Below the bootstrap, you should find something familiar.
 
 T>尝试`--mode production`并比较输出。
@@ -169,7 +169,7 @@ module.exports = {
 };
 ```
 
-现在配置已完成，您应该尝试以下操作：
+现在配置已完成，你应该尝试以下操作：
 Now that the configuration is done, you should try the following:
 
 1.使用`node_modules / .bin / webpack --mode production`构建项目。你也可以试试`development`模式。
@@ -215,7 +215,7 @@ Child html-webpack-plugin for "index.html":
 输出说明了很多：
 The output tells a lot:
 
-*`哈希：aafe36ba210b0fbb7073`  - 构建的哈希。您可以使用它来通过`[hash]`占位符使资产无效。 Hashing将在* Add Hashes to Filenames *章节中详细讨论。
+*`哈希：aafe36ba210b0fbb7073`  - 构建的哈希。你可以使用它来通过`[hash]`占位符使资产无效。 Hashing将在* Add Hashes to Filenames *章节中详细讨论。
 * `Hash: aafe36ba210b0fbb7073` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the *Adding Hashes to Filenames* chapter.
 *`版本：webpack 4.1.1`  -  Webpack版本。
 * `Version: webpack 4.1.1` - Webpack version.
@@ -236,7 +236,7 @@ Examine the output below the `dist/` directory. If you look closely, you can see
 T>除配置对象外，webpack还接受一系列配置。你也可以返回一个`Promise`并最终将`resolve`返回给一个配置。
 T> In addition to a configuration object, webpack accepts an array of configurations. You can also return a `Promise` and eventually `resolve` to a configuration for example.
 
-T>如果您想要替代* html-webpack-plugin *，请参阅[mini-html-webpack-plugin]（https://www.npmjs.com/package/mini-html-webpack-plugin）。它做得少，但理解起来也更简单。
+T>如果你想要替代* html-webpack-plugin *，请参阅[mini-html-webpack-plugin]（https://www.npmjs.com/package/mini-html-webpack-plugin）。它做得少，但理解起来也更简单。
 T> If you want a light alternative to *html-webpack-plugin*, see [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin). It does less but it's also simpler to understand.
 
 {pagebreak}
@@ -256,16 +256,16 @@ Given executing `node_modules/.bin/webpack` is verbose, you should do something 
 },
 ```
 
-运行`npm run build`以查看与之前相同的输出。 npm将* node_modules / .bin *临时添加到启用此功能的路径中。因此，您不必编写“build”：“node_modules / .bin / webpack”，而是可以执行“build”：“webpack”`。
+运行`npm run build`以查看与之前相同的输出。 npm将* node_modules / .bin *临时添加到启用此功能的路径中。因此，你不必编写“build”：“node_modules / .bin / webpack”，而是可以执行“build”：“webpack”`。
 Run `npm run build` to see the same output as before. npm adds *node_modules/.bin* temporarily to the path enabling this. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, you can do `"build": "webpack"`.
 
-您可以通过* npm run *执行此类脚本，并且可以在项目中的任何位置使用* npm run *。如果按原样运行该命令，它将为您提供可用脚本的列表。
+你可以通过* npm run *执行此类脚本，并且可以在项目中的任何位置使用* npm run *。如果按原样运行该命令，它将为你提供可用脚本的列表。
 You can execute this kind of scripts through *npm run* and you can use *npm run* anywhere within your project. If you run the command as is, it gives you the listing of available scripts.
 
 T>有像* npm start *和* npm test *这样的快捷方式。你可以在没有* npm run *的情况下直接运行它们，尽管它也可以。对于那些赶时间的人，你可以使用* npm t *来运行你的测试。
 T> There are shortcuts like *npm start* and *npm test*. You can run these directly without *npm run* although that works too. For those in a hurry, you can use *npm t* to run your tests.
 
-T>要更进一步，请使用终端配置中的`alias`命令设置系统级别名。例如，您可以将`nrb`映射到`npm run build`。
+T>要更进一步，请使用终端配置中的`alias`命令设置系统级别名。例如，你可以将`nrb`映射到`npm run build`。
 T> To go one step further, set up system level aliases using the `alias` command in your terminal configuration. You could map `nrb` to `npm run build` for instance.
 
 {pagebreak}
@@ -273,7 +273,7 @@ T> To go one step further, set up system level aliases using the `alias` command
 ##`HtmlWebpackPlugin`扩展
 ## `HtmlWebpackPlugin` Extensions
 
-虽然您可以用自己的模板替换`HtmlWebpackPlugin`模板，但有预制的模板，如[html-webpack-template]（https://www.npmjs.com/package/html-webpack-template）或[html-webpack-template -pug]（https://www.npmjs.com/package/html-webpack-template-pug）。
+虽然你可以用自己的模板替换`HtmlWebpackPlugin`模板，但有预制的模板，如[html-webpack-template]（https://www.npmjs.com/package/html-webpack-template）或[html-webpack-template -pug]（https://www.npmjs.com/package/html-webpack-template-pug）。
 Although you can replace `HtmlWebpackPlugin` template with your own, there are premade ones like [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug).
 
 还有一些特定的插件可以扩展`HtmlWebpackPlugin`的功能：
@@ -281,7 +281,7 @@ There are also specific plugins that extend `HtmlWebpackPlugin`'s functionality:
 
 * [favicons-webpack-plugin]（https://www.npmjs.com/package/favicons-webpack-plugin）能够生成favicon。
 * [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) is able to generate favicons.
-* [script-ext-html-webpack-plugin]（https://www.npmjs.com/package/script-ext-html-webpack-plugin）使您可以更好地控制脚本标记，并允许您进一步调整脚本加载。
+* [script-ext-html-webpack-plugin]（https://www.npmjs.com/package/script-ext-html-webpack-plugin）使你可以更好地控制脚本标记，并允许你进一步调整脚本加载。
 * [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
 * [style-ext-html-webpack-plugin]（https://www.npmjs.com/package/style-ext-html-webpack-plugin）将CSS引用转换为内联CSS。作为初始有效负载的一部分，该技术可用于快速向客户端提供关键CSS。
 * [style-ext-html-webpack-plugin](https://www.npmjs.com/package/style-ext-html-webpack-plugin) converts CSS references to inlined CSS. The technique can be used to serve critical CSS to the client fast as a part of the initial payload.
@@ -289,7 +289,7 @@ There are also specific plugins that extend `HtmlWebpackPlugin`'s functionality:
 * [resource-hints-webpack-plugin](https://www.npmjs.com/package/resource-hints-webpack-plugin) adds [resource hints](https://www.w3.org/TR/resource-hints/) to your HTML files to speed up loading time.
 * [preload-webpack-plugin]（https://www.npmjs.com/package/preload-webpack-plugin）为脚本启用`rel = preload`功能，并有助于延迟加载，并且它与在本书* Building *的一部分。
 * [preload-webpack-plugin](https://www.npmjs.com/package/preload-webpack-plugin) enables `rel=preload` capabilities for scripts and helps with lazy loading, and it combines well with techniques discussed in the *Building* part of this book.
-* [webpack-cdn-plugin]（https://www.npmjs.com/package/webpack-cdn-plugin）允许您指定通过内容交付网络（CDN）加载的依赖项。这种常用技术用于加速流行库的加载。
+* [webpack-cdn-plugin]（https://www.npmjs.com/package/webpack-cdn-plugin）允许你指定通过内容交付网络（CDN）加载的依赖项。这种常用技术用于加速流行库的加载。
 * [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) allows you to specify which dependencies to load through a Content Delivery Network (CDN). This common technique is used for speeding up loading of popular libraries.
 * [dynamic-cdn-webpack-plugin]（https://www.npmjs.com/package/dynamic-cdn-webpack-plugin）实现了类似的结果。
 * [dynamic-cdn-webpack-plugin](https://www.npmjs.com/package/dynamic-cdn-webpack-plugin) achieves a similar result.
@@ -305,17 +305,17 @@ Even though you have managed to get webpack up and running, it does not do that 
 回顾一下：
 To recap:
 
-*在全局安装的webpack上使用本地安装的webpack版本是个好主意。这样您就可以确定您使用的是哪个版本。本地依赖项也适用于持续集成环境。
+*在全局安装的webpack上使用本地安装的webpack版本是个好主意。这样你就可以确定你使用的是哪个版本。本地依赖项也适用于持续集成环境。
 * It's a good idea to use a locally installed version of webpack over a globally installed one. This way you can be sure of what version you are using. The local dependency also works in a Continuous Integration environment.
-* Webpack通过* webpack-cli *包提供命令行界面。即使没有配置，您也可以使用它，但任何高级用法都需要配置。
+* Webpack通过* webpack-cli *包提供命令行界面。即使没有配置，你也可以使用它，但任何高级用法都需要配置。
 * Webpack provides a command line interface through the *webpack-cli* package. You can use it even without configuration, but any advanced usage requires configuration.
-*要编写更复杂的设置，您很可能必须编写单独的* webpack.config.js *文件。
+*要编写更复杂的设置，你很可能必须编写单独的* webpack.config.js *文件。
 * To write more complicated setups, you most likely have to write a separate *webpack.config.js* file.
-*`HtmlWebpackPlugin`可用于生成应用程序的HTML入口点。在* Multiple Pages *一章中，您将了解如何使用它生成多个单独的页面。
+*`HtmlWebpackPlugin`可用于生成应用程序的HTML入口点。在* Multiple Pages *一章中，你将了解如何使用它生成多个单独的页面。
 * `HtmlWebpackPlugin` can be used to generate an HTML entry point to your application. In the *Multiple Pages* chapter you will see how to generate multiple separate pages using it.
-*使用npm * package.json *脚本来管理webpack很方便。您可以将它用作轻型任务运行器并使用webpack之外的系统功能。
+*使用npm * package.json *脚本来管理webpack很方便。你可以将它用作轻型任务运行器并使用webpack之外的系统功能。
 * It's handy to use npm *package.json* scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.
 
-在下一章中，您将学习如何通过启用自动浏览器刷新来改善开发人员体验。
+在下一章中，你将学习如何通过启用自动浏览器刷新来改善开发人员体验。
 In the next chapter, you will learn how to improve the developer experience by enabling automatic browser refresh.
 

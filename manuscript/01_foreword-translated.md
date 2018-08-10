@@ -9,7 +9,7 @@ Somehow the Instagram frontend team discovered an early version of webpack and s
 我从一开始就一直关注这本书。它曾经是React和webpack的结合书。它从那时起就成长起来，成为一本充满内容的书。
 I have been following this book since its early stages. It was once a combined React and webpack book. It has grown since then and become a book of its own filled with content.
 
-Juho是webpack文档的webpack文档团队的重要组成部分，因此他最了解官方文档的补充。他利用这些知识创建了一本书，为您提供了对webpack的深刻理解，并教您使用该工具发挥其全部潜力。
+Juho是webpack文档的webpack文档团队的重要组成部分，因此他最了解官方文档的补充。他利用这些知识创建了一本书，为你提供了对webpack的深刻理解，并教你使用该工具发挥其全部潜力。
 Juho is an important part of the webpack documentation team for the webpack documentation, so he knows best what complements the official documentation. He has used this knowledge to create a book that supplies you with a deep understanding of webpack and teaches you to use the tool to its full potential.
 
 Tobias Koppers
