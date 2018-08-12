@@ -1,5 +1,4 @@
-＃表现
-# Performance
+# 性能表现
 
 Webpack的开箱即用性能通常足以满足小型项目的需求。也就是说，随着项目规模的扩大，它开始达到极限。这是webpack问题跟踪器中的常见主题。 [问题1905]（https://github.com/webpack/webpack/issues/1905）就是一个很好的例子。
 Webpack's performance out of the box is often enough for small projects. That said, it begins to hit limits as your project grows in scale. It's a frequent topic in webpack's issue tracker. [Issue 1905](https://github.com/webpack/webpack/issues/1905) is a good example.
@@ -56,7 +55,6 @@ The underlying idea can be implemented using a [worker-farm](https://www.npmjs.c
 与* parallel-webpack *相比，HappyPack是一个更为复杂的选择。我们的想法是，HappyPack拦截你指定的加载程序调用，然后并行运行它们。你必须先设置插件：
 Compared to *parallel-webpack*, HappyPack is a more involved option. The idea is that HappyPack intercepts the loader calls you specify and then runs them in parallel. You have to set up the plugin first:
 
-** ** webpack.config.js
 **webpack.config.js**
 
 ```javascript
@@ -109,7 +107,7 @@ The example above contains enough information for webpack to run the given loade
 也许HappyPack的问题在于它将你的配置与它结合在一起。有可能通过设计克服这个问题并使注入更容易。一种选择是构建更高级别的抽象，可以在vanilla配置之上执行替换。
 Perhaps the problem with HappyPack is that it couples your configuration with it. It would be possible to overcome this issue by design and make it easier to inject. One option would be to build a higher level abstraction that can perform the replacement on top of vanilla configuration.
 
-##低级优化
+## 低级优化
 ## Low-Level Optimizations
 
 特定的低级优化可以很好地了解。关键是允许webpack执行更少的工作。你已经实现了其中的几个，但枚举它们是个好主意：
@@ -207,8 +205,7 @@ Given `module.noParse` accepts a regular expression if you wanted to ignore all 
 W>并非所有模块都支持`module.noParse`。它们不应该引用`require`，`define`或类似的东西，因为它会导致`Uncaught ReferenceError：require is not defined` error。
 W> Not all modules support `module.noParse`. They should not have a reference to `require`, `define`, or similar, as that leads to an `Uncaught ReferenceError: require is not defined` error.
 
-##结论
-## Conclusion
+## 结论
 
 你可以通过多种方式优化webpack的性能。在转向涉及更多的技术之前，通常最好先使用更易于理解的技术。你必须使用的确切方法取决于项目。
 You can optimize webpack's performance in multiple ways. Often it's a good idea to start with more accessible techniques before moving to more involved ones. The exact methods you have to use, depend on the project.

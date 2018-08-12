@@ -1,11 +1,19 @@
 # 什么是 Webpack
 
+> 原文链接：https://survivejs.com/webpack/what-is-webpack/
+
+**涉及到的未翻译单词**
+- input 输入
+- output 输出
+- entry 入口文件
+- bundle 包（打包结果）
+
 Webpack 是**模块打包器**。它可以在打包的同时使用任务运行器。然而，由于社区开发的 webpack 插件，打包器和任务运行器之间的界限变得模糊。有时，这些插件甚至独立于 webpack 使用，例如清理构建目录或部署构建使用的插件。
 （译者注：grunt 之类的任务运行器，就是自动帮你走一次如“组合两个 js 文件--压缩 js--压缩 css”这样流程的工具）
 
 Webpack 也可以在其他环境中的使用，例如 [Ruby on Rails](https://github.com/rails/webpacker)。尽管它的名字带有 web，但 webpack 并不仅限于 web。它也可以打包其他东西，这点在 *Build Targets* 章节中会提到。
 
-T> 如果你想更详细地了解构建工具及其历史，请查看 *Comparison of Build Tools* 附录。
+T> 如果你想更详细地了解构建工具及其历史，请查看附录 *Comparison of Build Tools*。
 
 ## Webpack 基于模块
 
@@ -19,11 +27,10 @@ T> 依赖图是描述节点如何相互关联的有向图。这个图是通过�
 
 ## Webpack 的执行流程
 
-![Webpack's execution process](images/webpack-process.png)
+![Webpack's execution process](https://raw.githubusercontent.com/ssshooter/webpack-book/dev/manuscript/images/webpack-process.png)
 
 Webpack 从 **entry** 开始运行。entry 通常是 JavaScript 模块，webpack 从这里开始遍历处理。在此过程中，webpack 根据 **loader** 配置转换每个匹配到的模块。
 
-{pagebreak}
 
 ### 模块解析
 
@@ -41,7 +48,7 @@ T> Webpack 的解释底层依赖于 [enhanced-resolve](https://www.npmjs.com/pac
 
 Webpack 将在构造依赖图时解析它遇到的每个模块。如果 entry 包含依赖项，则将针对每个依赖项递归执行该过程，直到遍历完成为止。 Webpack 可以针对任何文件类型执行此过程，这与 Babel 或 Sass 编译器等专用工具不同。
 
-Webpack 可以控制对不同资源的处理方式。例如，可以把资源**内联**到你的 JavaScript 包以避免请求（译者注：例如图片转 base64）。 Webpack 还允许你使用 CSS 模块等技术将样式与组件结合，并避免标准 CSS 样式问题。这种灵活性是 webpack 价值的体现。
+Webpack 可以控制对不同资源的处理方式。例如，可以把资源**内联**到 JavaScript 包以避免过多的网络请求（译者注：例如图片转 base64）。Webpack 还允许你使用 CSS 模块等技术将样式与组件结合，并避免标准 CSS 样式问题。这种灵活性是 webpack 价值的体现。
 
 尽管 webpack 主要用于打包 JavaScript，但它可以捕获图像或字体等资源，并为它们抽取为单独的文件。Entry 只是打包处理的起点。 webpack 生成的内容完全取决于你配置它的方式。
 

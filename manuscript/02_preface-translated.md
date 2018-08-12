@@ -1,5 +1,4 @@
-＃ 前言
-# Preface
+# 前言
 
 你正在阅读的这本书可以追溯到几年前。这一切都始于2014年我在Christian Alfoni博客上发表的评论。我最近发现了webpack和React，我觉得需要一本关于这些主题的食谱。这项工作始于2015年初的GitHub维基。
 The book you are reading right now goes years back. It all started with a comment I made on Christian Alfoni’s blog in 2014. I had recently discovered webpack and React, and I felt there was a need for a cookbook about the topics. The work began with a GitHub wiki in early 2015.

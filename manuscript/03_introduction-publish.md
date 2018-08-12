@@ -1,5 +1,7 @@
 # 介绍
 
+> 原文链接：https://survivejs.com/webpack/introduction/
+
 [Webpack](https://webpack.js.org/) 解决了 Web 开发的基本问题：打包，从而简化了 Web 开发。它接收各种资源，例如 JavaScript，CSS 和 HTML，并将它们转换为便于通过浏览器使用的格式。这样做很好地消除了 Web 开发带来的巨大痛苦。
 
 因为其配置驱动（configuration-driven）的实现，要学习 Webpack 并不简单，但它非常强大。本指南的目的是从 0 教你如何使用 webpack，并深入理解 webpack。
@@ -10,7 +12,6 @@ Web 浏览器用于浏览 HTML，CSS 和 JavaScript。随着项目的发展，�
 
 打包工具不只有 Webpack，一系列不同的工具已经出现了。任务运行者，如 Grunt 和 Gulp 都是不错的上层（与底层相对）工具。但问题是你需要手写工作流程，把这一步交给打包工具（例如 webpack），是前端项目构建向前的一大步。
 
-{pagebreak}
 
 ### Webpack 如何改变现状
 
@@ -26,7 +27,6 @@ Webpack 为你完成所有预处理，并根据你提供的配置文件生成生
 
 本书教你开发用于开发环境和生产环境的可组合 webpack 配置。本书涵盖的高级技术可以让你充分利用webpack 4。
 
-{pagebreak}
 
 ## 这本书的结构
 

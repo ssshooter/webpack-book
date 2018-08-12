@@ -1,16 +1,11 @@
-#Build Analysis
 # Build Analysis
 
-分析构建统计信息是更好地理解webpack的一个很好的步骤。可视化webpack输出可帮助你了解捆绑包的组成。
-Analyzing build statistics is a good step towards understanding webpack better. Visualizing webpack output helps you to understand the composition of your bundles.
+分析构建统计信息可以更好地理解 webpack。可视化 webpack 输出可帮助你了解 bundle 的构成。
 
-##配置Webpack
-## Configuring Webpack
+## 配置 Webpack
 
-要获得合适的输出，你需要对配置进行一些调整。至少应该设置`--json`标志并将输出传递给文件，如下所示：
-To get suitable output, you need to do a couple of tweaks to the configuration. At a minimum, you should set the `--json` flag and pipe the output to a file as follows:
+要获得合适的输出，你需要对配置进行一些调整。至少应该设置 `--json` flag，并将输出保存到文件中，如下所示：
 
-** **的package.json
 **package.json**
 
 ```json
@@ -22,24 +17,19 @@ leanpub-end-insert
 },
 ```
 
-以上是你需要的基本设置，无论你的webpack配置如何。现在执行`npm run build：stats`。过了一会儿，你应该在你的项目根目录找到* stats.json *。可以通过各种工具推送此文件，以更好地了解正在发生的事情。
+以上是你需要的基本设置。现在执行 `npm run build:stats`。过了一会儿，你应该在你的项目根目录找到 *stats.json*。可以通过各种工具推送此文件，以更好地了解正在发生的事情。
 The above is the basic setup you need, regardless of your webpack configuration. Execute `npm run build:stats` now. After a while you should find *stats.json* at your project root. This file can be pushed through a variety of tools to understand better what's going on.
 
-你还可以考虑使用以下标志：
-You can also consider using the following flags:
+你还可以使用以下 flag：
 
-*`--profile`捕获与时间相关的信息。该设置是可选的，但设置良好。
-* `--profile` to capture timing-related information. The setting is optional but good to set.
-*`--progress`显示webpack在构建的不同阶段花了多长时间。
-* `--progress` to show how long webpack spent in different stages of the build.
+* `--profile` 捕获与时间相关的信息。该选项非必要，但加上了也不错。
+* `--progress` 显示 webpack 在构建的不同阶段花了多长时间。
 
-T>要理解为什么webpack在处理时包含特定模块到构建，请使用[whybundled]（https://www.npmjs.com/package/whybundled）或[webpack-why]（https：//www.npmjs。 COM /包/的WebPack-为什么）。 `--display-reasons`标志也提供了更多信息。示例：`npm run build  -  --display-reasons`。
-T> To understand why webpack includes a specific module to the build while processing, use [whybundled](https://www.npmjs.com/package/whybundled) or [webpack-why](https://www.npmjs.com/package/webpack-why). `--display-reasons` flag gives more information as well. Example: `npm run build -- --display-reasons`.
+T> 要理解为什么 webpack 在处理时把某些模块打包到构建结果，请使用 [whybundled](https://www.npmjs.com/package/whybundled) 或 [webpack-why](https://www.npmjs.com/package/webpack-why)。 `--display-reasons` flag 也提供了更多信息。示例：`npm run build -- --display-reasons`。
 
 W>鉴于你在当前设置中捎带生产目标;这个过程清理构建目录！如果要避免这种情况，请设置一个不清理的单独目标。
 W> Given you piggyback on the production target in the current setup; this process cleans the build directory! If you want to avoid that, set up a separate destination where you don't clean.
 
-就是这样。
 ### Node API
 
 可以通过Node捕获统计信息。由于统计信息可能包含错误，因此分开处理该情况是个好主意：
@@ -71,8 +61,7 @@ T> If you want JSON output from `stats`, use `stats.toJson()`. To get *verbose* 
 T>要模仿`--json`标志，请使用`console.log（JSON.stringify（stats.toJson（），null，2））;`。输出格式化为可读。
 T> To mimic the `--json` flag, use `console.log(JSON.stringify(stats.toJson(), null, 2));`. The output is formatted to be readable.
 
-###`StatsWebpackPlugin`和`WebpackStatsPlugin`
-### `StatsWebpackPlugin` and `WebpackStatsPlugin`
+### `StatsWebpackPlugin` 和 `WebpackStatsPlugin`
 
 如果你想通过插件管理统计数据，请查看[stats-webpack-plugin]（https://www.npmjs.com/package/stats-webpack-plugin）。它使你可以更多地控制输出。你可以使用它从输出中排除特定的依赖项。
 If you want to manage stats through a plugin, check out [stats-webpack-plugin](https://www.npmjs.com/package/stats-webpack-plugin). It gives you a bit more control over the output. You can use it to exclude specific dependencies from the output.
