@@ -234,7 +234,7 @@ Given all configuration is JavaScript, nothing prevents you from consuming it as
 
 {pagebreak}
 
-## 结论
+## 总结
 
 即使配置在技术上与以前相同，但现在你还有空间来扩展它。
 Even though the configuration is technically the same as before, now you have room to grow it.

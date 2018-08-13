@@ -104,7 +104,7 @@ leanpub-end-insert
 * autoprefixer *能够**删除**不必要的规则，并根据浏览器定义添加所需的规则。
 *autoprefixer* is able to **remove** unnecessary rules and also add rules which are required based on the browser definition.
 
-##结论
+##总结
 ## Conclusion
 
 自动修复是一种方便的技术，因为它减少了制作CSS时所需的工作量。你可以在* .browserslistrc *文件中维护最低浏览器要求。然后，工具可以使用该信息来生成最佳输出。

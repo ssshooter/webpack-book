@@ -195,7 +195,7 @@ Image size can be reduced by using [img-loader](https://www.npmjs.com/package/im
 使用* cache-loader *和* thread-loader *可以是一个好主意，如* Performance *章节中所述，因为它们可以是实质性操作。
 It can be a good idea to use *cache-loader* and *thread-loader* with these as discussed in the *Performance* chapter given they can be substantial operations.
 
-## 结论
+## 总结
 
 压缩是最舒服的步骤了，只要配置一下就可以让你的项目构建更小。回顾一下：
 

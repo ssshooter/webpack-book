@@ -186,7 +186,7 @@ The idea of [critical path rendering](https://developers.google.com/web/fundamen
 Addy Osmani的[critical-path-css-tools]（https://github.com/addyosmani/critical-path-css-tools）列出了其他相关工具。
 [critical-path-css-tools](https://github.com/addyosmani/critical-path-css-tools) by Addy Osmani lists other related tools.
 
-##结论
+##总结
 ## Conclusion
 
 使用PurifyCSS可以显着减少文件大小。它主要用于依赖大量CSS框架的静态站点。站点或应用程序变得越动态，就越难以可靠地进行分析。

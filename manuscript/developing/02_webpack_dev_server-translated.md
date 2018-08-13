@@ -1,10 +1,8 @@
 # webpack-dev-server
 
-诸如[LiveReload]（http://livereload.com/）或[Browsersync]（http://www.browsersync.io/）之类的工具允许在开发应用程序时刷新浏览器并避免刷新CSS更改。可以通过[browser-sync-webpack-plugin]（https://www.npmjs.com/package/browser-sync-webpack-plugin）设置Browsersync以使用webpack，但webpack在商店中有更多技巧。
-Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow refreshing the browser as you develop the application and avoid a refresh for CSS changes. It's possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store.
+[LiveReload](http://livereload.com/) 或 [Browsersync](http://www.browsersync.io/) 等工具允许在开发应用程序时自动刷新浏览器，避免 CSS 更改时整页刷新。webpack 可以通过 [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin) 设置Browsersync，但还有更多其他方法。
 
-## Webpack`watch` Mode和* webpack-dev-server *
-## Webpack `watch` Mode and *webpack-dev-server*
+## Webpack `watch` Mode 和 *webpack-dev-server*
 
 迈向更好的开发环境的第一步是在** watch **模式下使用webpack。你可以通过将`--watch`传递给webpack来激活它。示例：`npm run build  -  --watch`。
 A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it by passing the `--watch` to webpack. Example: `npm run build -- --watch`.
@@ -115,7 +113,6 @@ WDS functionality can be customized through the `devServer` field in the webpack
 启用其他功能，如下所示：
 Enable additional functionality as below:
 
-** ** webpack.config.js
 **webpack.config.js**
 
 ```javascript
@@ -337,7 +334,7 @@ There are also plugins that make the webpack output easier to notice and underst
 
 {pagebreak}
 
-##结论
+##总结
 ## Conclusion
 
 WDS补充了webpack，并通过提供面向开发的功能使其对开发人员更友好。

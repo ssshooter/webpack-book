@@ -534,7 +534,7 @@ plugins: [
 
 {pagebreak}
 
-##结论
+##总结
 ## Conclusion
 
 Webpack可以配置为使用各种各样的测试工具。每个工具都有它的甜点，但它们也有相当多的共同点。

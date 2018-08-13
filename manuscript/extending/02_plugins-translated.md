@@ -308,7 +308,7 @@ A plugin can provide hooks of its own. [html-webpack-plugin](https://www.npmjs.c
 在特殊情况下，如[offline-plugin]（https://www.npmjs.com/package/offline-plugin），运行子编译器是有意义的。它完全控制相关的条目和输出。该插件的作者Arthur Stolyar解释了[Stack Overflow中的子编译器的想法]（https://stackoverflow.com/questions/38276028/webpack-child-compiler-change-configuration）。
 In special cases, like [offline-plugin](https://www.npmjs.com/package/offline-plugin), it makes sense to run a child compiler. It gives full control over related entries and output. Arthur Stolyar, the author of the plugin, has explained [the idea of child compilers at Stack Overflow](https://stackoverflow.com/questions/38276028/webpack-child-compiler-change-configuration).
 
-##结论
+##总结
 ## Conclusion
 
 当你开始设计插件时，花时间研究足够接近的现有插件。分段开发插件，以便你一次验证一件。研究webpack源代码可以提供更多的洞察力，因为它是一组插件本身。

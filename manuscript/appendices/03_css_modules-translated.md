@@ -78,7 +78,7 @@ If you are using CSS Modules in your project, you should process standard CSS th
 你可以通过针对* node_modules *的`include`定义以不同方式处理第三方CSS来解决问题。或者，你可以使用文件扩展名（`.mcss`）来使用CSS模块分析文件，然后在装载程序`test`中管理这种情况。
 You can solve the problem by processing third-party CSS differently through an `include` definition against *node_modules*. Alternately, you could use a file extension (`.mcss`) to tell files using CSS Modules apart from the rest and then manage this situation in a loader `test`.
 
-##结论
+##总结
 ## Conclusion
 
 CSS模块通过默认为每个文件的本地范围来解决CSS的范围问题。你仍然可以拥有全局样式，但需要额外的努力。如上所示，可以将Webpack设置为轻松支持CSS模块。

@@ -133,7 +133,7 @@ Copying files is another ordinary operation you can handle with webpack. [copy-w
 [cpy-cli]（https://www.npmjs.com/package/cpy-cli）是一个不错的选择，如果你想以跨平台的方式在webpack之外复制。根据定义，插件应该是跨平台的。
 [cpy-cli](https://www.npmjs.com/package/cpy-cli) is a good option if you want to copy outside of webpack in a cross-platform way. Plugins should be cross-platforms by definition.
 
-## 结论
+## 总结
 
 通常，你通过识别问题然后找到解决问题的插件来处理webpack。在webpack之外解决这些类型的问题是完全可以接受的，但是webpack也可以经常处理它们。
 Often, you work with webpack by identifying a problem and then finding a plugin to tackle it. It's entirely acceptable to solve these types of issues outside of webpack, but webpack can often handle them as well.

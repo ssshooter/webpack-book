@@ -62,7 +62,7 @@ To get most out of tree shaking with external packages, you have to use [babel-p
 
 T> [SurviveJS - Maintenance](https://survivejs.com/maintenance/packaging/building/) 介绍了如何编写软件包，以便可以对它们应用 Tree Shaking。
 
-## 结论
+## 总结
 
 Tree Shaking 是一项潜力很大的技术。为了让源代码受益于 Tree Shaking，必须使用 ES2015 模块语法实现 npm 包，并且必须通过*package.json* `module` 这样的字段工具公开ES2015版本，例如webpack可以接收。
 Tree shaking is a potentially powerful technique. For the source to benefit from tree shaking, npm packages have to be implemented using the ES2015 module syntax, and they have to expose the ES2015 version through *package.json* `module` field tools like webpack can pick up.

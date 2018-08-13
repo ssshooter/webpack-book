@@ -351,7 +351,7 @@ The [Sass version](https://www.npmjs.com/package/bootstrap-sass) is another opti
 第三种选择是通过[bootstrap-loader]（https://www.npmjs.com/package/bootstrap-loader）。它做了很多，但允许自定义。
 The third option is to go through [bootstrap-loader](https://www.npmjs.com/package/bootstrap-loader). It does a lot more but allows customization.
 
-##结论
+##总结
 ## Conclusion
 
 Webpack可以加载各种样式格式。这里介绍的方法默认将样式编写到JavaScript包中。

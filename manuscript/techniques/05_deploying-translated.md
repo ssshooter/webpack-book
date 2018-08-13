@@ -137,7 +137,7 @@ If you don't know `publicPath` beforehand, it's possible to resolve it based on 
 编译时，webpack选择`__webpack_public_path__`并重写它，使其指向webpack逻辑。
 When you compile, webpack picks up `__webpack_public_path__` and rewrites it so that it points to webpack logic.
 
-##结论
+##总结
 ## Conclusion
 
 即使webpack不是部署工具，你也可以找到它的插件。

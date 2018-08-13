@@ -159,7 +159,7 @@ const req = require.context("./pages", true, /^(.*\.(jsx$))[^.]*$/g);
 module.hot.accept(req.id, ...); // Replace modules here as above
 ```
 
-##结论
+##总结
 ## Conclusion
 
 HMR是webpack的一个方面，使其对开发人员具有吸引力，而webpack已经将其实现了很多。要工作，HMR需要客户端和服务器端支持。为此，webpack-dev-server提供了这两者。通常你必须实现客户端接口，尽管像* style-loader *这样的加载器会为你实现它。

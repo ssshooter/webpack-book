@@ -483,7 +483,7 @@ T> The [official documentation](https://webpack.js.org/api/loaders/) covers the 
 
 {pagebreak}
 
-##结论
+##总结
 ## Conclusion
 
 编写加载器很有趣，因为它们描述了从格式到另一种格式的转换。通常，你可以通过研究API文档或现有的加载器来弄清楚如何实现某些特定的东西。

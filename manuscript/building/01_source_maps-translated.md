@@ -392,7 +392,7 @@ The *css-loader* is [known to have issues](https://github.com/webpack-contrib/cs
 
 {pagebreak}
 
-## 结论
+## 总结
 
 Source Maps 在开发过程中很方便。它们提供了更好的调试应用程序的方法，使你仍然可以通过生成代码检查原始代码。它们甚至可以用于生产环境，允许你在提供客户端友好版本的应用程序时调试问题。
 

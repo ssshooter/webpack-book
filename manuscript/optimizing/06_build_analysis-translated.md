@@ -288,7 +288,7 @@ In addition to tools that work with webpack output, there are a couple that are 
 
 {pagebreak}
 
-##结论
+##总结
 ## Conclusion
 
 当你优化捆绑输出的大小时，这些工具是非常宝贵的。官方工具具有最多的功能，但即使是基本的可视化也可以揭示问题点。你可以使用与旧项目相同的技术来了解它们的组成。

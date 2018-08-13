@@ -134,7 +134,7 @@ In the example, webpack detects the `import` statically. It can generate a separ
 
 {pagebreak}
 
-##结论
+##总结
 ## Conclusion
 
 除了搜索之外，该方法也可以与路由器一起使用。当用户输入路由时，你可以加载生成的视图所需的依赖项。或者，你可以在用户滚动页面并使用实际功能获取相邻部件时开始加载依赖项。 `import`提供了很多功能，可以让你的应用程序保持精简状态。

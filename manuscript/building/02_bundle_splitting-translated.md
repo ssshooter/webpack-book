@@ -193,7 +193,7 @@ T> Tobias Koppers 在 webpack的官方博客上讨论[积极合并（aggressive 
 * **Normal chunks** - Normal chunks **不** 包含 webpack 运行时。它们可以在应用运行时被动态加载。webpack 会为其生成一个合适的包裹器（例如 JSONP）。下一章做代码分割生成的便是 normal chunk。
 * **Initial chunks** - Initial chunks 是一种 normal chunks，但是它的加载算进初始加载中。作为用户不用太关注这类，知道它们介于两者之间就好了。（It's the split between entry chunks and normal chunks that is important）
 
-## 结论
+## 总结
 
 与之前相比，情况好多了，`main` bundle 在拆分后比 `vendor` bundle 小多了。不过要从此受益，请在看本书下一部分的 *Adding Hashes to Filenames* 章节，了解缓存相关设置。
 

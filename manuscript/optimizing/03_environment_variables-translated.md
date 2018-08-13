@@ -192,7 +192,7 @@ T> 相关技术，**别名**，会在 *Consuming Packages* 章节中讨论。
 
 {pagebreak}
 
-## 结论
+## 总结
 
 设置环境变量是一种允许你控制构建中包含源的哪些路径的技术。
 Setting environment variables is a technique that allows you to control which paths of the source are included in the build.

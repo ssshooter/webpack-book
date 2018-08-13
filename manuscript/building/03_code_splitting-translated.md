@@ -218,7 +218,7 @@ T> 参见[Glenn Reyes的详细解释](https://medium.com/@glennreyes/how-to-disa
 
 {pagebreak}
 
-## 结论
+## 总结
 
 代码拆分是一项功能，可让你进一步推动应用程序。你可以在需要时加载代码，以获得更快的初始加载时间和改善的用户体验，尤其是在带宽有限的移动环境中。
 Code splitting is a feature that allows you to push your application a notch further. You can load code when you need it to gain faster initial load times and improved user experience especially in a mobile context where bandwidth is limited.

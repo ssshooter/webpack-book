@@ -274,7 +274,7 @@ const src = require(`./avatars/${avatar}`);`.
 如果你正在使用带有`sourceMap`选项的图像和* css-loader *，那么将`output.publicPath`设置为指向开发服务器的绝对值非常重要。否则，图像无法正常工作。有关详细说明，请参阅[相关的webpack问题]（https://github.com/webpack/style-loader/issues/55）。
 If you are using images and *css-loader* with the `sourceMap` option enabled, it's important that you set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images aren't going to work. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
 
-##结论
+##总结
 ## Conclusion
 
 Webpack允许你在需要时在捆绑中内联图像。找出适合你图像的内联限制需要进行实验。你必须在包大小和请求数之间取得平衡。

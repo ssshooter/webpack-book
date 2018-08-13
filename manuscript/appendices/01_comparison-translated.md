@@ -353,7 +353,7 @@ You can find more alternatives as listed below:
 
 {pagebreak}
 
-##结论
+##总结
 ## Conclusion
 
 从历史上看，有很多用于JavaScript的构建工具。每个人都试图以其方式解决特定问题。标准已经开始迎头赶上，并且围绕基本语义需要更少的努力。相反，工具可以在更高层次上竞争并推动更好的用户体验。通常，你可以一起使用几个单独的解决方案。

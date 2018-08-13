@@ -179,7 +179,7 @@ If you want strict control over the ordering, you can set up a single CSS entry 
 T> [css-entry-webpack-plugin]（https://www.npmjs.com/package/css-entry-webpack-plugin）旨在帮助实现此使用模式。该插件可以从条目中提取CSS包而不使用MCEP。
 T> [css-entry-webpack-plugin](https://www.npmjs.com/package/css-entry-webpack-plugin) has been designed to help with this usage pattern. The plugin can extract a CSS bundle from entry without MCEP.
 
-##结论
+##总结
 ## Conclusion
 
 当前的设置将样式与JavaScript整齐地分开。即使该技术对CSS最有价值，它也可用于提取HTML模板或你使用的任何其他文件类型。关于`MiniCssExtractPlugin`的难点在于它的设置，但复杂性可以隐藏在抽象背后。

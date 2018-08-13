@@ -142,7 +142,7 @@ The files have neat hashes now. To prove that it works for styling, you could tr
 但是有一个问题。如果更改应用程序代码，它也会使供应商文件无效！解决这个问题需要提取**清单**，但在此之前，你可以改进生产构建处理模块ID的方式。
 There's one problem, though. If you change the application code, it invalidates the vendor file as well! Solving this requires extracting a **manifest**, but before that, you can improve the way the production build handles module IDs.
 
-## 结论
+## 总结
 
 将与文件内容相关的hash包括在其名称中允许在客户端使它们无效。如果hash值已更改，则会强制客户端再次下载该资产。
 Including hashes related to the file contents to their names allows to invalidate them on the client side. If a hash has changed, the client is forced to download the asset again.

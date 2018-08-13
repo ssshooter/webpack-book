@@ -81,7 +81,7 @@ Node may give a `DeprecationWarning` especially after webpack has been updated t
 将`--trace-deprecation`标志传递给Node以查看警告的来源非常重要。使用`--trace-warnings`是另一种方式，它将捕获所有警告的跟踪信息，而不仅仅是弃用。
 It's important to pass the `--trace-deprecation` flag to Node to see where the warning originates from. Using `--trace-warnings` is another way and it will capture the tracing information for all warnings, not only deprecations.
 
-##结论
+##总结
 ## Conclusion
 
 这些只是错误的例子。 webpack方面发生了特定的错误，但其余的都来自它通过加载器和插件使用的软件包。简化你的项目是一个很好的步骤，因为这样可以更容易地理解错误发生的位置。

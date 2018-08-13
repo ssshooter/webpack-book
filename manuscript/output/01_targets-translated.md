@@ -54,7 +54,7 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously *node-we
 
 {pagebreak}
 
-##结论
+##总结
 ## Conclusion
 
 Webpack支持Web以外的目标。基于此，你可以说名称“webpack”考虑其功能是轻描淡写。

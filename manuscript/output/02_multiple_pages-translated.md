@@ -371,7 +371,7 @@ PWA combines well with plugins like [offline-plugin](https://www.npmjs.com/packa
 T> [Twitter]（https://developers.google.com/web/showcase/2017/twitter）和[Tinder]（https://medium.com/@addyosmani/a-tinder-progressive-web-app- performance-case-study-78919d98ece0）案例研究说明了PWA方法如何改进平台。
 T> [Twitter](https://developers.google.com/web/showcase/2017/twitter) and [Tinder](https://medium.com/@addyosmani/a-tinder-progressive-web-app-performance-case-study-78919d98ece0) case studies illustrate how the PWA approach can improve platforms.
 
-##结论
+##总结
 ## Conclusion
 
 Webpack允许你管理多个页面设置。 PWA方法允许应用程序在使用时加载，webpack允许实现它。

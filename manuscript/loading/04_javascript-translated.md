@@ -324,7 +324,7 @@ T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) sh
 
 {pagebreak}
 
-##结论
+##总结
 ## Conclusion
 
 Babel已经成为开发人员不可或缺的工具，因为它标准化了旧版浏览器的标准。即使你针对现代浏览器，通过Babel进行转换也是一种选择。

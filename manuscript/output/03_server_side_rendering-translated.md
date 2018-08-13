@@ -305,7 +305,7 @@ Questions like these are the reason why solutions such as Next.js or razzle exis
 T>路由是一个很大的问题，它自己解决了像Next.js这样的框架。 Patrick Hund [讨论如何使用React和React Router 4解决它]（https://ebaytech.berlin/universal-web-apps-with-react-router-4-15002bb30ccb）。
 T> Routing is a big problem of its own solved by frameworks like Next.js. Patrick Hund [discusses how to solve it with React and React Router 4](https://ebaytech.berlin/universal-web-apps-with-react-router-4-15002bb30ccb).
 
-##结论
+##总结
 ## Conclusion
 
 SSR带来了技术挑战，因此，围绕它出现了特定的解决方案。 Webpack非常适合SSR设置。

@@ -117,7 +117,7 @@ W> If you change the way webpack handles module IDs (i.e., remove `HashedModuleI
 
 {pagebreak}
 
-## 结论
+## 总结
 
 该项目现在具有基本的缓存能力。如果你尝试修改 *index.js* 或 *component.js*，则 vendor bundle 应保持不变。
 

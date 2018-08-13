@@ -128,7 +128,7 @@ The techniques discussed in the *Code Splitting* chapter are valid with i18n. Yo
 
 {pagebreak}
 
-##结论
+##总结
 ## Conclusion
 
 其他webpack方法遵循类似的想法，更灵活，但需要更多的工作。如果你使用基于加载器的解决方案，则可以设置拆分点以按需加载语言。

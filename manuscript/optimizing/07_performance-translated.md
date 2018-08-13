@@ -205,7 +205,7 @@ Given `module.noParse` accepts a regular expression if you wanted to ignore all 
 W>并非所有模块都支持`module.noParse`。它们不应该引用`require`，`define`或类似的东西，因为它会导致`Uncaught ReferenceError：require is not defined` error。
 W> Not all modules support `module.noParse`. They should not have a reference to `require`, `define`, or similar, as that leads to an `Uncaught ReferenceError: require is not defined` error.
 
-## 结论
+## 总结
 
 你可以通过多种方式优化webpack的性能。在转向涉及更多的技术之前，通常最好先使用更易于理解的技术。你必须使用的确切方法取决于项目。
 You can optimize webpack's performance in multiple ways. Often it's a good idea to start with more accessible techniques before moving to more involved ones. The exact methods you have to use, depend on the project.

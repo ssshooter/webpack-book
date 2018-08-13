@@ -288,7 +288,7 @@ To get more information, npm provides `npm info <package>` command for basic que
 * [称量]（https://www.npmjs.com/package/weigh）可用于计算包以不同方式（未压缩，缩小，gzip）提供给浏览器时的大致大小。
 * [weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in different ways (uncompressed, minified, gzipped).
 
-##结论
+##总结
 ## Conclusion
 
 Webpack可以毫无问题地使用大多数npm软件包。但有时候，使用webpack的解析机制需要修补。
