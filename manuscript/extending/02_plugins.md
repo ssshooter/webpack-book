@@ -254,11 +254,11 @@ A plugin can provide hooks of its own. [html-webpack-plugin](https://www.npmjs.c
 
 In special cases, like [offline-plugin](https://www.npmjs.com/package/offline-plugin), it makes sense to run a child compiler. It gives full control over related entries and output. Arthur Stolyar, the author of the plugin, has explained [the idea of child compilers at Stack Overflow](https://stackoverflow.com/questions/38276028/webpack-child-compiler-change-configuration).
 
-## Conclusion
+
 
 When you begin to design a plugin, spend time studying existing plugins that are close enough. Develop plugins piece-wise so that you validate one piece at a time. Studying webpack source can give more insight given it's a collection of plugins itself.
 
-To recap:
+
 
 * **Plugins** can intercept webpack's execution and extend it making them more flexible than loaders.
 * Plugins can be combined with loaders. `MiniCssExtractPlugin` works this way. The accompanying loader is used to mark assets to extract.

@@ -235,11 +235,11 @@ To get more information, npm provides `npm info <package>` command for basic que
 * [slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
 * [weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in different ways (uncompressed, minified, gzipped).
 
-## Conclusion
+
 
 Webpack can consume most npm packages without a problem. Sometimes, though, patching is required using webpack's resolution mechanism.
 
-To recap:
+
 
 * Use webpack's module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it's a good idea to try to push improvements upstream to the projects themselves, though.
 * Webpack allows you to patch resolved modules. Given specific dependencies expect globals, you can inject them. You can also expose modules as globals as this is necessary for certain development tooling to work.

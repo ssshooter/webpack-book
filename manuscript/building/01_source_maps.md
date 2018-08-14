@@ -358,11 +358,11 @@ The *css-loader* is [known to have issues](https://github.com/webpack-contrib/cs
 
 {pagebreak}
 
-## Conclusion
+
 
 Source maps can be convenient during development. They provide better means to debug applications as you can still examine the original code over a generated one. They can be valuable even for production usage and allow you to debug issues while serving a client-friendly version of your application.
 
-To recap:
+
 
 * **Source maps** can be helpful both during development and production. They provide more accurate information about what's going on and make it faster to debug possible problems.
 * Webpack supports a large variety of source map variants. They can be split into inline and separate source maps based on where they are generated. Inline source maps are handy during development due to their speed. Separate source maps work for production as then loading them becomes optional.

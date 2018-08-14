@@ -155,11 +155,11 @@ The idea of [critical path rendering](https://developers.google.com/web/fundamen
 
 [critical-path-css-tools](https://github.com/addyosmani/critical-path-css-tools) by Addy Osmani lists other related tools.
 
-## Conclusion
+
 
 Using PurifyCSS can lead to a significant decrease in file size. It's mainly valuable for static sites that rely on a massive CSS framework. The more dynamic a site or an application becomes, the harder it becomes to analyze reliably.
 
-To recap:
+
 
 * Eliminating unused CSS is possible using PurifyCSS. It performs static analysis against the source.
 * The functionality can be enabled through *purifycss-webpack*, and the plugin should be applied *after* `MiniCssExtractPlugin`.

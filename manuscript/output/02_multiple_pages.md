@@ -319,11 +319,11 @@ PWA combines well with plugins like [offline-plugin](https://www.npmjs.com/packa
 
 T> [Twitter](https://developers.google.com/web/showcase/2017/twitter) and [Tinder](https://medium.com/@addyosmani/a-tinder-progressive-web-app-performance-case-study-78919d98ece0) case studies illustrate how the PWA approach can improve platforms.
 
-## Conclusion
+
 
 Webpack allows you to manage multiple page setups. The PWA approach allows the application to be loaded as it's used and webpack allows implementing it.
 
-To recap:
+
 
 * Webpack can be used to generate separate pages either through its multi-compiler mode or by including all the page configuration into one.
 * The multi-compiler configuration can run in parallel using external solutions, but it's harder to apply techniques such as bundle splitting against it.

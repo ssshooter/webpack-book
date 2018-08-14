@@ -324,14 +324,14 @@ T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) sh
 
 {pagebreak}
 
-##总结
-## Conclusion
+## 总结
+
 
 Babel已经成为开发人员不可或缺的工具，因为它标准化了旧版浏览器的标准。即使你针对现代浏览器，通过Babel进行转换也是一种选择。
 Babel has become an indispensable tool for developers given it bridges the standard with older browsers. Even if you targeted modern browsers, transforming through Babel is an option.
 
 回顾一下：
-To recap:
+
 
 * Babel让你可以控制要支持的浏览器。它可以将ES2015 +功能编译为旧浏览器所理解的形式。 * babel-preset-env *很有价值，因为它可以根据你的浏览器定义选择要编译的功能和要启用的polyfill。
 * Babel gives you control over what browsers to support. It can compile ES2015+ features to a form the older browser understand. *babel-preset-env* is valuable as it can choose which features to compile and which polyfills to enable based on your browser definition.

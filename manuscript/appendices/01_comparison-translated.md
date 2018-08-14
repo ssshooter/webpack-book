@@ -353,14 +353,14 @@ You can find more alternatives as listed below:
 
 {pagebreak}
 
-##总结
-## Conclusion
+## 总结
+
 
 从历史上看，有很多用于JavaScript的构建工具。每个人都试图以其方式解决特定问题。标准已经开始迎头赶上，并且围绕基本语义需要更少的努力。相反，工具可以在更高层次上竞争并推动更好的用户体验。通常，你可以一起使用几个单独的解决方案。
 Historically there have been a lot of build tools for JavaScript. Each has tried to solve a specific problem in its way. The standards have begun to catch up, and less effort is required around basic semantics. Instead, tools can compete on a higher level and push towards better user experience. Often you can use a couple of separate solutions together.
 
 回顾一下：
-To recap:
+
 
 * **任务跑步者**和**捆绑者**解决不同的问题。你可以使用两者获得类似的结果，但通常最好将它们一起使用以相互补充。
 * **Task runners** and **bundlers** solve different problems. You can achieve similar results with both, but often it's best to use them together to complement each other.

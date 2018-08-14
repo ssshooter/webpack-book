@@ -186,14 +186,14 @@ The idea of [critical path rendering](https://developers.google.com/web/fundamen
 Addy Osmani的[critical-path-css-tools]（https://github.com/addyosmani/critical-path-css-tools）列出了其他相关工具。
 [critical-path-css-tools](https://github.com/addyosmani/critical-path-css-tools) by Addy Osmani lists other related tools.
 
-##总结
-## Conclusion
+## 总结
+
 
 使用PurifyCSS可以显着减少文件大小。它主要用于依赖大量CSS框架的静态站点。站点或应用程序变得越动态，就越难以可靠地进行分析。
 Using PurifyCSS can lead to a significant decrease in file size. It's mainly valuable for static sites that rely on a massive CSS framework. The more dynamic a site or an application becomes, the harder it becomes to analyze reliably.
 
 回顾一下：
-To recap:
+
 
 *使用PurifyCSS可以消除未使用的CSS。它对源执行静态分析。
 * Eliminating unused CSS is possible using PurifyCSS. It performs static analysis against the source.

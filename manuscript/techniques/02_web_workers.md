@@ -62,11 +62,11 @@ After you have these two set up, it should work. As you click the text, it shoul
 
 T> [webworkify-webpack](https://www.npmjs.com/package/webworkify-webpack) is an alternative to *worker-loader*. The API allows you to use the worker as a regular JavaScript module as well given you avoid the `self` requirement visible in the example solution. [webpack-worker](https://www.npmjs.com/package/webpack-worker) is another option to study.
 
-## Conclusion
+
 
 The critical thing to note is that the worker cannot access the DOM. You can perform computation and queries in a worker, but it cannot manipulate the user interface directly.
 
-To recap:
+
 
 * Web workers allow you to push work out of the main thread of the browser. This separation is valuable especially if performance is an issue.
 * Web workers cannot manipulate the DOM. Instead, it's best to use them for lengthy computations and requests.

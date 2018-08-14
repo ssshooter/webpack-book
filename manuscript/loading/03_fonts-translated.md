@@ -145,14 +145,14 @@ W> Take care with SVG images if you have SVG specific image setup in place alrea
 [iconfont-webpack-plugin]（https://www.npmjs.com/package/iconfont-webpack-plugin）旨在简化基于图标的加载字体。它在CSS文件中内联SVG引用。
 [iconfont-webpack-plugin](https://www.npmjs.com/package/iconfont-webpack-plugin) was designed to simplify loading icon based fonts. It inlines SVG references within CSS files.
 
-##总结
-## Conclusion
+## 总结
+
 
 加载字体与加载其他资源类似。你必须考虑要支持的浏览器，并根据该选择加载策略。
 Loading fonts is similar to loading other assets. You have to consider the browsers you want to support and choose the loading strategy based on that.
 
 回顾一下：
-To recap:
+
 
 *加载字体时，应用与图像相同的技术。你可以选择内联小字体，而较大字体则作为单独资源。
 * When loading fonts, the same techniques as for images apply. You can choose to inline small fonts while bigger ones are served as separate assets.

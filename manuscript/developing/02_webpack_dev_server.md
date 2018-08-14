@@ -260,11 +260,11 @@ There are also plugins that make the webpack output easier to notice and underst
 
 {pagebreak}
 
-## Conclusion
+
 
 WDS complements webpack and makes it more friendly for developers by providing development oriented functionality.
 
-To recap:
+
 
 * Webpack's `watch` mode is the first step towards a better development experience. You can have webpack compile bundles as you edit your source.
 * WDS can refresh the browser on change. It also implements **Hot Module Replacement**.

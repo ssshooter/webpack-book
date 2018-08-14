@@ -134,8 +134,8 @@ In the example, webpack detects the `import` statically. It can generate a separ
 
 {pagebreak}
 
-##总结
-## Conclusion
+## 总结
+
 
 除了搜索之外，该方法也可以与路由器一起使用。当用户输入路由时，你可以加载生成的视图所需的依赖项。或者，你可以在用户滚动页面并使用实际功能获取相邻部件时开始加载依赖项。 `import`提供了很多功能，可以让你的应用程序保持精简状态。
 Beyond search, the approach can be used with routers too. As the user enters a route, you can load the dependencies the resulting view needs. Alternately, you can start loading dependencies as the user scrolls a page and gets adjacent parts with actual functionality. `import` provides a lot of power and allows you to keep your application lean.
@@ -144,7 +144,7 @@ Beyond search, the approach can be used with routers too. As the user enters a r
 You can find a [full example](https://github.com/survivejs-demos/lunr-demo) showing how it all goes together with lunr, React, and webpack. The basic idea is the same, but there's more setup in place.
 
 回顾一下：
-To recap:
+
 
 *如果你的数据集很小且是静态的，那么客户端搜索是一个不错的选择。
 * If your dataset is small and static, client-side search is a good option.

@@ -183,9 +183,9 @@ Image size can be reduced by using [img-loader](https://www.npmjs.com/package/im
 
 It can be a good idea to use *cache-loader* and *thread-loader* with these as discussed in the *Performance* chapter given they can be substantial operations.
 
-## Conclusion
 
-Minification is the most comfortable step you can take to make your build smaller. To recap:
+
+Minification is the most comfortable step you can take to make your build smaller. 
 
 * **Minification** process analyzes your source code and turns it into a smaller form with the same meaning if you use safe transformations. Specific unsafe transformations allow you to reach even smaller results while potentially breaking code that relies, for example, on exact parameter naming.
 * Webpack performs minification in production mode using UglifyJS by default. Other solutions, such as *babel-minify-webpack-plugin*, provide similar functionality with costs of their own.

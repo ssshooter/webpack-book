@@ -425,11 +425,11 @@ T> The [official documentation](https://webpack.js.org/api/loaders/) covers the 
 
 {pagebreak}
 
-## Conclusion
+
 
 Writing loaders is fun in the sense that they describe transformations from a format to another. Often you can figure out how to achieve something specific by either studying either the API documentation or the existing loaders.
 
-To recap:
+
 
 * *loader-runner* is a valuable tool for understanding how loaders work. Use it for debugging how loaders work.
 * Webpack **loaders** accept input and produce output based on it.

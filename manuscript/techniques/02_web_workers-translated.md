@@ -79,14 +79,14 @@ After you have these two set up, it should work. As you click the text, it shoul
 T> [webworkify-webpack]（https://www.npmjs.com/package/webworkify-webpack）是* worker-loader *的替代方案。 API允许你将worker用作常规JavaScript模块，同时避免在示例解决方案中看到“self”要求。 [webpack-worker]（https://www.npmjs.com/package/webpack-worker）是另一个学习的选择。
 T> [webworkify-webpack](https://www.npmjs.com/package/webworkify-webpack) is an alternative to *worker-loader*. The API allows you to use the worker as a regular JavaScript module as well given you avoid the `self` requirement visible in the example solution. [webpack-worker](https://www.npmjs.com/package/webpack-worker) is another option to study.
 
-##总结
-## Conclusion
+## 总结
+
 
 需要注意的关键是工作者无法访问DOM。你可以在工作程序中执行计算和查询，但它无法直接操作用户界面。
 The critical thing to note is that the worker cannot access the DOM. You can perform computation and queries in a worker, but it cannot manipulate the user interface directly.
 
 回顾一下：
-To recap:
+
 
 * Web worker允许你将工作推出浏览器的主线程。如果性能是一个问题，这种分离是有价值的。
 * Web workers allow you to push work out of the main thread of the browser. This separation is valuable especially if performance is an issue.

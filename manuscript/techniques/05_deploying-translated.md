@@ -137,14 +137,14 @@ If you don't know `publicPath` beforehand, it's possible to resolve it based on 
 编译时，webpack选择`__webpack_public_path__`并重写它，使其指向webpack逻辑。
 When you compile, webpack picks up `__webpack_public_path__` and rewrites it so that it points to webpack logic.
 
-##总结
-## Conclusion
+## 总结
+
 
 即使webpack不是部署工具，你也可以找到它的插件。
 Even though webpack isn't a deployment tool, you can find plugins for it.
 
 回顾一下：
-To recap:
+
 
 *可以处理webpack之外的部署问题。例如，你可以在npm脚本中实现此目的。
 * It's possible to handle the problem of deployment outside of webpack. You can achieve this in an npm script for example.

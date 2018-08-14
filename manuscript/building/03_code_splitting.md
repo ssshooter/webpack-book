@@ -214,11 +214,11 @@ T> See [Glenn Reyes' detailed explanation](https://medium.com/@glennreyes/how-to
 
 {pagebreak}
 
-## Conclusion
+
 
 Code splitting is a feature that allows you to push your application a notch further. You can load code when you need it to gain faster initial load times and improved user experience especially in a mobile context where bandwidth is limited.
 
-To recap:
+
 
 * **Code splitting** comes with extra effort as you have to decide what to split and where. Often, you find good split points within a router. Or you notice that specific functionality is required only when a particular feature is used. Charting is an excellent example of this.
 * To use dynamic `import` syntax, both Babel and ESLint require careful tweaks. Webpack supports the syntax out of the box.

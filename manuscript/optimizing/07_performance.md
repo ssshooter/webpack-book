@@ -158,11 +158,11 @@ Given `module.noParse` accepts a regular expression if you wanted to ignore all 
 
 W> Not all modules support `module.noParse`. They should not have a reference to `require`, `define`, or similar, as that leads to an `Uncaught ReferenceError: require is not defined` error.
 
-## Conclusion
+
 
 You can optimize webpack's performance in multiple ways. Often it's a good idea to start with more accessible techniques before moving to more involved ones. The exact methods you have to use, depend on the project.
 
-To recap:
+
 
 * Start with higher level techniques that are fast to implement first.
 * Lower level techniques are more involved but come with their wins.

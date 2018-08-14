@@ -288,14 +288,14 @@ In addition to tools that work with webpack output, there are a couple that are 
 
 {pagebreak}
 
-##总结
-## Conclusion
+## 总结
+
 
 当你优化捆绑输出的大小时，这些工具是非常宝贵的。官方工具具有最多的功能，但即使是基本的可视化也可以揭示问题点。你可以使用与旧项目相同的技术来了解它们的组成。
 When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even a rudimentary visualization can reveal problem spots. You can use the same technique with old projects to understand their composition.
 
 回顾一下：
-To recap:
+
 
 * Webpack允许你提取包含有关构建的信息的JSON文件。数据可以包括构建组成和时间。
 * Webpack allows you to extract a JSON file containing information about the build. The data can include the build composition and timing.

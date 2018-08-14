@@ -128,14 +128,14 @@ The techniques discussed in the *Code Splitting* chapter are valid with i18n. Yo
 
 {pagebreak}
 
-##总结
-## Conclusion
+## 总结
+
 
 其他webpack方法遵循类似的想法，更灵活，但需要更多的工作。如果你使用基于加载器的解决方案，则可以设置拆分点以按需加载语言。
 The other webpack approaches follow a similar idea and are more flexible but require more work. If you go with a loader based solution, then you can set up split points to load languages on demand.
 
 回顾一下：
-To recap:
+
 
 * **国际化**（i18n）和**本地化**（l10n）是你在申请时针对多个市场的重要问题。
 * **Internationalization** (i18n) and **localization** (l10n) are important problems if you target multiple markets with your application.

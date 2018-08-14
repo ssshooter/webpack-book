@@ -288,14 +288,14 @@ To get more information, npm provides `npm info <package>` command for basic que
 * [称量]（https://www.npmjs.com/package/weigh）可用于计算包以不同方式（未压缩，缩小，gzip）提供给浏览器时的大致大小。
 * [weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in different ways (uncompressed, minified, gzipped).
 
-##总结
-## Conclusion
+## 总结
+
 
 Webpack可以毫无问题地使用大多数npm软件包。但有时候，使用webpack的解析机制需要修补。
 Webpack can consume most npm packages without a problem. Sometimes, though, patching is required using webpack's resolution mechanism.
 
 回顾一下：
-To recap:
+
 
 *使用webpack的模块分辨率为你带来好处。有时你可以通过调整分辨率来解决问题。不过，尝试将改进上游推进到项目本身通常是个好主意。
 * Use webpack's module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it's a good idea to try to push improvements upstream to the projects themselves, though.

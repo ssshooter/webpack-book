@@ -62,6 +62,6 @@ If you are using CSS Modules in your project, you should process standard CSS th
 
 You can solve the problem by processing third-party CSS differently through an `include` definition against *node_modules*. Alternately, you could use a file extension (`.mcss`) to tell files using CSS Modules apart from the rest and then manage this situation in a loader `test`.
 
-## Conclusion
+
 
 CSS Modules solve the scoping problem of CSS by defaulting to local scope per file. You can still have global styling, but it requires additional effort. Webpack can be set up to support CSS Modules easily as seen above.

@@ -170,11 +170,11 @@ T> A related technique, **aliasing**, is discussed in the *Consuming Packages* c
 
 {pagebreak}
 
-## Conclusion
+
 
 Setting environment variables is a technique that allows you to control which paths of the source are included in the build.
 
-To recap:
+
 
 * Webpack allows you to set **environment variables** through `DefinePlugin` and `EnvironmentPlugin`. Latter maps the system level environment variables to the source.
 * `DefinePlugin` operates based on **free variables** and it replaces them as webpack analyzes the source code. You can achieve similar results by using Babel plugins.

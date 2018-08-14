@@ -222,11 +222,11 @@ There are also specific plugins that extend `HtmlWebpackPlugin`'s functionality:
 
 {pagebreak}
 
-## Conclusion
+
 
 Even though you have managed to get webpack up and running, it does not do that much yet. Developing against it would be painful. Each time you wanted to check out the application, you would have to build it manually using `npm run build` and then refresh the browser. That's where webpack's more advanced features come in.
 
-To recap:
+
 
 * It's a good idea to use a locally installed version of webpack over a globally installed one. This way you can be sure of what version you are using. The local dependency also works in a Continuous Integration environment.
 * Webpack provides a command line interface through the *webpack-cli* package. You can use it even without configuration, but any advanced usage requires configuration.

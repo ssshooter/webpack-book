@@ -441,11 +441,11 @@ plugins: [
 
 {pagebreak}
 
-## Conclusion
+
 
 Webpack can be configured to work with a large variety of testing tools. Each tool has its sweet spots, but they also have quite a bit of common ground.
 
-To recap:
+
 
 * Running testing tools allows you to benefit from webpack's module resolution mechanism.
 * Sometimes the test setup can be quite involved. Tools like Jest remove most of the boilerplate and allow you to develop tests with minimal configuration.

@@ -88,11 +88,11 @@ leanpub-end-insert
 
 *autoprefixer* is able to **remove** unnecessary rules and also add rules which are required based on the browser definition.
 
-## Conclusion
+
 
 Autoprefixing is a convenient technique as it decreases the amount of work needed while crafting CSS. You can maintain minimum browser requirements within a *.browserslistrc* file. The tooling can then use that information to generate optimal output.
 
-To recap:
+
 
 * Autoprefixing can be enabled through the *autoprefixer* PostCSS plugin.
 * Autoprefixing writes missing CSS definitions based on your minimum browser definition.

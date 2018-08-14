@@ -534,14 +534,14 @@ plugins: [
 
 {pagebreak}
 
-##总结
-## Conclusion
+## 总结
+
 
 Webpack可以配置为使用各种各样的测试工具。每个工具都有它的甜点，但它们也有相当多的共同点。
 Webpack can be configured to work with a large variety of testing tools. Each tool has its sweet spots, but they also have quite a bit of common ground.
 
 回顾一下：
-To recap:
+
 
 *运行测试工具可以让你从webpack的模块解析机制中受益。
 * Running testing tools allows you to benefit from webpack's module resolution mechanism.

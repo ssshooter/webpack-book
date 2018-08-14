@@ -103,14 +103,14 @@ Given the approaches discussed here rely on static analysis and webpack has to f
 考虑使用浏览器端加载器，如[$ script.js]（https://www.npmjs.com/package/scriptjs）或[little-loader]（https://www.npmjs.com/package/little-loader ）在这种情况下，在webpack之上。
 Consider using browser-side loaders like [$script.js](https://www.npmjs.com/package/scriptjs) or [little-loader](https://www.npmjs.com/package/little-loader) on top of webpack in this case.
 
-##总结
-## Conclusion
+## 总结
+
 
 尽管`require.context`是一个小众特色，但要注意它是件好事。如果你必须对文件系统中可用的多个文件执行查找，这将变得很有价值。如果你的查找比这更复杂，则必须使用其他允许你执行加载运行时的替代方法。
 Even though `require.context` is a niche feature, it's good to be aware of it. It becomes valuable if you have to perform lookups against multiple files available within the file system. If your lookup is more complicated than that, you have to resort to other alternatives that allow you to perform loading runtime.
 
 回顾一下：
-To recap:
+
 
 *`require.context`是一种经常隐藏在幕后的高级功能。如果必须对大量文件执行查找，请使用它。
 * `require.context` is an advanced feature that's often hidden behind the scenes. Use it if you have to perform a lookup against a large number of files.

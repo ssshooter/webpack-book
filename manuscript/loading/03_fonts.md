@@ -122,11 +122,11 @@ W> Take care with SVG images if you have SVG specific image setup in place alrea
 
 [iconfont-webpack-plugin](https://www.npmjs.com/package/iconfont-webpack-plugin) was designed to simplify loading icon based fonts. It inlines SVG references within CSS files.
 
-## Conclusion
+
 
 Loading fonts is similar to loading other assets. You have to consider the browsers you want to support and choose the loading strategy based on that.
 
-To recap:
+
 
 * When loading fonts, the same techniques as for images apply. You can choose to inline small fonts while bigger ones are served as separate assets.
 * If you decide to provide first class support to only modern browsers, you can select only a font format or two and let the older browsers to use system level fonts.

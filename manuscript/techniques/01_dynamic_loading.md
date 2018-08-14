@@ -85,11 +85,11 @@ Given the approaches discussed here rely on static analysis and webpack has to f
 
 Consider using browser-side loaders like [$script.js](https://www.npmjs.com/package/scriptjs) or [little-loader](https://www.npmjs.com/package/little-loader) on top of webpack in this case.
 
-## Conclusion
+
 
 Even though `require.context` is a niche feature, it's good to be aware of it. It becomes valuable if you have to perform lookups against multiple files available within the file system. If your lookup is more complicated than that, you have to resort to other alternatives that allow you to perform loading runtime.
 
-To recap:
+
 
 * `require.context` is an advanced feature that's often hidden behind the scenes. Use it if you have to perform a lookup against a large number of files.
 * If you write a dynamic `import` in a certain form, webpack generates a `require.context` call. The code reads slightly better in this case.

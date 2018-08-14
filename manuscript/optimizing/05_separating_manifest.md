@@ -104,11 +104,11 @@ W> If you change the way webpack handles module IDs (i.e., remove `HashedModuleI
 
 {pagebreak}
 
-## Conclusion
+
 
 The project has basic caching behavior now. If you try to modify *index.js* or *component.js*, the vendor bundle should remain the same.
 
-To recap:
+
 
 * Webpack maintains a **manifest** containing information needed to run the application.
 * If the manifest changes, the change invalidates the containing bundle.

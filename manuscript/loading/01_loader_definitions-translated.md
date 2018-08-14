@@ -337,14 +337,14 @@ Loader behavior can be understood in greater detail by inspecting them. [loader-
 [inspect-loader]（https://www.npmjs.com/package/inspect-loader）允许你检查加载器之间传递的内容。你可以将此加载程序附加到你的配置并检查其中的流，而不必在* node_modules *中插入`console.log`。
 [inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within *node_modules*, you can attach this loader to your configuration and inspect the flow there.
 
-##总结
-## Conclusion
+## 总结
+
 
 Webpack提供了多种设置加载器的方法，但在webpack 4中坚持使用`use`就足够了。小心加载器的排序，因为它是常见的问题来源。
 Webpack provides multiple ways to setup loaders but sticking with `use` is enough in webpack 4. Be careful with loader ordering, as it's a common source of problems.
 
 回顾一下：
-To recap:
+
 
 * ** Loaders **允许你确定webpack的模块解析机制遇到文件时应该发生什么。
 * **Loaders** allow you determine what should happen when webpack's module resolution mechanism encounters a file.

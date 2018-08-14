@@ -251,11 +251,11 @@ T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) sh
 
 {pagebreak}
 
-## Conclusion
+
 
 Babel has become an indispensable tool for developers given it bridges the standard with older browsers. Even if you targeted modern browsers, transforming through Babel is an option.
 
-To recap:
+
 
 * Babel gives you control over what browsers to support. It can compile ES2015+ features to a form the older browser understand. *babel-preset-env* is valuable as it can choose which features to compile and which polyfills to enable based on your browser definition.
 * Babel allows you to use experimental language features. You can find numerous plugins that improve development experience and the production build through optimizations.

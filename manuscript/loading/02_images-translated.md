@@ -274,14 +274,14 @@ const src = require(`./avatars/${avatar}`);`.
 如果你正在使用带有`sourceMap`选项的图像和* css-loader *，那么将`output.publicPath`设置为指向开发服务器的绝对值非常重要。否则，图像无法正常工作。有关详细说明，请参阅[相关的webpack问题]（https://github.com/webpack/style-loader/issues/55）。
 If you are using images and *css-loader* with the `sourceMap` option enabled, it's important that you set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images aren't going to work. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
 
-##总结
-## Conclusion
+## 总结
+
 
 Webpack允许你在需要时在捆绑中内联图像。找出适合你图像的内联限制需要进行实验。你必须在包大小和请求数之间取得平衡。
 Webpack allows you to inline images within your bundles when needed. Figuring out proper inlining limits for your images requires experimentation. You have to balance between bundle sizes and the number of requests.
 
 回顾一下：
-To recap:
+
 
 * * url-loader *内嵌JavaScript中的资产。它带有一个`limit`选项，允许你将它上面的资产推迟到* file-loader *。
 * *url-loader* inlines the assets within JavaScript. It comes with a `limit` option that allows you to defer assets above it to *file-loader*.

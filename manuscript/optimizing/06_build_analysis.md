@@ -232,11 +232,11 @@ In addition to tools that work with webpack output, there are a couple that are 
 
 {pagebreak}
 
-## Conclusion
+
 
 When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even a rudimentary visualization can reveal problem spots. You can use the same technique with old projects to understand their composition.
 
-To recap:
+
 
 * Webpack allows you to extract a JSON file containing information about the build. The data can include the build composition and timing.
 * The generated data can be analyzed using various tools that give insight into aspects such as the bundle composition.

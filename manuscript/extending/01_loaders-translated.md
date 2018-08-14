@@ -483,14 +483,14 @@ T> The [official documentation](https://webpack.js.org/api/loaders/) covers the 
 
 {pagebreak}
 
-##总结
-## Conclusion
+## 总结
+
 
 编写加载器很有趣，因为它们描述了从格式到另一种格式的转换。通常，你可以通过研究API文档或现有的加载器来弄清楚如何实现某些特定的东西。
 Writing loaders is fun in the sense that they describe transformations from a format to another. Often you can figure out how to achieve something specific by either studying either the API documentation or the existing loaders.
 
 回顾一下：
-To recap:
+
 
 * * loader-runner *是了解加载器如何工作的宝贵工具。用它来调试加载器的工作方式。
 * *loader-runner* is a valuable tool for understanding how loaders work. Use it for debugging how loaders work.

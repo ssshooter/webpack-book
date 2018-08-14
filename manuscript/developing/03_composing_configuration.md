@@ -204,11 +204,11 @@ Given all configuration is JavaScript, nothing prevents you from consuming it as
 
 {pagebreak}
 
-## Conclusion
+
 
 Even though the configuration is technically the same as before, now you have room to grow it.
 
-To recap:
+
 
 * Given webpack configuration is JavaScript code underneath, there are many ways to manage it.
 * You should choose a method to compose configuration that makes the most sense to you. [webpack-merge](https://www.npmjs.com/package/webpack-merge) was developed to provide a light approach for composition, but you can find many other options in the wild.

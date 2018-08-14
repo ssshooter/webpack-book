@@ -50,7 +50,7 @@ Node may give a `DeprecationWarning` especially after webpack has been updated t
 
 It's important to pass the `--trace-deprecation` flag to Node to see where the warning originates from. Using `--trace-warnings` is another way and it will capture the tracing information for all warnings, not only deprecations.
 
-## Conclusion
+
 
 These are only examples of errors. Specific errors happen on the webpack side, but the rest comes from the packages it uses through loaders and plugins. Simplifying your project is a good step as that makes it easier to understand where the error happens.
 

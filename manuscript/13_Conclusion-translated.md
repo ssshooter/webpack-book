@@ -77,8 +77,8 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 *清理并将有关构建的信息附加到结果中。 * Tidying Up *章节介绍了如何执行此操作。
 * Clean up and attach information about the build to the result. The *Tidying Up* chapter shows how to do this.
 
-##总结
-## Conclusion
+## 总结
+
 
 Webpack允许你使用许多不同的技术来拼接你的构建。它支持多种输出格式，如本书* Output *部分所述。尽管它的名字，它不仅适用于网络。这是大多数人使用它的地方，但该工具远不止于此。
 Webpack allows you to use a lot of different techniques to splice up your build. It supports multiple output formats as discussed in the *Output* part of the book. Despite its name, it’s not only for the web. That’s where most people use it, but the tool does far more than that.

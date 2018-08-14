@@ -1,8 +1,6 @@
-＃分离CSS
-# Separating CSS
+# 分离 CSS
 
-即使现在有一个很好的构建设置，所有的CSS都去了哪里？根据配置，它已被内联到JavaScript！虽然这在开发过程中很方便，但听起来并不理想。
-Even though there is a nice build set up now, where did all the CSS go? As per configuration, it has been inlined to JavaScript! Even though this can be convenient during development, it doesn't sound ideal.
+现在我们的构建配置看起来也还不错，但是 CSS 都哪里去了？根据配置，它被内联到 JavaScript 中！虽然这在开发环境中很方便，但在生产环境中并不理想。
 
 当前的解决方案不允许缓存CSS。你还可以获得** Flash of Unstyled Content **（FOUC）。发生FOUC是因为浏览器需要一段时间才能加载JavaScript，并且只会应用样式。将CSS分离到自己的文件可以让浏览器单独管理它，从而避免了这个问题。
 The current solution doesn't allow cache CSS. You can also get a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser takes a while to load JavaScript and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
@@ -179,20 +177,17 @@ If you want strict control over the ordering, you can set up a single CSS entry 
 T> [css-entry-webpack-plugin]（https://www.npmjs.com/package/css-entry-webpack-plugin）旨在帮助实现此使用模式。该插件可以从条目中提取CSS包而不使用MCEP。
 T> [css-entry-webpack-plugin](https://www.npmjs.com/package/css-entry-webpack-plugin) has been designed to help with this usage pattern. The plugin can extract a CSS bundle from entry without MCEP.
 
-##总结
-## Conclusion
+## 总结
 
 当前的设置将样式与JavaScript整齐地分开。即使该技术对CSS最有价值，它也可用于提取HTML模板或你使用的任何其他文件类型。关于`MiniCssExtractPlugin`的难点在于它的设置，但复杂性可以隐藏在抽象背后。
 The current setup separates styling from JavaScript neatly. Even though the technique is most valuable with CSS, it can be used to extract HTML templates or any other files types you consume. The hard part about `MiniCssExtractPlugin` has to do with its setup, but the complexity can be hidden behind an abstraction.
 
 回顾一下：
-To recap:
 
-*使用带有样式的“MiniCssExtractPlugin”解决了无格式内容Flash（FOUC）的问题。从JavaScript中分离CSS还可以改善缓存行为并删除潜在的攻击媒介。
+* 使用带有样式的 `MiniCssExtractPlugin` 解决了无格式内容Flash（FOUC）的问题。从JavaScript中分离CSS还可以改善缓存行为并删除潜在的攻击媒介。
 * Using `MiniCssExtractPlugin` with styling solves the problem of Flash of Unstyled Content (FOUC). Separating CSS from JavaScript also improves caching behavior and removes a potential attack vector.
-*如果你不希望通过JavaScript维护对样式的引用，则可以选择通过条目来处理它们。不过，在这种情况下你必须小心样式排序。
+* 如果你不希望通过JavaScript维护对样式的引用，则可以选择通过条目来处理它们。不过，在这种情况下你必须小心样式排序。
 * If you don't prefer to maintain references to styling through JavaScript, an alternative is to handle them through an entry. You have to be careful with style ordering in this case, though.
 
-在下一章中，你将学习如何从项目中消除未使用的CSS。
-In the next chapter, you'll learn to eliminate unused CSS from the project.
+在下一章中，你将学习如何从项目中清除未使用的 CSS。
 

@@ -46,6 +46,6 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 
 * Clean up and attach information about the build to the result. The *Tidying Up* chapter shows how to do this.
 
-## Conclusion
+
 
 Webpack allows you to use a lot of different techniques to splice up your build. It supports multiple output formats as discussed in the *Output* part of the book. Despite its name, it’s not only for the web. That’s where most people use it, but the tool does far more than that.

@@ -35,11 +35,11 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously *node-we
 
 {pagebreak}
 
-## Conclusion
+
 
 Webpack supports targets beyond the web. Based on this you can say name "webpack" is an understatement considering its capabilities.
 
-To recap:
+
 
 * Webpack's output target can be controlled through the `target` field. It defaults to `web` but accepts other options too.
 * Webpack can target the desktop, Node, and web workers in addition to its web target.

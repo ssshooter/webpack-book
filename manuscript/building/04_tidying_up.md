@@ -116,11 +116,11 @@ Copying files is another ordinary operation you can handle with webpack. [copy-w
 
 [cpy-cli](https://www.npmjs.com/package/cpy-cli) is a good option if you want to copy outside of webpack in a cross-platform way. Plugins should be cross-platforms by definition.
 
-## Conclusion
+
 
 Often, you work with webpack by identifying a problem and then finding a plugin to tackle it. It's entirely acceptable to solve these types of issues outside of webpack, but webpack can often handle them as well.
 
-To recap:
+
 
 * You can find many small plugins that work as tasks and push webpack closer to a task runner.
 * These tasks include cleaning the build and deployment. The *Deploying Applications* chapter discusses the latter topic in detail.

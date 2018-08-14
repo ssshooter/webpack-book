@@ -305,14 +305,14 @@ Questions like these are the reason why solutions such as Next.js or razzle exis
 T>路由是一个很大的问题，它自己解决了像Next.js这样的框架。 Patrick Hund [讨论如何使用React和React Router 4解决它]（https://ebaytech.berlin/universal-web-apps-with-react-router-4-15002bb30ccb）。
 T> Routing is a big problem of its own solved by frameworks like Next.js. Patrick Hund [discusses how to solve it with React and React Router 4](https://ebaytech.berlin/universal-web-apps-with-react-router-4-15002bb30ccb).
 
-##总结
-## Conclusion
+## 总结
+
 
 SSR带来了技术挑战，因此，围绕它出现了特定的解决方案。 Webpack非常适合SSR设置。
 SSR comes with a technical challenge, and for this reason, specific solutions have appeared around it. Webpack is a good fit for SSR setups.
 
 回顾一下：
-To recap:
+
 
 * **服务器端渲染**可以为浏览器提供更多初始渲染。你可以立即显示标记，而不是等待JavaScript加载。
 * **Server Side Rendering** can provide more for the browser to render initially. Instead of waiting for the JavaScript to load, you can display markup instantly.

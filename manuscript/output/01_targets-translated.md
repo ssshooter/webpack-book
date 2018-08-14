@@ -54,14 +54,14 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously *node-we
 
 {pagebreak}
 
-##总结
-## Conclusion
+## 总结
+
 
 Webpack支持Web以外的目标。基于此，你可以说名称“webpack”考虑其功能是轻描淡写。
 Webpack supports targets beyond the web. Based on this you can say name "webpack" is an understatement considering its capabilities.
 
 回顾一下：
-To recap:
+
 
 * Webpack的输出目标可以通过`target`字段控制。它默认为“web”，但也接受其他选项。
 * Webpack's output target can be controlled through the `target` field. It defaults to `web` but accepts other options too.

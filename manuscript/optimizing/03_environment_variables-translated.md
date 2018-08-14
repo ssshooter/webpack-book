@@ -198,7 +198,7 @@ T> 相关技术，**别名**，会在 *Consuming Packages* 章节中讨论。
 Setting environment variables is a technique that allows you to control which paths of the source are included in the build.
 
 回顾一下：
-To recap:
+
 
 * Webpack允许你通过`DefinePlugin`和`EnvironmentPlugin`设置**环境变量**。后者将系统级环境变量映射到源。
 * Webpack allows you to set **environment variables** through `DefinePlugin` and `EnvironmentPlugin`. Latter maps the system level environment variables to the source.

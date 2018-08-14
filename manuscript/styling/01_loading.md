@@ -285,11 +285,11 @@ The [Sass version](https://www.npmjs.com/package/bootstrap-sass) is another opti
 
 The third option is to go through [bootstrap-loader](https://www.npmjs.com/package/bootstrap-loader). It does a lot more but allows customization.
 
-## Conclusion
+
 
 Webpack can load a variety of style formats. The approaches covered here write the styling to JavaScript bundles by default.
 
-To recap:
+
 
 * *css-loader* evaluates the `@import` and `url()` definitions of your styling. *style-loader* converts it to JavaScript and implements webpack's *Hot Module Replacement* interface.
 * Webpack supports a large variety of formats compiling to CSS through loaders. These include Sass, Less, and Stylus.
