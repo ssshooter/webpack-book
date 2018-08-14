@@ -2,35 +2,31 @@
 
 现在我们的构建配置看起来也还不错，但是 CSS 都哪里去了？根据配置，它被内联到 JavaScript 中！虽然这在开发环境中很方便，但在生产环境中并不理想。
 
-当前的解决方案不允许缓存CSS。你还可以获得** Flash of Unstyled Content **（FOUC）。发生FOUC是因为浏览器需要一段时间才能加载JavaScript，并且只会应用样式。将CSS分离到自己的文件可以让浏览器单独管理它，从而避免了这个问题。
-The current solution doesn't allow cache CSS. You can also get a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser takes a while to load JavaScript and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
+当前的解决方案浏览器不能缓存 CSS。还会产生 **Flash of Unstyled Content**（FOUC）。发生 FOUC 是因为浏览器需要一段时间才能加载 JavaScript，加载完才能应用样式。将 CSS 分离到单独的文件可以让浏览器单独处理它，从而避免了这个问题。
 
-Webpack提供了一种使用[mini-css-extract-plugin]（https://www.npmjs.com/package/mini-css-extract-plugin）（MCEP）生成单独的CSS包的方法。它可以将多个CSS文件聚合为一个。因此，它配备了一个处理提取过程的装载机。然后，插件会获取加载器聚合的结果并发出单独的文件。
+Webpack 提供了一种使用 [mini-css-extract-plugin](https://www.npmjs.com/package/mini-css-extract-plugin)（MCEP）生成独立 CSS 包的方法。它可以将多个 CSS 文件聚合为一个。因此，它配备了一个处理提取过程的 loader。然后，插件会获取 loader 聚合的结果并生成单独的文件。
 Webpack provides a means to generate a separate CSS bundles using [mini-css-extract-plugin](https://www.npmjs.com/package/mini-css-extract-plugin) (MCEP). It can aggregate multiple CSS files into one. For this reason, it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file.
 
-由于这个过程，`MiniCssExtractPlugin`在编译阶段带来了开销。它不适用于热模块更换（HMR）。鉴于插件仅用于生产，这不是问题。
+
+由于这个过程，`MiniCssExtractPlugin` 在编译阶段带来了开销。它不适用于热模块更换（HMR）。鉴于插件仅用于生产，这不是问题。
 Due to this process, `MiniCssExtractPlugin` comes with overhead during the compilation phase. It doesn't work with Hot Module Replacement (HMR) yet. Given the plugin is used only for production, that is not a problem.
 
-W>在生产中使用JavaScript中的内联样式可能有潜在危险，因为它代表攻击向量。 **关键路径渲染**包含了这个想法，并将关键CSS内联到初始HTML有效负载，从而提高了网站的感知性能。在有限的上下文中，内联少量的CSS可能是加速初始加载（减少请求）的可行选择。
+W> 在生产中使用JavaScript中的内联样式可能有潜在危险，因为它代表攻击向量。 **关键路径渲染**包含了这个想法，并将关键CSS内联到初始HTML有效负载，从而提高了网站的感知性能。在有限的上下文中，内联少量的CSS可能是加速初始加载（减少请求）的可行选择。
 W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving the perceived performance of the site. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (fewer requests).
 
-##设置`MiniCssExtractPlugin`
-## Setting Up `MiniCssExtractPlugin`
+## 设置 `MiniCssExtractPlugin`
 
 首先安装插件：
-Install the plugin first:
 
 ```bash
 npm install mini-css-extract-plugin --save-dev
 ```
 
-`MiniCssExtractPlugin`包含一个加载器，'MiniCssExtractPlugin.loader`，用于标记要提取的资产。然后，插件基于此注释执行其工作。
+`MiniCssExtractPlugin` 包含一个加载器，'MiniCssExtractPlugin.loader`，用于标记要提取的资产。然后，插件基于此注释执行其工作。
 `MiniCssExtractPlugin` includes a loader, `MiniCssExtractPlugin.loader` that marks the assets to be extracted. Then a plugin performs its work based on this annotation.
 
-将以下配置添加到配置的开头：
-Add the configuration below to the beginning of your configuration:
+添加配置：
 
-** ** webpack.parts.js
 **webpack.parts.js**
 
 ```javascript
@@ -61,21 +57,17 @@ exports.extractCSS = ({ include, exclude, use = [] }) => {
 };
 ```
 
-`[name]`占位符使用引用CSS的条目的名称。占位符和散列将在*添加散列到文件名*章节中详细讨论。
-That `[name]` placeholder uses the name of the entry where the CSS is referred. Placeholders and hashing are discussed in detail in the *Adding Hashes to Filenames* chapter.
+`[name]` 占位符之后会被替换为引用该 CSS 的文件的名称。占位符和注入哈希将在 *Adding Hashes to Filenames* 章节中详细讨论。
 
-T>如果要将结果文件输出到特定目录，可以通过传递路径来完成。示例：`filename：“styles / [name] .css”`。
-T> If you wanted to output the resulting file to a specific directory, you could do it by passing a path. Example: `filename: "styles/[name].css"`.
+T> 如果要将结果文件输出到特定目录，可以通过传递路径来完成。示例：`filename: "styles/[name].css"`。
 
 {pagebreak}
 
-###连接配置
+### 连接配置
 ### Connecting with Configuration
 
-使用以下配置连接功能：
-Connect the function with the configuration as below:
+加入主配置中：
 
-** ** webpack.config.js
 **webpack.config.js**
 
 ```javascript
@@ -108,13 +100,12 @@ leanpub-end-insert
 使用此设置，你仍然可以在开发过程中受益于HMR。但是对于生产构建，可以生成单独的CSS。 `HtmlWebpackPlugin`自动选择它并将其注入`index.html`。
 Using this setup, you can still benefit from the HMR during development. For a production build, it's possible to generate a separate CSS, though. `HtmlWebpackPlugin` picks it up automatically and injects it into `index.html`.
 
-T>如果你正在使用* CSS Modules *，请记住相应地调整`use`，如* Loading Styles *章节中所述。你可以为标准CSS和CSS模块维护单独的设置，以便通过离散逻辑加载它们。
+T> 如果你正在使用 *CSS Modules*，请记住相应地调整`use`，如* Loading Styles *章节中所述。你可以为标准CSS和CSS模块维护单独的设置，以便通过离散逻辑加载它们。
 T> If you are using *CSS Modules*, remember to tweak `use` accordingly as discussed in the *Loading Styles* chapter. You can maintain separate setups for standard CSS and CSS Modules so that they get loaded through discrete logic.
 
 {pagebreak}
 
-运行`npm run build`后，你应该看到类似于以下内容的输出：
-After running `npm run build`, you should see output similar to the following:
+运行 `npm run build` 后，你应该能看到类似输出：
 
 ```bash
 Hash: 45a5e26cc963eb12db02
@@ -141,10 +132,10 @@ T> If you are getting `Module build failed: CssSyntaxError:` or `Module build fa
 
 {pagebreak}
 
-##在JavaScript之外管理样式
+## 在 JavaScript 之外管理样式
 ## Managing Styles Outside of JavaScript
 
-即使通过JavaScript引用样式然后捆绑是推荐选项，也可以通过`entry`和[globbing]（https://www.npmjs.com/package/glob）通过CSS文件实现相同的结果一个条目：
+即使通过 JavaScript 引用样式然后打包是推荐选项，也可以通过`entry`和[globbing]（https://www.npmjs.com/package/glob）通过CSS文件实现相同的结果一个条目：
 Even though referring to styling through JavaScript and then bundling is the recommended option, it's possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob) the CSS files through an entry:
 
 ```javascript
@@ -179,7 +170,7 @@ T> [css-entry-webpack-plugin](https://www.npmjs.com/package/css-entry-webpack-pl
 
 ## 总结
 
-当前的设置将样式与JavaScript整齐地分开。即使该技术对CSS最有价值，它也可用于提取HTML模板或你使用的任何其他文件类型。关于`MiniCssExtractPlugin`的难点在于它的设置，但复杂性可以隐藏在抽象背后。
+当前的设置将样式与JavaScript整齐地分开。即使该技术对CSS最有价值，它也可用于提取HTML模板或你使用的任何其他文件类型。关于`MiniCssExtractPlugin` 的难点在于它的设置，但复杂性可以隐藏在抽象背后。
 The current setup separates styling from JavaScript neatly. Even though the technique is most valuable with CSS, it can be used to extract HTML templates or any other files types you consume. The hard part about `MiniCssExtractPlugin` has to do with its setup, but the complexity can be hidden behind an abstraction.
 
 回顾一下：

@@ -1,22 +1,17 @@
-＃消除未使用的CSS
-# Eliminating Unused CSS
+# 清理未使用 CSS
 
-像[Bootstrap]（https://getbootstrap.com/）这样的框架往往带有很多CSS。通常你只使用它的一小部分。通常，你甚至捆绑未使用的CSS。但是，可以消除你不使用的部分。
-Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot of CSS. Often you use only a small part of it. Typically, you bundle even the unused CSS. It's possible, however, to eliminate the portions you aren't using.
+像 [Bootstrap](https://getbootstrap.com/) 这样的框架往往带有很多 CSS。一般你只会使用到它的一小部分。不做任何设置的话，你会把未使用的 CSS 也打包到输出。不过，有方法可以从打包结果中清除你不使用的部分。
 
-[PurifyCSS]（https://www.npmjs.com/package/purifycss）是一个可以通过分析文件来实现这一目标的工具。它遍历你的代码并确定正在使用的CSS类。通常有足够的信息可以从项目中删除未使用的CSS。它也适用于单页应用程序。
-[PurifyCSS](https://www.npmjs.com/package/purifycss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used. Often there is enough information for it to strip unused CSS from your project. It also works with single page applications to an extent.
+[PurifyCSS](https://www.npmjs.com/package/purifycss) 是一个可以通过分析文件来实现这一目标的工具。它遍历你的代码并确定正在使用的 CSS class。这个步骤之后通常有足够的信息可以判定项目中未使用的 CSS，并将其删除。它也适用于单页应用程序。
 
-[uncss]（https://www.npmjs.com/package/uncss）是PurifyCSS的一个很好的替代品。它通过PhantomJS运行，并以不同的方式执行其工作。你可以使用uncss本身作为PostCSS插件。
-[uncss](https://www.npmjs.com/package/uncss) is a good alternative to PurifyCSS. It operates through PhantomJS and performs its work differently. You can use uncss itself as a PostCSS plugin.
+[uncss](https://www.npmjs.com/package/uncss) 是 PurifyCSS 的一个很好的替代品。它通过 PhantomJS 运行，以不同的方式执行其工作。你可以作为 PostCSS 插件使用 uncss。
 
-W>如果使用CSS模块，必须要小心。你必须按照[purifycss-webpack readme]（https://github.com/webpack-contrib/purifycss-webpack#usage-with-css-modules）中的讨论，将相关类列入白名单**。
+W> 如果使用CSS模块，必须要小心。你必须按照[purifycss-webpack readme]（https://github.com/webpack-contrib/purifycss-webpack#usage-with-css-modules）中的讨论，将相关类列入白名单**。
 W> You have to be careful if you are using CSS Modules. You have to **whitelist** the related classes as discussed in [purifycss-webpack readme](https://github.com/webpack-contrib/purifycss-webpack#usage-with-css-modules).
 
-##设置Pure.css
-## Setting Up Pure.css
+## 使用 Pure.css
 
-为了使演示更加真实，让我们安装一个小的CSS框架[Pure.css]（http://purecss.io/），并从项目中引用它，以便你可以看到PurifyCSS的运行情况。尽管命名，但这两个项目没有任何关联。
+为了使演示更加真实，让我们安装一个小型 CSS 框架 [Pure.css](http://purecss.io/)，并从项目中引用它，以便你可以看到PurifyCSS的运行情况。尽管命名，但这两个项目没有任何关联。
 To make the demo more realistic, let's install [Pure.css](http://purecss.io/), a small CSS framework, as well and refer to it from the project so that you can see PurifyCSS in action. These two projects aren't related in any way despite the naming.
 
 ```bash
@@ -28,7 +23,6 @@ npm install purecss --save
 为了使项目了解Pure.css，`import`它：
 To make the project aware of Pure.css, `import` it:
 
-** SRC / index.js **
 **src/index.js**
 
 ```javascript
@@ -38,13 +32,12 @@ leanpub-end-insert
 ...
 ```
 
-T>`import`是有效的，因为webpack将解析``browser'：“build / pure-min.css”，由于[resolve.mainFields]（https），Pure.css的* package.json *文件中的字段：//webpack.js.org/configuration/resolve/#resolve-mainfields）。在查看`main`之前，Webpack将尝试解析可能的`browser`和`module`字段。
+T> `import`是有效的，因为webpack将解析``browser'：“build / pure-min.css”，由于[resolve.mainFields]（https），Pure.css的* package.json *文件中的字段：//webpack.js.org/configuration/resolve/#resolve-mainfields）。在查看`main`之前，Webpack将尝试解析可能的`browser`和`module`字段。
 T> The `import` works because webpack will resolve against `"browser": "build/pure-min.css",` field in the *package.json* file of Pure.css due to [resolve.mainFields](https://webpack.js.org/configuration/resolve/#resolve-mainfields). Webpack will try to resolve possible `browser` and `module` fields before looking into `main`.
 
 你还应该使演示组件使用Pure.css类，因此可以使用以下内容：
 You should also make the demo component use a Pure.css class, so there is something to work with:
 
-** SRC / component.js **
 **src/component.js**
 
 ```javascript
@@ -83,7 +76,7 @@ index.html  220 bytes          [emitted]
 正如你所看到的，CSS文件的大小增加了，这可以通过PurifyCSS来解决。
 As you can see, the size of the CSS file grew, and this is something to fix with PurifyCSS.
 
-##启用PurifyCSS
+## 启用PurifyCSS
 ## Enabling PurifyCSS
 
 使用PurifyCSS可以节省大量成本。在该项目的示例中，他们使用约40％的选择器在一个应用程序中纯化和缩小Bootstrap（140 kB），仅为~35 kB。这是一个很大的不同。
@@ -98,10 +91,9 @@ Using PurifyCSS can lead to significant savings. In the example of the project, 
 npm install glob purifycss-webpack purify-css --save-dev
 ```
 
-你还需要PurifyCSS配置如下：
+你还需要 PurifyCSS 配置如下：
 You also need PurifyCSS configuration as below:
 
-** ** webpack.parts.js
 **webpack.parts.js**
 
 ```javascript
@@ -115,7 +107,6 @@ exports.purifyCSS = ({ paths }) => ({
 接下来，必须将该部件与配置连接。在'MiniCssExtractPlugin`之后使用插件是必不可少的。否则，它不起作用：
 Next, the part has to be connected with the configuration. It's essential the plugin is used *after* the `MiniCssExtractPlugin`; otherwise, it doesn't work:
 
-** ** webpack.config.js
 **webpack.config.js**
 
 ```javascript
@@ -188,14 +179,12 @@ Addy Osmani的[critical-path-css-tools]（https://github.com/addyosmani/critical
 
 ## 总结
 
-
 使用PurifyCSS可以显着减少文件大小。它主要用于依赖大量CSS框架的静态站点。站点或应用程序变得越动态，就越难以可靠地进行分析。
 Using PurifyCSS can lead to a significant decrease in file size. It's mainly valuable for static sites that rely on a massive CSS framework. The more dynamic a site or an application becomes, the harder it becomes to analyze reliably.
 
 回顾一下：
 
-
-*使用PurifyCSS可以消除未使用的CSS。它对源执行静态分析。
+* 使用PurifyCSS可以消除未使用的CSS。它对源执行静态分析。
 * Eliminating unused CSS is possible using PurifyCSS. It performs static analysis against the source.
 *功能可以通过* purifycss-webpack *启用，插件应该在*`MiniCssExtractPlugin`之后应用*。
 * The functionality can be enabled through *purifycss-webpack*, and the plugin should be applied *after* `MiniCssExtractPlugin`.
