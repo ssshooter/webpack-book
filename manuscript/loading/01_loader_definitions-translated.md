@@ -1,9 +1,9 @@
 # Loader 的定义 
 
-Webpack提供了多种设置模块加载器的方法。 Webpack 2通过引入`use`字段简化了这种情况。在这里选择绝对路径是一个好主意，因为它们允许你在不破坏假设的情况下移动配置。
+Webpack提供了多种设置模块loader的方法。 Webpack 2通过引入`use`字段简化了这种情况。在这里选择绝对路径是一个好主意，因为它们允许你在不破坏假设的情况下移动配置。
 Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing the `use` field. It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions.
 
-另一种方法是设置`context`字段，因为这会产生类似的效果并影响入口点和加载器的解析方式。但是它对输出没有影响，你仍然需要使用绝对路径或`/`。
+另一种方法是设置`context`字段，因为这会产生类似的效果并影响入口点和loader的解析方式。但是它对输出没有影响，你仍然需要使用绝对路径或`/`。
 The other way is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It doesn't have an impact on the output, though, and you still need to use an absolute path or `/` there.
 
 假设你设置了`include`或`exclude`规则，从* node_modules *加载的包仍然可以正常工作，因为它们的编译方式使它们能够开箱即用。如果他们不这样做，那么你必须应用*消费包*章节中涵盖的技术。
@@ -14,7 +14,7 @@ T> `include`/`exclude` is handy with *node_modules* as webpack processes and tra
 
 ## 剖析 Loader
 
-Webpack通过* loaders *支持多种格式。此外，它支持一些开箱即用的JavaScript模块格式。这个想法是一样的。你总是设置一个加载器或加载器，并将它们与你的目录结构连接起来。
+Webpack 通过* loaders *支持多种格式。此外，它支持一些开箱即用的JavaScript模块格式。这个想法是一样的。你总是设置一个loader或loader，并将它们与你的目录结构连接起来。
 Webpack supports a large variety of formats through *loaders*. Also, it supports a couple of JavaScript module formats out of the box. The idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
 
 {pagebreak}
@@ -81,7 +81,7 @@ T> 如果你对 RegExp 的匹配不熟悉，可以使用在线工具，例如 [r
 
 ### 强制执行顺序
 
-尽管可以使用上述规则开发任意配置，但是可以方便地强制在常规规则之前或之后应用特定规则。 `enforce`字段在这里可以派上用场。它可以设置为 `pre` or `post` 以在其他加载器之前或之后推送处理。
+尽管可以使用上述规则开发任意配置，但是可以方便地强制在常规规则之前或之后应用特定规则。 `enforce`字段在这里可以派上用场。它可以设置为 `pre` or `post` 以在其他loader之前或之后推送处理。
 Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force specific rules to be applied before or after regular ones. The `enforce` field can come in handy here. It can be set to either `pre` or `post` to push processing either before or after other loaders.
 
 Lint 是一个很好的例子，因为构建应该在它做任何其他事情之前失败。使用`enforce：'post“`是罕见的，这意味着你想对内置源执行检查。针对构建源执行分析是一个可能的示例。
@@ -102,7 +102,7 @@ Linting is a good example because the build should fail before it does anything 
 },
 ```
 
-如果你仔细地将与'test`相关的其他加载器链接到声明，那么可以在没有`enforce`的情况下编写相同的配置。使用`enforce`删除了它的必要性，并允许你将加载程序执行拆分为更容易编写的单独阶段。
+如果你仔细地将与'test`相关的其他loader链接到声明，那么可以在没有`enforce`的情况下编写相同的配置。使用`enforce`删除了它的必要性，并允许你将加载程序执行拆分为更容易编写的单独阶段。
 It would be possible to write the same configuration without `enforce` if you chained the declaration with other loaders related to the `test` carefully. Using `enforce` removes the necessity for that and allows you to split loader execution into separate stages that are easier to compose.
 
 ## Loader 的传参
@@ -144,7 +144,7 @@ It's preferable to go through `use`:
 },
 ```
 
-如果你想使用多个加载器，你可以将一个数组传递给`use`并从那里扩展：
+如果你想使用多个loader，你可以将一个数组传递给`use`并从那里扩展：
 If you wanted to use more than one loader, you could pass an array to `use` and expand from there:
 
 ```javascript
@@ -166,10 +166,9 @@ If you wanted to use more than one loader, you could pass an array to `use` and 
 
 {pagebreak}
 
-##使用函数在`use`处分支
-## Branching at `use` Using a Function
+## 使用函数在 `use` 字段添加分支
 
-在书籍设置中，你可以在更高级别上进行配置。实现类似结果的另一个选择是在`use`处分支，因为webpack的加载器定义接受允许根据环境进行分支的函数。考虑以下示例：
+在书籍设置中，你可以在更高级别上进行配置。实现类似结果的另一个选择是在`use`处分支，因为webpack的loader定义接受允许根据环境进行分支的函数。考虑以下示例：
 In the book setup, you compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack's loader definitions accept functions that allow you to branch depending on the environment. Consider the example below:
 
 ```javascript
@@ -201,10 +200,9 @@ In the book setup, you compose configuration on a higher level. Another option t
 仔细应用，这种技术允许不同的组成方式。
 Carefully applied, this technique allows different means of composition.
 
-##内联定义
-## Inline Definitions
+## 内联式定义
 
-尽管配置级加载器定义更可取，但可以内联编写加载器定义：
+尽管配置级loader定义更可取，但可以内联编写loader定义：
 Even though configuration level loader definitions are preferable, it's possible to write loader definitions inline:
 
 ```javascript
@@ -227,8 +225,7 @@ The problem with this approach is that it couples your source with webpack. None
 },
 ```
 
-##备选文件的替代方法
-## Alternate Ways to Match Files
+## 匹配文件的备选方法
 
 `test`结合`include`或`exclude`来约束匹配是匹配文件的最常用方法。这些接受下面列出的数据类型：
 `test` combined with `include` or `exclude` to constrain the match is the most common approach to match files. These accept the data types as listed below:
@@ -258,10 +255,10 @@ Boolean based fields can be used to constrain these matchers further:
 *`或者 - 与任何必须匹配的数组匹配。
 * `or` - Match against an array while any must match.
 
-##加载基于`resourceQuery`
+## 基于 `resourceQuery` 加载
 ## Loading Based on `resourceQuery`
 
-`oneOf`字段可以根据资源相关匹配将webpack路由到特定的加载器：
+`oneOf`字段可以根据资源相关匹配将webpack路由到特定的loader：
 `oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
 
 ```javascript
@@ -285,7 +282,7 @@ If you wanted to embed the context information to the filename, the rule could u
 
 {pagebreak}
 
-## Loading基于`issuer`
+## 基于 `issuer` 加载
 ## Loading Based on `issuer`
 
 `issuer`可用于根据资源的导入位置控制行为。在下面改编自[css-loader issue 287]（https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199）的示例中，* style-loader *在webpack捕获时应用JavaScript导入的CSS文件：
@@ -328,19 +325,19 @@ Another approach would be to mix `issuer` and `not`:
 }
 ```
 
-##了解加载器行为
+##了解loader行为
 ## Understanding Loader Behavior
 
-通过检查加载器行为可以更详细地理解它们。 [loader-runner]（https://www.npmjs.com/package/loader-runner）允许你在没有webpack的情况下单独运行它们。 Webpack在内部使用此软件包，*使用Loaders扩展*章节详细介绍了它。
+通过检查loader行为可以更详细地理解它们。 [loader-runner]（https://www.npmjs.com/package/loader-runner）允许你在没有webpack的情况下单独运行它们。 Webpack在内部使用此软件包，*使用Loaders扩展*章节详细介绍了它。
 Loader behavior can be understood in greater detail by inspecting them. [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run them in isolation without webpack. Webpack uses this package internally and *Extending with Loaders* chapter covers it in detail.
 
-[inspect-loader]（https://www.npmjs.com/package/inspect-loader）允许你检查加载器之间传递的内容。你可以将此加载程序附加到你的配置并检查其中的流，而不必在* node_modules *中插入`console.log`。
+[inspect-loader]（https://www.npmjs.com/package/inspect-loader）允许你检查loader之间传递的内容。你可以将此加载程序附加到你的配置并检查其中的流，而不必在* node_modules *中插入`console.log`。
 [inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within *node_modules*, you can attach this loader to your configuration and inspect the flow there.
 
 ## 总结
 
 
-Webpack提供了多种设置加载器的方法，但在webpack 4中坚持使用`use`就足够了。小心加载器的排序，因为它是常见的问题来源。
+Webpack提供了多种设置loader的方法，但在webpack 4中坚持使用`use`就足够了。小心loader的排序，因为它是常见的问题来源。
 Webpack provides multiple ways to setup loaders but sticking with `use` is enough in webpack 4. Be careful with loader ordering, as it's a common source of problems.
 
 回顾一下：
@@ -348,11 +345,11 @@ Webpack provides multiple ways to setup loaders but sticking with `use` is enoug
 
 * ** Loaders **允许你确定webpack的模块解析机制遇到文件时应该发生什么。
 * **Loaders** allow you determine what should happen when webpack's module resolution mechanism encounters a file.
-*加载器定义包括**条件**，基于匹配的**和**匹配发生时应执行的**动作**。
+*loader定义包括**条件**，基于匹配的**和**匹配发生时应执行的**动作**。
 * A loader definition consists of **conditions** based on which to match and **actions** that should be performed when a match happens.
 * Webpack 2引入了`use`字段。它将旧的“loader”和“loaders”字段的思想结合到一个构造中。
 * Webpack 2 introduced the `use` field. It combines the ideas of old `loader` and `loaders` fields into a single construct.
-* Webpack 4提供了多种匹配和改变加载器行为的方法。例如，你可以在匹配加载器后基于**资源查询进行匹配，并将加载器路由到特定操作。
+* Webpack 4提供了多种匹配和改变loader行为的方法。例如，你可以在匹配loader后基于**资源查询进行匹配，并将loader路由到特定操作。
 * Webpack 4 provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.
 
 在下一章中，你将学习使用webpack加载图像。
