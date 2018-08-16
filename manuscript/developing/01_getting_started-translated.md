@@ -1,10 +1,10 @@
 # 入门
 
-在开始之前，请确保你使用的是 [Node](http://nodejs.org/) 的最新版本。至少是最新的 LTS（长期支持）版本，本书的配置基于 LTS Node 所写，此外，你的终端需要有 `node` 和 `npm` 命令。[Yarn](https://yarnpkg.com/) 也是一个不错的选择，也适用于本教程。
+在开始之前，请确保你使用的是 [Node](http://nodejs.org/) 的最新版本。至少是最新的 LTS（长期支持）版本，本书的配置基于 LTS 版本所写，你的终端需要有 `node` 和 `npm` 命令，[Yarn](https://yarnpkg.com/) 也是一个不错的选择，也适用于本教程。
 
-通过使用 [Docker](https://www.docker.com/)，[Vagrant](https://www.vagrantup.com/) 或 [nvm](https://www.npmjs.com/package/nvm) 等方案，可以获得更加可控的环境。 Vagrant 因依赖虚拟机而受到性能损失，Vagrant 可以为团队中每个开发人员提供统一的环境。
+通过使用 [Docker](https://www.docker.com/)，[Vagrant](https://www.vagrantup.com/) 或 [nvm](https://www.npmjs.com/package/nvm) 等方案，可以获得更加可控的环境。Vagrant 可以为团队中每个开发人员提供统一的环境，但它因依赖于虚拟机，性能稍处劣势。
 
-T> 完整配置可在 [GitHub](https://github.com/survivejs-demos/webpack-demo) 上找到。
+T> 本书的完整配置可在 [GitHub](https://github.com/survivejs-demos/webpack-demo) 上找到。
 
 {pagebreak}
 
@@ -62,11 +62,9 @@ The 'mode' option has not been set. Set 'mode' option to 'development' or 'produ
 ERROR in Entry module not found: Error: Can't resolve './src' in '.../webpack-demo'
 ```
 
-输出告诉webpack找不到要编译的源代码。它还缺少一个`mode`参数来应用开发或生产特定的默认值。
-The output tells that webpack cannot find the source to compile. It's also missing a `mode` parameter to apply development or production specific defaults.
+这段输出说明 webpack 找不到需要编译的源代码。同时它还缺少一个 `mode` 参数判定运行环境。
 
 为了快速了解 webpack 输出，我们应该解决这两个问题：
-To get a quick idea of webpack output, we should fix both:
 
 1. 在 *src/index.js* 写入 `console.log("Hello world");`。
 2. 执行 `node_modules/.bin/webpack --mode development`。Webpack 按设置查找源文件。
@@ -104,16 +102,13 @@ document.body.appendChild(component());
 
 构建后查看输出文件（`node_modules/.bin/webpack --mode development`）。你应该看到 webpack 已将两个模块写入 `dist` 目录的 bundle。
 
-要使输出更清晰，请将 `--devtool false` 参数传递给 webpack。默认情况下，Webpack 将生成基于 `eval` 的 source maps，这样做会禁用该行为。有关详细信息，请参阅 *Source Maps* 章节。
-To make the output clearer to examine, pass `--devtool false` parameter to webpack. Webpack will generate `eval` based source maps by default and doing this will disable the behavior. See the *Source Maps* chapter for more information.
+默认情况下，Webpack 将生成基于 `eval` 的 source maps，它会让输出显得很混乱，可以把 `--devtool false` 参数传递给 webpack 禁用该行为。详细信息请参阅 *Source Maps* 章节。
 
-但问题仍然存在。我们如何在浏览器中测试应用程序？
-One problem remains, though. How can we test the application in the browser?
+还有一个问题，我们如何在浏览器中测试应用程序？
 
 ## 配置 *html-webpack-plugin*
 
-可以通过编写指向生成的文件的 *index.html* 文件来解决该问题。我们可以使用插件和webpack配置来完成此操作，而不是单独执行此操作。
-The problem can be solved by writing an *index.html* file that points to the generated file. Instead of doing that on our own, we can use a plugin and webpack configuration to do this.
+可以通过编写指向生成的文件的 *index.html* 文件来解决该问题。我们无需手动完成这件事，而是借助插件和 webpack 配置来完成此操作。
 
 先安装 *html-webpack-plugin*：
 
@@ -148,10 +143,9 @@ module.exports = {
 
 T> 本书使用 **Trailing commas（尾逗号）**，这样做 diff 会更清晰简洁。
 
-## 检查输出
-## Examining the Output
+## 查看输出
 
-如果你执行 `node_modules/.bin/webpack --mode production`，你应该看到输出：
+现在执行 `node_modules/.bin/webpack --mode production`，应该看到如下输出：
 
 ```bash
 Hash: aafe36ba210b0fbb7073
@@ -185,11 +179,9 @@ Child html-webpack-plugin for "index.html":
 
 查看 `dist/` 目录下面的输出。如果仔细观察，可以在代码中看到相同的 ID。
 
-T> 除配置对象外，webpack还接受一系列配置。你也可以返回一个`Promise`并最终将`resolve`返回给一个配置。
-T> In addition to a configuration object, webpack accepts an array of configurations. You can also return a `Promise` and eventually `resolve` to a configuration for example.
+T> webpack 配置除对象外，也可以通过返回一个 `Promise` 并最终 `resolve` 返回配置信息。
 
-T> 如果你想要替代* html-webpack-plugin *，请参阅[mini-html-webpack-plugin]（https://www.npmjs.com/package/mini-html-webpack-plugin）。它做得少，但理解起来也更简单。
-T> If you want a light alternative to *html-webpack-plugin*, see [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin). It does less but it's also simpler to understand.
+T> 如果不想使用 *html-webpack-plugin*，可以尝试功能较少但更好理解的 [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin)。
 
 {pagebreak}
 

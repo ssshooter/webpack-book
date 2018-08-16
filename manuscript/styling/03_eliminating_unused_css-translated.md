@@ -30,7 +30,7 @@ leanpub-end-insert
 ...
 ```
 
-T> `import`是有效的，因为webpack将解析`"browser": "build/pure-min.css",`，由于[resolve.mainFields]（https），Pure.css的* package.json *文件中的字段：//webpack.js.org/configuration/resolve/#resolve-mainfields）。在查看`main`之前，Webpack将尝试解析可能的`browser`和`module`字段。
+T> `import` 是有效的，因为webpack将解析`"browser": "build/pure-min.css",`，由于[resolve.mainFields]（https），Pure.css的* package.json *文件中的字段：//webpack.js.org/configuration/resolve/#resolve-mainfields）。在查看`main`之前，Webpack将尝试解析可能的`browser`和`module`字段。
 T> The `import` works because webpack will resolve against `"browser": "build/pure-min.css",` field in the *package.json* file of Pure.css due to [resolve.mainFields](https://webpack.js.org/configuration/resolve/#resolve-mainfields). Webpack will try to resolve possible `browser` and `module` fields before looking into `main`.
 
 在演示组件添加 Pure.css class：

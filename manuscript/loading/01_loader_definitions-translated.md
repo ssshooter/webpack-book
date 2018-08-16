@@ -168,7 +168,7 @@ If you wanted to use more than one loader, you could pass an array to `use` and 
 
 ## 使用函数在 `use` 字段添加分支
 
-在书籍设置中，你可以在更高级别上进行配置。实现类似结果的另一个选择是在`use`处分支，因为webpack的loader定义接受允许根据环境进行分支的函数。考虑以下示例：
+本书中，你在更高级别上进行配置。实现类似结果的另一个选择是在 `use` 处分支，因为 webpack 的 loader 定义接受允许根据环境进行分支的函数。思考以下示例：
 In the book setup, you compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack's loader definitions accept functions that allow you to branch depending on the environment. Consider the example below:
 
 ```javascript
@@ -202,7 +202,7 @@ Carefully applied, this technique allows different means of composition.
 
 ## 内联式定义
 
-尽管配置级loader定义更可取，但可以内联编写loader定义：
+尽管配置级 loader 定义更可取，但可以内联编写 loader 定义：
 Even though configuration level loader definitions are preferable, it's possible to write loader definitions inline:
 
 ```javascript
@@ -230,14 +230,10 @@ The problem with this approach is that it couples your source with webpack. None
 `test`结合`include`或`exclude`来约束匹配是匹配文件的最常用方法。这些接受下面列出的数据类型：
 `test` combined with `include` or `exclude` to constrain the match is the most common approach to match files. These accept the data types as listed below:
 
-*`test`  - 匹配RegExp，字符串，函数，对象或这些条件数组。
-* `test` - Match against a RegExp, string, function, an object, or an array of conditions like these.
-*`include`  - 相同。
-* `include` - The same.
-*`exclude`  - 相同，除了输出是'include`的反转。
-* `exclude` - The same, except the output is the inverse of `include`.
-*`resource：/ inline /` - 匹配包含查询的资源路径。示例：`/ path / foo.inline.js`,`/path/bar.png？inline`。
-* `resource: /inline/` - Match against a resource path including the query. Examples: `/path/foo.inline.js`, `/path/bar.png?inline`.
+* `test`——匹配 RegExp，字符串，函数，对象或数组。
+* `include`——同上。
+* `exclude`——同上，输出与 `include` 相反。
+* `resource: /inline/`——匹配包含查询的资源路径。示例：`/path/foo.inline.js`, `/path/bar.png?inline`。
 *`issuer：/ bar.js /` - 匹配匹配请求的资源。示例：如果从`/ path / bar.js`请求，`/ path / foo.png`将匹配。
 * `issuer: /bar.js/` - Match against a resource requested from the match. Example: `/path/foo.png` would match if it was requested from `/path/bar.js`.
 *`resourcePath：/ inline /` - 在没有查询的情况下匹配资源路径。示例：`/ path / foo.inline.png`。
@@ -258,7 +254,7 @@ Boolean based fields can be used to constrain these matchers further:
 ## 基于 `resourceQuery` 加载
 ## Loading Based on `resourceQuery`
 
-`oneOf`字段可以根据资源相关匹配将webpack路由到特定的loader：
+`oneOf` 字段可以根据资源相关匹配将 webpack 路由到特定的 loader：
 `oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
 
 ```javascript
@@ -283,9 +279,8 @@ If you wanted to embed the context information to the filename, the rule could u
 {pagebreak}
 
 ## 基于 `issuer` 加载
-## Loading Based on `issuer`
 
-`issuer`可用于根据资源的导入位置控制行为。在下面改编自[css-loader issue 287]（https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199）的示例中，* style-loader *在webpack捕获时应用JavaScript导入的CSS文件：
+`issuer` 基于资源的导入位置进行操作。在下面改编自 [css-loader issue 287](https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199) 的示例中，*style-loader* 在 webpack 捕获时应用 JavaScript 导入的 CSS 文件：
 `issuer` can be used to control behavior based on where a resource was imported. In the example below adapted from [css-loader issue 287](https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199), *style-loader* is applied when webpack captures a CSS file from a JavaScript import:
 
 ```javascript
@@ -304,7 +299,7 @@ If you wanted to embed the context information to the filename, the rule could u
 },
 ```
 
-另一种方法是混合`issuer`和`not`：
+另一种方法是混合 `issuer` 和 `not`：
 Another approach would be to mix `issuer` and `not`:
 
 ```javascript
@@ -325,26 +320,21 @@ Another approach would be to mix `issuer` and `not`:
 }
 ```
 
-##了解loader行为
+## 了解 loader 行为
 ## Understanding Loader Behavior
 
-通过检查loader行为可以更详细地理解它们。 [loader-runner]（https://www.npmjs.com/package/loader-runner）允许你在没有webpack的情况下单独运行它们。 Webpack在内部使用此软件包，*使用Loaders扩展*章节详细介绍了它。
-Loader behavior can be understood in greater detail by inspecting them. [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run them in isolation without webpack. Webpack uses this package internally and *Extending with Loaders* chapter covers it in detail.
+通过观察 loader 行为可以更深入地理解它们。 [loader-runner](https://www.npmjs.com/package/loader-runner) 允许你在没有 webpack 的情况下单独运行它们。Webpack 在底层也是使用此软件包，*Extending with Loaders* 章节将会详细介绍它。
 
-[inspect-loader]（https://www.npmjs.com/package/inspect-loader）允许你检查loader之间传递的内容。你可以将此加载程序附加到你的配置并检查其中的流，而不必在* node_modules *中插入`console.log`。
+[inspect-loader](https://www.npmjs.com/package/inspect-loader) 可以监视 loader 之间传递的内容。你可以将此加载程序附加到你的配置并检查其中的流，而不必在* node_modules *中插入`console.log`。
 [inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within *node_modules*, you can attach this loader to your configuration and inspect the flow there.
 
 ## 总结
 
-
-Webpack提供了多种设置loader的方法，但在webpack 4中坚持使用`use`就足够了。小心loader的排序，因为它是常见的问题来源。
-Webpack provides multiple ways to setup loaders but sticking with `use` is enough in webpack 4. Be careful with loader ordering, as it's a common source of problems.
+Webpack 提供了多种设置 loader 的方法，但在 webpack 4 中用好 `use` 就足够了。注意 loader 的处理顺序，这是很多常见的问题来源。
 
 回顾一下：
 
-
-* ** Loaders **允许你确定webpack的模块解析机制遇到文件时应该发生什么。
-* **Loaders** allow you determine what should happen when webpack's module resolution mechanism encounters a file.
+* **Loaders** 决定了 webpack 的模块解析机制匹配到文件时应该作何处理。
 *loader定义包括**条件**，基于匹配的**和**匹配发生时应执行的**动作**。
 * A loader definition consists of **conditions** based on which to match and **actions** that should be performed when a match happens.
 * Webpack 2引入了`use`字段。它将旧的“loader”和“loaders”字段的思想结合到一个构造中。
