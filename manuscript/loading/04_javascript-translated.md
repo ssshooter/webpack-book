@@ -1,5 +1,4 @@
-＃加载JavaScript
-# Loading JavaScript
+# 加载 JavaScript
 
 Webpack默认处理ES2015模块定义并将其转换为代码。但它不会**转换特定的语法，例如`const`。生成的代码可能会出现问题，尤其是在旧版浏览器中。
 Webpack processes ES2015 module definitions by default and transforms them into code. It does **not** transform specific syntax, such as `const`, though. The resulting code can be problematic especially in the older browsers.
@@ -7,7 +6,6 @@ Webpack processes ES2015 module definitions by default and transforms them into 
 为了更好地了解默认转换，请考虑下面的示例输出（`npm run build --devtool false --mode development`）：
 To get a better idea of the default transform, consider the example output below (`npm run build -- --devtool false --mode development`):
 
-** DIST / main.js **
 **dist/main.js**
 
 ```javascript
@@ -27,13 +25,13 @@ __webpack_require__.r(__webpack_exports__);
 ...
 ```
 
-通过[Babel]（https://babeljs.io/）处理代码可以解决这个问题，这是一个支持ES2015 +功能的着名JavaScript编译器等等。它类似于ESLint，因为它建立在预设和插件之上。预设是插件的集合，你也可以定义自己的插件。
+通过 [Babel](https://babeljs.io/) 处理代码可以解决这个问题，这不止是一个支持 ES2015+ 功能的着名 JavaScript 编译器。它类似于 ESLint，因为它建立在预设和插件之上。预设是插件的集合，你也可以定义自己的插件。
 The problem can be worked around by processing the code through [Babel](https://babeljs.io/), a famous JavaScript compiler that supports ES2015+ features and more. It resembles ESLint in that it's built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
 
-T>鉴于有时扩展现有的预设是不够的，[modify-babel-preset]（https://www.npmjs.com/package/modify-babel-preset）允许你更进一步，并配置基本预设一种更灵活的方式。
+T> 鉴于有时扩展现有的预设是不够的，[modify-babel-preset]（https://www.npmjs.com/package/modify-babel-preset）允许你更进一步，并配置基本预设一种更灵活的方式。
 T> Given sometimes extending existing presets is not enough, [modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) allows you to go a step further and configure the base preset in a more flexible way.
 
-##将Babel与Webpack配置一起使用
+## 将 Babel 与 Webpack 配置一起使用
 ## Using Babel with Webpack Configuration
 
 尽管Babel可以单独使用，正如你在* SurviveJS  -  Maintenance *一书中所看到的，你也可以将其与webpack联系起来。在开发过程中，如果你使用浏览器支持的语言功能，则跳过处理是有意义的。
@@ -56,20 +54,17 @@ W> If you use *webpack.config.babel.js*, take care with the `"modules": false,` 
 
 {pagebreak}
 
-###设置* babel-loader *
-### Setting Up *babel-loader*
+### 配置 *babel-loader*
 
-配置Babel以使用webpack的第一步是设置[babel-loader]（https://www.npmjs.com/package/babel-loader）。它需要代码并将其转换为旧浏览器可以理解的格式。安装* babel-loader *并包含其对等依赖* babel-core *：
+在 webpack 使用 Babel 的第一步是设置 [babel-loader](https://www.npmjs.com/package/babel-loader)。它需要代码并将其转换为旧浏览器可以理解的格式。安装* babel-loader *并包含其对等依赖* babel-core *：
 The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It takes the code and turns it into a format older browsers can understand. Install *babel-loader* and include its peer dependency *babel-core*:
 
 ```bash
 npm install babel-loader babel-core --save-dev
 ```
 
-像往常一样，让我们​​为Babel定义一个函数：
-As usual, let's define a function for Babel:
+与之前一样，先定义一个 Babel 配置函数：
 
-** ** webpack.parts.js
 **webpack.parts.js**
 
 ```javascript
@@ -92,10 +87,8 @@ Next, you need to connect this to the main configuration. If you are using a mod
 
 {pagebreak}
 
-调整如下：
-Adjust as below:
+作如下调整：
 
-** ** webpack.config.js
 **webpack.config.js**
 
 ```javascript
@@ -107,32 +100,28 @@ leanpub-end-insert
 ]);
 ```
 
-即使你安装了Babel并进行了设置，你仍然缺少一点：Babel配置。可以使用* .babelrc * dotfile设置配置，因为其他工具可以使用相同的配置。
+这样你用上了 Babel，但还缺少一点东西：Babel 配置。我们可以使用 *.babelrc* dotfile，其他工具也通用这个设置文件。
 Even though you have Babel installed and set up, you are still missing one bit: Babel configuration. The configuration can be set up using a *.babelrc* dotfile as then other tooling can use the same.
 
-W>如果你尝试导入配置根目录**之外的文件**然后通过* babel-loader *处理它们，则会失败。这是[已知问题]（https://github.com/babel/babel-loader/issues/313），并且有一些解决方法，包括在项目的更高级别维护* .babelrc *并通过`解决Babel预设在webpack配置中的require.resolve`。
+W> 如果你尝试导入配置根目录**之外的文件**然后通过* babel-loader *处理它们，则会失败。这是[已知问题]（https://github.com/babel/babel-loader/issues/313），并且有一些解决方法，包括在项目的更高级别维护* .babelrc *并通过`解决Babel预设在webpack配置中的require.resolve`。
 W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining *.babelrc* at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
 
-###设置* .babelrc *
-### Setting Up *.babelrc*
+### 设置 *.babelrc*
 
-至少，你需要[babel-preset-env]（https://www.npmjs.com/package/babel-preset-env）。它是一个Babel预设，可根据你传递给它的可选环境定义启用所需的插件。
+至少，你需要 [babel-preset-env](https://www.npmjs.com/package/babel-preset-env)。它是一个 Babel 预设，可根据你传递给它的可选环境定义启用所需的插件。
 At a minimum, you need [babel-preset-env](https://www.npmjs.com/package/babel-preset-env). It's a Babel preset that enables the required plugins based on the optional environment definition you pass to it.
 
 首先安装预设：
-Install the preset first:
 
 ```bash
 npm install babel-preset-env --save-dev
 ```
 
-要让Babel知道预设，你需要写一个* .babelrc *。鉴于webpack支持开箱即用的ES2015模块，你可以告诉Babel跳过处理它们。跳过这一步将破坏webpack的HMR机制，尽管生产构建仍然有效。你还可以限制构建输出仅在最新版本的Chrome中有效。
-To make Babel aware of the preset, you need to write a *.babelrc*. Given webpack supports ES2015 modules out of the box, you can tell Babel to skip processing them. Jumping over this step would break webpack's HMR mechanism although the production build would still work. You can also constrain the build output to work only in recent versions of Chrome.
+要让 Babel 使用预设，需要写一个 *.babelrc*。鉴于 webpack 支持开箱即用的 ES2015 模块，你可以让 Babel 跳过处理它们。跳过这一步将破坏 webpack 的 HMR 机制，尽管生产构建仍然有效。你还可以限制构建输出仅在最新版本的 Chrome 中有效。
 
-根据需要调整目标定义。只要你按照[browserslist]（https://www.npmjs.com/package/browserslist）进行操作即可。这是一个示例配置：
+根据需要调整目标定义。只要你按照 [browserslist](https://www.npmjs.com/package/browserslist) 进行操作即可。这是一个示例配置：
 Adjust the target definition as you like. As long as you follow [browserslist](https://www.npmjs.com/package/browserslist), it should work. Here's a sample configuration:
 
-**。** babelrc
 **.babelrc**
 
 ```json
@@ -148,7 +137,7 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 }
 ```
 
-如果你现在执行`npm run build --devtool false --mode development`并检查* dist / main.js *，你会看到基于你的`.browserslistrc`文件的不同内容。
+如果你现在执行 `npm run build -- --devtool false --mode development` 并检查 *dist/main.js*，你会看到基于你的 `.browserslistrc` 文件的不同内容。
 If you execute `npm run build -- --devtool false --mode development` now and examine *dist/main.js*, you will see something different based on your `.browserslistrc` file.
 
 {pagebreak}
@@ -156,7 +145,6 @@ If you execute `npm run build -- --devtool false --mode development` now and exa
 尝试在那里只包含“IE 8”这样的定义，代码应该相应地改变：
 Try to include only a definition like `IE 8` there, and the code should change accordingly:
 
-** DIST / main.js **
 **dist/main.js**
 
 ```javascript
@@ -181,10 +169,9 @@ __webpack_require__.r(__webpack_exports__);
 特别注意函数是如何转换的。你可以尝试不同的浏览器定义和语言功能，以查看输出如何根据选择进行更改。
 Note especially how the function was transformed. You can try out different browser definitions and language features to see how the output changes based on the selection.
 
-## Polyfilling功能
-## Polyfilling Features
+## Polyfill
 
-* babel-preset-env *允许你为旧版浏览器填充某些语言功能。为此，你应该启用它的`useBuiltIns`选项（`“useBuiltIns”：true`）并安装[babel-polyfill]（https://babeljs.io/docs/usage/polyfill/）。你必须通过导入或条目将其包含在项目中（`app：[“babel-polyfill”，PATHS.app]`）。 * babel-preset-env *根据你的浏览器定义重写导入，并仅加载所需的polyfill。
+*babel-preset-env* 允许你为旧版浏览器填充某些语言功能。为此，你应该启用它的`useBuiltIns`选项（`“useBuiltIns”：true`）并安装[babel-polyfill]（https://babeljs.io/docs/usage/polyfill/）。你必须通过导入或条目将其包含在项目中（`app：[“babel-polyfill”，PATHS.app]`）。 * babel-preset-env *根据你的浏览器定义重写导入，并仅加载所需的polyfill。
 *babel-preset-env* allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option (`"useBuiltIns": true`) and install [babel-polyfill](https://babeljs.io/docs/usage/polyfill/). You have to include it in your project either through an import or an entry (`app: ["babel-polyfill", PATHS.app]`). *babel-preset-env* rewrites the import based on your browser definition and loads only the polyfills that are needed.
 
 * babel-polyfill *使用“Promise”等对象污染全局范围。鉴于这对图书馆作者来说可能有问题，那就是[transform-runtime]（https://babeljs.io/docs/plugins/transform-runtime/）选项。它可以作为Babel插件启用，它通过以不需要它们的方式重写代码来避免全局变量的问题。
@@ -193,8 +180,7 @@ Note especially how the function was transformed. You can try out different brow
 W>某些webpack功能，例如* Code Splitting *，在webpack处理加载器之后，将基于“Promise”的代码写入webpack的引导程序。在执行应用程序代码之前应用填充程序可以解决该问题。示例：`entry：{app：[“core-js / es6 / promise”，PATHS.app]}`。
 W> Certain webpack features, such as *Code Splitting*, write `Promise` based code to webpack's bootstrap after webpack has processed loaders. The problem can be solved by applying a shim before your application code is executed. Example: `entry: { app: ["core-js/es6/promise", PATHS.app] }`.
 
-##巴比伦小贴士
-## Babel Tips
+## Babel 小贴士
 
 除此处介绍的内容之外，还有其他可能的[* .babelrc *选项]（https://babeljs.io/docs/usage/options/）。与ESLint一样，* .babelrc *支持[JSON5]（https://www.npmjs.com/package/json5）作为其配置格式，这意味着你可以在源代码中包含注释，使用单引号字符串等。
 There are other possible [*.babelrc* options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, *.babelrc* supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
@@ -207,10 +193,9 @@ Babel isn't the only option although it's the most popular one. [Buble](https://
 
 {pagebreak}
 
-## Babel插件
-## Babel Plugins
+## Babel 插件
 
-关于Babel最棒的事情可能就是可以使用插件进行扩展：
+关于 Babel 最棒的事情可能就是可以使用插件进行扩展：
 Perhaps the greatest thing about Babel is that it's possible to extend with plugins:
 
 * [babel-plugin-import]（https://www.npmjs.com/package/babel-plugin-import）重写模块导入，以便你可以使用“antd”中的`import {Button}等形式;而不是通过精确的路径指向模块。
@@ -235,7 +220,7 @@ Perhaps the greatest thing about Babel is that it's possible to extend with plug
 T>可以通过[babel-register]（https://www.npmjs.com/package/babel-register）或[babel-cli]（https://www.npmjs.com/package）将Babel与Node连接起来/巴别-CLI）。如果你想在不使用webpack的情况下通过Babel执行代码，这些包可以很方便。
 T> It's possible to connect Babel with Node through [babel-register](https://www.npmjs.com/package/babel-register) or [babel-cli](https://www.npmjs.com/package/babel-cli). These packages can be handy if you want to execute your code through Babel without using webpack.
 
-##启用每个环境的预设和插件
+## 启用每个环境的预设和插件
 ## Enabling Presets and Plugins per Environment
 
 Babel允许你通过其[env选项]（https://babeljs.io/docs/usage/babelrc/#env-option）控制每个环境使用哪些预设和插件。你可以通过这种方式管理每个构建目标的Babel行为。
@@ -247,7 +232,6 @@ Babel allows you to control which presets and plugins are used per environment t
 考虑以下示例：
 Consider the example below:
 
-**。** babelrc
 **.babelrc**
 
 ```json
@@ -271,7 +255,6 @@ Any shared presets and plugins are available to all targets still. `env` allows 
 可以通过调整将webpack环境传递给Babel：
 It's possible to pass the webpack environment to Babel with a tweak:
 
-** ** webpack.config.js
 **webpack.config.js**
 
 ```javascript
@@ -287,27 +270,24 @@ leanpub-end-insert
 T>`env`的工作方式很微妙。考虑记录`env`并确保它与你的Babel配置匹配，否则你期望的功能不会应用于你的构建。
 T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect is not applied to your build.
 
-##设置TypeScript
+## 使用 TypeScript
 ## Setting Up TypeScript
 
-Microsoft的[TypeScript]（http://www.typescriptlang.org/）是一种编译语言，遵循与Babel类似的设置。整洁的是，除了JavaScript之外，它还可以发出类型定义。一个好的编辑可以选择那些并提供增强的编辑体验。更强的打字对于开发很有价值，因为更容易说明你的类型合同。
+微软的 [TypeScript](http://www.typescriptlang.org/) 是一种编译语言，遵循与Babel类似的设置。整洁的是，除了JavaScript之外，它还可以发出类型定义。一个好的编辑可以选择那些并提供增强的编辑体验。更强的打字对于开发很有价值，因为更容易说明你的类型合同。
 Microsoft's [TypeScript](http://www.typescriptlang.org/) is a compiled language that follows a similar setup as Babel. The neat thing is that in addition to JavaScript, it can emit type definitions. A good editor can pick those up and provide enhanced editing experience. Stronger typing is valuable for development as it becomes easier to state your type contracts.
 
 与Facebook的类型检查器Flow相比，TypeScript是一种更安全的选择。因此，你可以找到更多预制的类型定义，总体而言，支持的质量应该更好。
 Compared to Facebook's type checker Flow, TypeScript is a more secure option. As a result, you find more premade type definitions for it, and overall, the quality of support should be better.
 
-你可以使用以下加载器将TypeScript与webpack一起使用：
-You can use TypeScript with webpack using the following loaders:
+你可以使用以下 loader 将 TypeScript 与 webpack 一起使用：
 
-* [ts-loader]（https://www.npmjs.com/package/ts-loader）
 * [ts-loader](https://www.npmjs.com/package/ts-loader)
-* [awesome-typescript-loader]（https://www.npmjs.com/package/awesome-typescript-loader）
 * [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader)
 
 T>有一个[ESLint的TypeScript解析器]（https://www.npmjs.com/package/typescript-eslint-parser）。它也可以通过[tslint]（https://www.npmjs.com/package/tslint）来提取它。
 T> There's a [TypeScript parser for ESLint](https://www.npmjs.com/package/typescript-eslint-parser). It's also possible to lint it through [tslint](https://www.npmjs.com/package/tslint).
 
-##设置流程
+## 使用 Flow
 ## Setting Up Flow
 
 [Flow]（https://flow.org/）根据你的代码及其类型注释执行静态分析。你必须将其作为单独的工具安装，然后针对你的代码运行它。有[flow-status-webpack-plugin]（https://www.npmjs.com/package/flow-status-webpack-plugin），允许你在开发期间通过webpack运行它。
@@ -319,26 +299,23 @@ If you use React, the React specific Babel preset does most of the work through 
 还有[babel-plugin-typecheck]（https://www.npmjs.com/package/babel-plugin-typecheck），它允许你根据Flow注释执行运行时检查。 [flow-runtime]（https://codemix.github.io/flow-runtime/）进一步提升并提供更多功能。这些方法补充了Flow静态检查程序，使你可以捕获更多问题。
 There's also [babel-plugin-typecheck](https://www.npmjs.com/package/babel-plugin-typecheck) that allows you to perform runtime checks based on your Flow annotations. [flow-runtime](https://codemix.github.io/flow-runtime/) goes a notch further and provides more functionality. These approaches complement Flow static checker and allow you to catch even more issues.
 
-T> [flow-coverage-report]（https://www.npmjs.com/package/flow-coverage-report）显示Flow类型注释涵盖了多少代码。
-T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) shows how much of your code is covered by Flow type annotations.
+T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) 可以检测 Flow 类型的覆盖率。
 
 {pagebreak}
 
 ## 总结
 
-
-Babel已经成为开发人员不可或缺的工具，因为它标准化了旧版浏览器的标准。即使你针对现代浏览器，通过Babel进行转换也是一种选择。
+Babel 已经成为开发人员不可或缺的工具，因为旧版浏览器的标准。即使针对现代浏览器，通过 Babel 进行转换也是一种选择。
 Babel has become an indispensable tool for developers given it bridges the standard with older browsers. Even if you targeted modern browsers, transforming through Babel is an option.
 
 回顾一下：
 
-
-* Babel让你可以控制要支持的浏览器。它可以将ES2015 +功能编译为旧浏览器所理解的形式。 * babel-preset-env *很有价值，因为它可以根据你的浏览器定义选择要编译的功能和要启用的polyfill。
+* Babel 让你可以控制要支持的浏览器。它可以将ES2015 +功能编译为旧浏览器所理解的形式。 * babel-preset-env *很有价值，因为它可以根据你的浏览器定义选择要编译的功能和要启用的polyfill。
 * Babel gives you control over what browsers to support. It can compile ES2015+ features to a form the older browser understand. *babel-preset-env* is valuable as it can choose which features to compile and which polyfills to enable based on your browser definition.
 * Babel允许你使用实验语言功能。你可以找到许多通过优化改进开发体验和生产构建的插件。
 * Babel allows you to use experimental language features. You can find numerous plugins that improve development experience and the production build through optimizations.
-*可以为每个开发目标启用Babel功能。这样，你可以确保在正确的位置使用正确的插件。
+* 可以为每个开发目标启用Babel功能。这样，你可以确保在正确的位置使用正确的插件。
 * Babel functionality can be enabled per development target. This way you can be sure you are using the correct plugins at the right place.
-*除了Babel之外，webpack还支持TypeScript或Flow等其他解决方案。 Flow可以补充Babel，而TypeScript代表编译为JavaScript的整个语言。
+* 除了Babel之外，webpack还支持TypeScript或Flow等其他解决方案。 Flow可以补充Babel，而TypeScript代表编译为JavaScript的整个语言。
 * Besides Babel, webpack supports other solutions like TypeScript or Flow. Flow can complement Babel while TypeScript represents an entire language compiling to JavaScript.
 
