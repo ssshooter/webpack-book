@@ -1,4 +1,9 @@
-# 从 0 开始构建 webpack 项目
+---
+id: 01
+title: 从 0 开始构建 webpack 项目
+---
+
+> 原文链接：https://survivejs.com/webpack/developing/getting-started/
 
 在开始之前，请确保你使用的是 [Node](http://nodejs.org/) 的最新版本。至少是最新的 LTS（长期支持）版本，本书的配置基于 LTS 版本所写，你的终端需要有 `node` 和 `npm` 命令，[Yarn](https://yarnpkg.com/) 也是一个不错的选择，也适用于本教程。
 
@@ -6,7 +11,7 @@
 
 T> 本书的完整配置可在 [GitHub](https://github.com/survivejs-demos/webpack-demo) 上找到。
 
-{pagebreak}
+
 
 ## 建立项目
 
@@ -72,7 +77,7 @@ ERROR in Entry module not found: Error: Can't resolve './src' in '.../webpack-de
 
 T> 尝试添加 `--mode production` 看返回值有什么不同。
 
-{pagebreak}
+
 
 ## 准备资源
 
@@ -139,7 +144,7 @@ module.exports = {
 3. 使用 `serve`（`npm i serve -g`）或类似工具运行服务器。
 4. 通过浏览器查看结果。希望结果如你所愿~
 
-![Hello world](images/hello_01.png)
+![Hello world](https://raw.githubusercontent.com/ssshooter/webpack-book/dev/manuscript/images/hello_01.png)
 
 T> 本书使用 **Trailing commas（尾逗号）**，这样做 diff 会更清晰简洁。
 
@@ -183,7 +188,7 @@ T> webpack 配置除对象外，也可以通过返回一个 `Promise` 并最终 
 
 T> 如果不想使用 *html-webpack-plugin*，可以尝试功能较少但更好理解的 [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin)。
 
-{pagebreak}
+
 
 ## 添加构建快捷方式
 
@@ -205,7 +210,7 @@ T> 还有像 *npm start* 和 *npm test* 这样的快捷方式。你可以在不�
 
 T> 更进一步，还可以使用终端配置中的 `alias` 命令设置系统级别名。例如将 `nrb` 映射到 `npm run build`。
 
-{pagebreak}
+
 
 ## `HtmlWebpackPlugin` 扩展
 
@@ -221,7 +226,7 @@ T> 更进一步，还可以使用终端配置中的 `alias` 命令设置系统�
 * [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) 允许你指定通过内容交付网络（CDN）加载的依赖项。这常用于加速流行库的加载。
 * [dynamic-cdn-webpack-plugin](https://www.npmjs.com/package/dynamic-cdn-webpack-plugin) 功能类似。
 
-{pagebreak}
+
 
 ## 总结
 

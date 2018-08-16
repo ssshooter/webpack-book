@@ -1,4 +1,7 @@
-# 介绍
+---
+id: 03
+title: 介绍
+---
 
 > 原文链接：https://survivejs.com/webpack/introduction/
 
@@ -37,7 +40,6 @@ Webpack 为你完成所有预处理，并根据你提供的配置文件生成生
 * **开发（Developing）** 教你运行 webpack。此部分介绍了浏览器自动刷新等功能，并说明了如何组合配置以使其保持可维护状态。
 * **样式（Styling）** 重点介绍样式相关问题。你将学习如何使用 webpack 加载样式以及如何在设置中使用 autoprefix 等技术。
 * **加载（Loading）** 详细解释 webpack loader，告诉你如何加载图片、字体和 JavaScript 文件等资源。
-* ** Building **介绍了源映射以及bundle和code splitting的思想。你将学会整理你的构建。
 * **构建（Building）** 介绍 source maps 和 bundle/代码拆分的思想，教你如何整理构建所得的文件。
 * **优化（Optimizing）** 将你的构建提高到生产质量水平，通过调整压缩它的体积，并学习 webpack 性能优化。
 * **输出（Output）** 讨论了 webpack 输出的相关技术。你将了解如何使用 webpack 管理多页面设置，并了解服务端渲染的基本概念。
