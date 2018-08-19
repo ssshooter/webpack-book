@@ -1,8 +1,8 @@
 # 加载 JavaScript
 
-Webpack 默认处理 ES2015 模块并将其转换为浏览器可用代码。但它**不会**转换特定的语法，例如 `const`。生成的代码可能会出现问题，尤其是在旧版浏览器中。
+Webpack 默认处理 ES2015 模块并将其转换为浏览器可用代码。但它**不会**转换特定的语法，例如 `const`，在旧版浏览器中可能会出现问题。
 
-为了更好地了解 Webpack 默认转换，请思考下面的输出（`npm run build -- --devtool false --mode development`）：
+为了更好地了解 Webpack 默认转换，请看以下输出（`npm run build -- --devtool false --mode development`）：
 
 **dist/main.js**
 
@@ -23,10 +23,10 @@ __webpack_require__.r(__webpack_exports__);
 ...
 ```
 
-通过 [Babel](https://babeljs.io/) 处理代码可以解决这个问题，这不止是一个支持 ES2015+ 功能的着名 JavaScript 编译器。它类似于 ESLint，因为它建立在预设和插件之上。预设是一系列插件的集合，你也可以定义自己的插件。
+通过 [Babel](https://babeljs.io/) 处理代码可以解决这个问题，这不止是一个支持 ES2015+ 功能的着名 JavaScript 编译器。它类似于 ESLint，建立在预设和插件之上。预设是一系列插件的集合，你也可以定义自己的插件。
 The problem can be worked around by processing the code through [Babel](https://babeljs.io/), a famous JavaScript compiler that supports ES2015+ features and more. It resembles ESLint in that it's built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
 
-T> 鉴于有时扩展现有的预设是不够的，[modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) 允许你更进一步，并配置基本预设一种更灵活的方式。
+T> 鉴于有时扩展现有的预设是不够的，[modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) 允许你进一步以更灵活的方式配置基本预设。
 T> Given sometimes extending existing presets is not enough, [modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) allows you to go a step further and configure the base preset in a more flexible way.
 
 ## 在 Webpack 中使用 Babel
@@ -169,26 +169,23 @@ Note especially how the function was transformed. You can try out different brow
 **babel-polyfill** 使用“Promise”等对象污染全局范围。鉴于这对图书馆作者来说可能有问题，那就是[transform-runtime]（https://babeljs.io/docs/plugins/transform-runtime/）选项。它可以作为Babel插件启用，它通过以不需要它们的方式重写代码来避免全局变量的问题。
 *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it avoids the problem of globals by rewriting the code in such way that they aren't be needed.
 
-W>某些webpack功能，例如* Code Splitting *，在webpack处理加载器之后，将基于“Promise”的代码写入webpack的引导程序。在执行应用程序代码之前应用填充程序可以解决该问题。示例：`entry：{app：[“core-js / es6 / promise”，PATHS.app]}`。
+W> 某些webpack功能，例如**代码拆分**，在webpack处理加载器之后，将基于“Promise”的代码写入webpack的引导程序。在执行应用程序代码之前应用填充程序可以解决该问题。示例：`entry: { app: ["core-js/es6/promise", PATHS.app] }`。
 W> Certain webpack features, such as *Code Splitting*, write `Promise` based code to webpack's bootstrap after webpack has processed loaders. The problem can be solved by applying a shim before your application code is executed. Example: `entry: { app: ["core-js/es6/promise", PATHS.app] }`.
 
 ## Babel 小贴士
 
-除此处介绍的内容之外，还有其他可能的 [**.babelrc** 选项](https://babeljs.io/docs/usage/options/)。与ESLint一样，**.babelrc** 支持 [JSON5](https://www.npmjs.com/package/json5) 作为其配置格式，这意味着你可以在源代码中包含注释，使用单引号字符串等。
-There are other possible [*.babelrc* options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, *.babelrc* supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
+除此处介绍的内容之外，还有其他可能的 [**.babelrc** 选项](https://babeljs.io/docs/usage/options/)。与 ESLint 一样，**.babelrc** 支持 [JSON5](https://www.npmjs.com/package/json5) 作为其配置格式，这意味着文件中可以包含注释，使用单引号字符串等。
 
 有时你希望使用适合你项目的实验性功能。虽然你可以在所谓的舞台预设中找到很多它们，但最好逐个启用它们，甚至将它们组织成自己的预设，除非你正在进行一次性项目。如果你希望项目能够存活很长时间，那么最好记录你正在使用的功能。
 Sometimes you want to use experimental features that fit your project. Although you can find a lot of them within so-called stage presets, it's a good idea to enable them one by one and even organize them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
 
-Babel并不是唯一的选择，尽管它是最受欢迎的选择。 Rich Harris的[Buble]（https://buble.surge.sh）是另一个值得一试的编译器。有实验[buble-loader]（https://www.npmjs.com/package/buble-loader）允许你在webpack中使用它。 Buble不支持ES2015模块，但这不是问题，因为webpack提供了这种功能。
-Babel isn't the only option although it's the most popular one. [Buble](https://buble.surge.sh) by Rich Harris is another compiler worth checking out. There's experimental [buble-loader](https://www.npmjs.com/package/buble-loader) that allows you to use it with webpack. Buble doesn't support ES2015 modules, but that's not a problem as webpack provides that functionality.
+尽管 Babel 很受欢迎，但它并非唯一选择。Rich Harris 的 [Buble](https://buble.surge.sh) 是另一个值得一试的编译器。借助实验性的 [buble-loader](https://www.npmjs.com/package/buble-loader) 可以在 webpack 中使用它。Buble 不支持 ES2015 模块，但问题不大，因为 webpack 提供了这个功能。
 
 {pagebreak}
 
 ## Babel 插件
 
-关于 Babel 最棒的事情可能就是可以使用插件进行扩展：
-Perhaps the greatest thing about Babel is that it's possible to extend with plugins:
+Babel 的最大优势之一是可以使用插件进行扩展：
 
 * [babel-plugin-import]（https://www.npmjs.com/package/babel-plugin-import）重写模块导入，以便你可以使用“antd”中的`import {Button}等形式;而不是通过精确的路径指向模块。
 * [babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import) rewrites module imports so that you can use a form such as `import { Button } from "antd";` instead of pointing to the module through an exact path.
