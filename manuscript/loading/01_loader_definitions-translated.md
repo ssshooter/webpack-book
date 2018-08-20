@@ -4,11 +4,10 @@ Webpack 提供了多种配置模块 loader 的方法。 Webpack 2 开始通过�
 
 另一种方法是设置 `context` 字段，因为这会产生类似的效果并影响 entry 和 loader 的路径解析。但是它对输出没有影响，你仍然需要使用绝对路径或 `/`。
 
-假设你设置了`include`或`exclude`规则，从* node_modules *加载的包仍然可以正常工作，因为它们的编译方式使它们能够开箱即用。如果他们不这样做，那么你必须应用 **Consuming Packages** 章节中涵盖的技术。
+假设你设置了 `include` 或 `exclude` 规则，从 **node_modules** 加载的包仍然可以正常工作，因为它们的编译方式使它们能够开箱即用。如果他们不这样做，那么你必须应用 **Consuming Packages** 章节中涵盖的技术。
 Assuming you set an `include` or `exclude` rule, packages loaded from *node_modules* still work as the assumption is that they have been compiled in such a way that they work out of the box. If they don't, then you have to apply techniques covered in the *Consuming Packages* chapter.
 
-T> `include`/`exclude` 在使用 **node_modules** 时非常方便，因为当你将 JavaScript 文件导入项目时，webpack 会默认处理并遍历已安装的包。因此，你需要 `exclude` **node_modules**。其他文件类型不会遇到此问题。
-T> `include`/`exclude` is handy with *node_modules* as webpack processes and traverses the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. Other file types don't suffer from this issue.
+T> `include`/`exclude` 在处理 **node_modules** 问题时非常方便，因为当你将 JavaScript 文件导入项目时，webpack 会默认处理并遍历已安装的包。为了让 webpack 不处理 **node_modules**，你需要使用 `exclude`。其他文件类型不会遇到此问题。
 
 ## 剖析 Loader
 
@@ -114,13 +113,11 @@ Lint 是一个很好的例子，因为 Lint 必须先于任何其他行为。`en
 },
 ```
 
-这种配置风格也适用于条目和源代码导入，因为webpack会选择它。在某些个别情况下，该格式会派上用场，但通常你最好使用更具可读性的替代方案。
-This style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives.
+这种配置风格也适用于 entry 和 import，webpack 会处理他们。在某些个别情况下，这个写法能派上用场，但通常情况下最好使用以下更具可读性的方案。
 
 {pagebreak}
 
-最好通过 `use`：
-It's preferable to go through `use`:
+传入对象到 `use`：
 
 ```javascript
 {
