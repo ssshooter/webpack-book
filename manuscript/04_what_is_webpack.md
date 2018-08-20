@@ -1,66 +1,67 @@
-# What is Webpack
+# 什么是 Webpack
 
-Webpack is a **module bundler**. Webpack can take care of bundling alongside a separate task runner. However, the line between bundler and task runner has become blurred thanks to community developed webpack plugins. Sometimes these plugins are used to perform tasks that are usually done outside of webpack, such as cleaning the build directory or deploying the build.
+Webpack 是**模块打包器**。它可以在打包的同时使用任务运行器。然而，由于社区开发的 webpack 插件，打包器和任务运行器之间的界限变得模糊。有时，这些插件甚至独立于 webpack 使用，例如清理构建目录或部署构建使用的插件。
+（译者注：grunt 之类的任务运行器，就是自动帮你走一次如“组合两个 js 文件--压缩 js--压缩 css”这样流程的工具）
 
-React, and **Hot Module Replacement** (HMR) helped to popularize webpack and led to its usage in other environments, such as [Ruby on Rails](https://github.com/rails/webpacker). Despite its name, webpack is not limited to the web alone. It can bundle with other targets as well, as discussed in the *Build Targets* chapter.
+Webpack 也可以在其他环境中的使用，例如 [Ruby on Rails](https://github.com/rails/webpacker)。尽管它的名字带有 web，但 webpack 并不仅限于 web。它也可以打包其他东西，这点在 *Build Targets* 章节中会提到。
 
-T> If you want to understand build tools and their history in better detail, check out the *Comparison of Build Tools* appendix.
+T> 如果你想更详细地了解构建工具及其历史，请查看 *Comparison of Build Tools* 附录。
 
-## Webpack Relies on Modules
+## Webpack 基于模块
 
-The smallest project you can bundle with webpack consists of **input** and **output**. The bundling process begins from user-defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
+使用 webpack 构建工程，至少包括 **input** 和 **output**。打包处理从用户定义的 **entry** 开始。entry 本身就是**模块**，它可以通过 **import** 指向其他模块。
 
-When you bundle a project using webpack, it traverses the imports, constructing a **dependency graph** of the project and then generates **output** based on the configuration. Additionally, it's possible to define **split points** to create separate bundles within the project code itself.
+当你使用 webpack 打包项目时，它会遍历 import，构建项目的**依赖关系图**，然后根据配置文件中的设定生成 **output**。你还可以定义**分割点**，以在项目代码内拆分出单独的 bundle（包）。
 
-Webpack supports ES2015, CommonJS, and AMD module formats out of the box. The loader mechanism works for CSS as well, with `@import` and `url()` support through *css-loader*. You can also find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
+Webpack 支持开箱即用的 ES2015，CommonJS 和 AMD 模块标准。loader 机制也适用于 CSS，通过 *css-loader* 在 css 文件中使用 `@import` 和 `url()`。你还可以找到某些实现特定功能的插件，例如压缩，国际化，HMR等。
 
-T> A dependency graph is a directed graph that describes how nodes relate to each other. In this case, the graph definition is defined through references (`require`, `import`) between files. Webpack statically traverses these without executing the source to generate the graph it needs to create bundles.
+T> 依赖图是描述节点如何相互关联的有向图。这个图是通过文件之间的引用（`require`，`import`）构建的。Webpack 会在不执行资源的情况下静态遍历这些资源，并生成创建 bundle 所需的依赖图。
 
-## Webpack's Execution Process
+## Webpack 的执行流程
 
 ![Webpack's execution process](images/webpack-process.png)
 
-Webpack begins its work from **entries**. Often these are JavaScript modules where webpack begins its traversal process. During this process, webpack evaluates entry matches against **loader** configurations that tell webpack how to transform each match.
+Webpack 从 **entry** 开始运行。entry 通常是 JavaScript 模块，webpack 从这里开始遍历处理。在此过程中，webpack 根据 **loader** 配置转换每个匹配到的模块。
 
 {pagebreak}
 
-### Resolution Process
+### 模块解析
 
-An entry itself is a module. When webpack encounters one, webpack tries to match the entry against the file system using the entry's `resolve` configuration. You can tell webpack to perform the lookup against specific directories in addition to *node_modules*. It's also possible to adjust the way webpack matches against file extensions, and you can define specific aliases for directories. The *Consuming Packages* chapter covers these ideas in greater detail.
+Entry 本身就是一个模块。当 webpack 遇到 entry，webpack 会在文件系统匹配相关文件。除了 *node_modules* 之外，webpack 还可以对特定目录执行查找。也可以调整 webpack 匹配文件扩展名的方式，也可以为目录定义 aliases（别名）。这方面在 *Consuming Packages* 章节有更详细的介绍。
 
-If the resolution pass failed, webpack raises a runtime error. If webpack managed to resolve a file correctly, webpack performs processing over the matched file based on the loader definition. Each loader applies a specific transformation against the module contents.
+如果 webpack 正确解析文件，对应 loader 会处理匹配的文件，不同的 loader 对模块内容应用的转换各不相同。如果解析失败，webpack 会报运行时错误。
 
-The way a loader gets matched against a resolved file can be configured in multiple ways, including by file type and by location within the file system. Webpack's flexibility even allows you to apply a specific transformation to a file based on *where* it was imported into the project.
+loader 可以通过多种方式匹配待处理文件，如文件类型和文件的位置。 Webpack 甚至可以让你按 import 位置分类，不同位置 import 的文件采用不同的转换方法。
 
-The same resolution process is performed against webpack's loaders. Webpack allows you to apply similar logic when determining which loader it should use. Loaders have resolve configurations of their own for this reason. If webpack fails to perform a loader lookup, it will raise a runtime error.
+对 webpack loader 执行相同的解析过程。 你可以在选择 loader 时使用相同的逻辑。由于这个原因，Loader 已经解析了自己的配置。如果 webpack 查找 loader 失败，则会引发运行时错误。
 
-T> To resolve, webpack relies on [enhanced-resolve](https://www.npmjs.com/package/enhanced-resolve) package underneath.
+T> Webpack 的解释底层依赖于 [enhanced-resolve](https://www.npmjs.com/package/enhanced-resolve) 包。
 
-### Webpack Resolves Against Any File Type
+### Webpack 可以解析任何类型的文件
 
-Webpack will resolve each module it encounters while constructing the dependency graph. If an entry contains dependencies, the process will be performed recursively against each dependency until the traversal has completed. Webpack can perform this process against any file type, unlike specialized tools like the Babel or Sass compiler.
+Webpack 将在构造依赖图时解析它遇到的每个模块。如果 entry 包含依赖项，则将针对每个依赖项递归执行该过程，直到遍历完成为止。 Webpack 可以针对任何文件类型执行此过程，这与 Babel 或 Sass 编译器等专用工具不同。
 
-Webpack gives you control over how to treat different assets it encounters. For example, you can decide to **inline** assets to your JavaScript bundles to avoid requests. Webpack also allows you to use techniques like CSS Modules to couple styling with components, and to avoid issues of standard CSS styling. This flexibility is what makes webpack so valuable.
+Webpack 可以控制对不同资源的处理方式。例如，可以把资源**内联**到你的 JavaScript 包以避免请求（译者注：例如图片转 base64）。 Webpack 还允许你使用 CSS 模块等技术将样式与组件结合，并避免标准 CSS 样式问题。这种灵活性是 webpack 价值的体现。
 
-Although webpack is used mainly to bundle JavaScript, it can capture assets like images or fonts and emit separate files for them. Entries are only a starting point of the bundling process. What webpack emits depends entirely on the way you configure it.
+尽管 webpack 主要用于打包 JavaScript，但它可以捕获图像或字体等资源，并为它们抽取为单独的文件。Entry 只是打包处理的起点。 webpack 生成的内容完全取决于你配置它的方式。
 
-### Evaluation Process
+### 处理流程
 
-Assuming all loaders were found, webpack evaluates the matched loaders from bottom to top and right to left (`styleLoader(cssLoader('./main.css'))`) while running the module through each loader in turn. As a result, you get output which webpack will inject in the resulting **bundle**. The *Loader Definitions* chapter covers the topic in detail.
+Webpack 会下到上、从右到左地（`styleLoader(cssLoader('./main.css'))`）处理匹配成功的加载器，模块会依次通过 loader 的处理。最后，你将获得 webpack 输出的包。*Loader Definitions* 章节详细介绍了该主题。
 
-If all loader evaluation completed without a runtime error, webpack includes the source in the last bundle. **Plugins** allow you to intercept **runtime events** at different stages of the bundling process.
+如果所有 loader 都成功运行，则 webpack 会在最后一个包中包含源。 **Plugins** 可以在打包过程的不同阶段拦截**运行时事件**。
 
-Although loaders can do a lot, they don’t provide enough power for advanced tasks. Plugins can intercept **runtime events** supplied by webpack. A good example is bundle extraction performed by the `MiniCssExtractPlugin` which, when used with a loader, extracts CSS files out of the bundle and into a separate file. Without this step, CSS would be inlined in the resulting JavaScript, as webpack treats all code as JavaScript by default. The extraction idea is discussed in the *Separating CSS* chapter.
+虽然 loader 可以做很多事情，但它们不能为高级任务提供足够的动力。Plugins 可以拦截 webpack 提供的**运行时事件**。一个很好的例子是由 `MiniCssExtractPlugin` 执行的包提取，当与 loader 一起使用时，从包中提取 CSS 文件并将其提取到单独的文件中。如果没有这一步，CSS 将在生成的 JavaScript 中内联，因为 webpack 默认将所有代码视为 JavaScript。CSS 提取将在 *Separating CSS* 一章中讨论。
 
-### Finishing
+### 完成
 
-After every module has been evaluated, webpack writes **output**. The output includes a bootstrap script with a manifest that describes how to begin executing the result in the browser. The manifest can be extracted to a file of its own, as discussed later in the book. The output differs based on the build target you are using (targeting web is not the only option).
+每个模块都经过处理之后，webpack 生成 **output**。output 包括一个引导脚本，其中包含一个指引浏览器执行该项目的 manifest 文件。可以将 manifest 提取到单独的文件中，本书后面会有相关介绍。output 会根据你使用的 build target 而有所不同（Web 不是唯一选择）。
 
-That’s not all there is to the bundling process. For example, you can define specific **split points** where webpack generates separate bundles that are loaded based on application logic. This idea is discussed in the *Code Splitting* chapter.
+这并不是打包过程的全部内容。例如，你可以做代码拆分，webpack 会在程序运行到所需功能时才加载的单独包。这个话题会在 *Code Splitting* 章节中讨论。
 
-## Webpack Is Configuration Driven
+## 配置驱动的 Webpack
 
-At its core, webpack relies on configuration. Here is a sample configuration adapted from [the official webpack tutorial](https://webpack.js.org/get-started/) that covers the main points:
+webpack 的核心依赖于配置。以下是根据[官方 webpack 教程](https://webpack.js.org/get-started/)改编的配置示例证明：
 
 **webpack.config.js**
 
@@ -109,39 +110,39 @@ module.exports = {
 };
 ```
 
-Webpack's configuration model can feel a bit opaque at times as the configuration file can appear monolithic. It can be difficult to understand what webpack is doing unless you know the ideas behind it. Providing means to tame configuration is one of the primary purposes why this book exists.
+Webpack 的配置模型有时候会让人感觉雾里看花，因为配置文件太庞大，属性太多。除非你理解每一个属性的意义，否则很难理解 webpack 在做什么。让你完全理解 webpack 配置的使用，是本书存在的主要目的之一。
 
-## Asset Hashing
+## 资源哈希编码
 
-With webpack, you can inject a hash to each bundle name (e.g., *app.d587bbd6.js*) to invalidate bundles on the client side as changes are made. Bundle-splitting allows the client to reload only a small part of the data in the ideal case.
+使用 webpack 可以为每个包的名称注入一个哈希值（例如，*app.d587bbd6.js*），以便在版本更新后使客户端上旧版本的包无效（重新下载）。包（bundle）拆分可以让客户端在理想情况下仅重新加载一小部分数据。
 
-## Hot Module Replacement
+## 热模块更换（HMR）
 
-You are likely familiar with tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.browsersync.io/), already. These tools refresh the browser automatically as you make changes. *Hot Module Replacement* (HMR) takes things one step further. In the case of React, it allows the application to maintain its state without forcing a refresh. While this does not sound all that special, it can make a big difference in practice.
+你可能使用过 [LiveReload](http://livereload.com/) 或 [BrowserSync](http://www.browsersync.io/) 等工具。这些工具会在你进行更改时自动刷新浏览器。**热模块更换**（HMR）则更先进，在使用 React 的情况下，应用程序可以在不强制刷新页面的情况下更新应用。虽然这听起来没什么特别，但它可以在实践中大有不同。
 
-HMR is also available in Browserify via [livereactload](https://github.com/milankinen/livereactload), so it’s not a webpack exclusive feature.
+HMR 不是webpack独有的功能，通过 [livereactload](https://github.com/milankinen/livereactload) 也可以在 Browserify 中使用 HMR。
 
-## Code Splitting
+## 代码拆分
 
-In addition to HMR, webpack’s bundling capabilities are extensive. Webpack allows you to split code in various ways. You can even load code dynamically as your application gets executed. This sort of lazy loading comes in handy especially for broader applications, as dependencies can be loaded on the fly as needed.
+Webpack 可以以多种方式拆分代码。你甚至可以在应用程序执行时动态加载代码。因为依赖可以根据需要即时加载，所以延迟加载特别适用于体积庞大的应用。
 
-Even small applications can benefit from code splitting, as it allows the users to get something usable in their hands faster. Performance is a feature, after all. Knowing the basic techniques is worthwhile.
+即使是小型应用也可以得益于代码拆分，因为它允许用户更快地获得可用的东西。毕竟，性能是评价一个应用的重要标准，了解这项技术是值得的。
 
+## 总结
 
+Webpack 学习曲线比较陡峭。但是有了它，项目的长期维护可以节省多少时间和精力，所以这是一个非常值得学习的工具。为了更好地了解 Webpack 与其他工具的比较，请查看[官网上与其他工具的比较](https://webpack.js.org/comparison/)。
 
-Webpack comes with a significant learning curve. However, it’s a tool worth learning, given how much time and effort it can save over the long term. To get a better idea how it compares to other tools, check out [the official comparison](https://webpack.js.org/comparison/).
+Webpack 不是万能的。但它确实很好地解决了打包问题。在开发过程中需要担心的问题又少了一件。活用 *package.json* 和 webpack，走遍天下都不怕。
 
-Webpack won’t solve everything. However, it does solve the problem of bundling. That’s one less worry during development. Using *package.json* and webpack alone can take you far.
+总结一下：
 
-To summarize:
+* Webpack 是**模块打包器**，但你也可以使用它运行任务（译者注：也就是顺序运行一系列操作）。
+* Webpack 底层基于**依赖图**。Webpack 遍历源文件构建依赖图，并以依赖图和配置为基础生成 bundle。
+* Webpack 依赖于 **loader** 和 **plugin**。loader 在模块级别上运行，而 plugin 依赖于 webpack 提供的钩子，并且可以很好地访问其执行过程。
+* Webpack 的**配置**描述了如何转换“依赖图”中的资源以及它应该生成什么样的输出。如果要使用**代码拆分**等功能，则可以将拆分指令写在源代码中。
+* Webpack 如此受人喜爱的原因之一是**热模块更换**（HMR）。这个功能可以不刷新整页而更新应用代码，开发体验极好。
+* Webpack 可以为文件名生成**哈希值**，在内容更改时，可以作废浏览器缓存中上个版本的包。
 
-* Webpack is a **module bundler**, but you can also use it running  tasks as well.
-* Webpack relies on a **dependency graph** underneath. Webpack traverses through the source to construct the graph, and it uses this information and configuration to generate bundles.
-* Webpack relies on **loaders** and **plugins**. Loaders operate on a module level, while plugins rely on hooks provided by webpack and have the best access to its execution process.
-* Webpack’s **configuration** describes how to transform assets of the graphs and what kind of output it should generate. Part of this information can be included in the source itself if features like **code splitting** are used.
-* **Hot Module Replacement** (HMR) helped to popularize webpack. It's a feature that can enhance the development experience by updating code in the browser without needing a full page refresh.
-* Webpack can generate **hashes** for filenames allowing you to invalidate past bundles as their contents change.
+在本书的下一部分中，你将学习使用 webpack 构建开发配置，同时了解更多相关概念。
 
-In the next part of the book, you'll learn to construct a development configuration using webpack while learning more about its basic concepts.
-
-T> If you are still unsure of webpack or why bundlers are required, read [Why would I use a Webpack?](http://tinselcity.net/whys/packers).
+T> 如果你对 webpack 仍有疑问或者不明白我们为什么需要一个打包器，请阅读[Why would I use a Webpack?](http://tinselcity.net/whys/packers)。

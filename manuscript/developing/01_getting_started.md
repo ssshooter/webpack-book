@@ -1,16 +1,16 @@
-# Getting Started
+# 从 0 开始构建 webpack 项目
 
-Before getting started, make sure you are using a recent version of [Node](http://nodejs.org/). You should use at least the most current LTS (long-term support) version. The configuration of the book has been written with the LTS Node features in mind. You should have `node` and `npm` commands available at your terminal. [Yarn](https://yarnpkg.com/) is a good alternative to npm and works for the tutorial as well.
+在开始之前，请确保你使用的是 [Node](http://nodejs.org/) 的最新版本。至少是最新的 LTS（长期支持）版本，本书的配置基于 LTS 版本所写，你的终端需要有 `node` 和 `npm` 命令，[Yarn](https://yarnpkg.com/) 也是一个不错的选择，也适用于本教程。
 
-It's possible to get a more controlled environment by using a solution such as [Docker](https://www.docker.com/), [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is valuable in a team: each developer can have the same environment that is usually close to production.
+通过使用 [Docker](https://www.docker.com/)，[Vagrant](https://www.vagrantup.com/) 或 [nvm](https://www.npmjs.com/package/nvm) 等方案，可以获得更加可控的环境。Vagrant 可以为团队中每个开发人员提供统一的环境，但它因依赖于虚拟机，性能稍处劣势。
 
-T> The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo).
+T> 本书的完整配置可在 [GitHub](https://github.com/survivejs-demos/webpack-demo) 上找到。
 
 {pagebreak}
 
-## Setting Up the Project
+## 建立项目
 
-To get a starting point, you should create a directory for the project and set up a *package.json* there. npm uses that to manage project dependencies. Here are the basic commands:
+首先，你应该为项目创建一个目录并在那里新建 *package.json*。 npm 使用它来管理项目依赖。以下是基本命令：
 
 ```bash
 mkdir webpack-demo
@@ -18,35 +18,36 @@ cd webpack-demo
 npm init -y # -y generates *package.json*, skip for more control
 ```
 
-You can tweak the generated *package.json* manually to make further changes to it even though a part of the operations modify the file automatically for you. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
+生成 *package.json* 后，你可以手动对其进一步更改。官方文档更详细地解释了 [package.json选项](https://docs.npmjs.com/files/package.json)。
 
-T> You can set those `npm init` defaults at *~/.npmrc*.
+T> 你可以在 *~/.npmrc* 中设置 `npm init` 的默认值。
 
-T> This is an excellent chance to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter, so it's easier to move back and forth if you want.
+T> 这是使用 [Git](https://git-scm.com/) 进行版本控制的绝佳机会。你可以为每个步骤/每一章节创建一个 commit，这样你可以轻松做到回滚。
 
-T> The book examples have been formatted using [Prettier](https://www.npmjs.com/package/prettier) with `"trailingComma": "es5",` and `"printWidth": 68` options enabled to make the diffs clean and fit the page.
+T> 本书的例子使用 [Prettier](https://www.npmjs.com/package/prettier) 进行格式化。使用选项为 `"trailingComma": "es5",` 和``"printWidth": 68`，这样可以使 diff 看起来更舒服，更适合页面展示。
 
-## Installing Webpack
+## 安装 Webpack
 
-Even though webpack can be installed globally (`npm install webpack -g`), it's a good idea to maintain it as a dependency of your project to avoid issues, as then you have control over the exact version you are running. The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
+即使可以全局安装 webpack（`npm install webpack -g`），最好还是将它作为项目的依赖项来维护，以避免出现因为不同版本带来的意外问题。该方法也适用于**持续集成**（CI）设置。 CI 系统可以安装本地依赖项，使用它们编译项目，然后将结果推送到服务器。
 
-To add webpack to the project, execute:
+要将 webpack 添加到项目中，请执行：
 
 ```bash
 npm install webpack webpack-cli --save-dev # -D to type less
 ```
 
+你应该可以在你的 *package.json* 文件中 `devDependencies` 部分看到 webpack。除了在 *node_modules* 目录下本地安装软件包之外，npm 还会为可执行文件生成一个 entry。
 You should see webpack at your *package.json* `devDependencies` section after this. In addition to installing the package locally below the *node_modules* directory, npm also generates an entry for the executable.
 
-T> You can use `--save` and `--save-dev` to separate application and development dependencies. The former installs and writes to *package.json* `dependencies` field whereas the latter writes to `devDependencies` instead.
+T> 你可以使用 `--save` 和 `--save-dev` 来分离应用程序和开发依赖项。前者安装并写入 *package.json* `dependencies`字段，而后者则写入 `devDependencies`。
 
-T> [webpack-cli](https://www.npmjs.com/package/webpack-cli) comes with additional functionality including `init` and `migrate` commands that allow you to create new webpack configuration fast and update from an older version to a newer one.
+T> [webpack-cli](https://www.npmjs.com/package/webpack-cli) 附带了其他功能，包括`init`和`migrate`命令，可以快速创建新的 webpack 配置或从旧版本更新版本。
 
-## Executing Webpack
+## 执行 Webpack
 
-You can display the exact path of the executables using `npm bin`. Most likely it points at *./node_modules/.bin*. Try running webpack from there through the terminal using `node_modules/.bin/webpack` or a similar command.
+你可以使用 `npm bin` 显示可执行文件的确切路径。它很有可能指向 *./node_modules/.bin*。尝试使用 `node_modules/.bin/webpack` 或类似命令从终端运行webpack。
 
-After running, you should see a version, a link to the command line interface guide and an extensive list of options. Most aren't used in this project, but it's good to know that this tool is packed with functionality if nothing else.
+运行后，你应该能看到版本号，一条指南链接以及一个选项列表。大多数的选项都没有在这个项目中使用，但了解一下也是极好的。
 
 ```bash
 $ node_modules/.bin/webpack
@@ -61,21 +62,21 @@ The 'mode' option has not been set. Set 'mode' option to 'development' or 'produ
 ERROR in Entry module not found: Error: Can't resolve './src' in '.../webpack-demo'
 ```
 
-The output tells that webpack cannot find the source to compile. It's also missing a `mode` parameter to apply development or production specific defaults.
+这段输出说明 webpack 找不到需要编译的源代码。同时它还缺少一个 `mode` 参数判定运行环境。
 
-To get a quick idea of webpack output, we should fix both:
+为了快速了解 webpack 输出，我们应该解决这两个问题：
 
-1. Set up *src/index.js* so that it contains `console.log("Hello world");`.
-2. Execute `node_modules/.bin/webpack --mode development`. Webpack will discover the source file by Node convention.
-3. Examine *dist/main.js*. You should see webpack bootstrap code that begins executing the code. Below the bootstrap, you should find something familiar.
+1. 在 *src/index.js* 写入 `console.log("Hello world");`。
+2. 执行 `node_modules/.bin/webpack --mode development`。Webpack 按设置查找源文件。
+3. 查看 *dist/main.js*。你应该看到 webpack 的引导代码，在引导程序下面，你应该可以看到 `console.log("Hello world");`。
 
-T> Try also `--mode production` and compare the output.
+T> 尝试添加 `--mode production` 看返回值有什么不同。
 
 {pagebreak}
 
-## Setting Up Assets
+## 准备资源
 
-To make the build more involved, we can add another module to the project and start developing a small application:
+我们尝试做复杂一点的构建，在项目中添加另一个模块，逐步开发一个小应用：
 
 **src/component.js**
 
@@ -89,7 +90,7 @@ export default (text = "Hello world") => {
 };
 ```
 
-We also have to modify the original file to import the new file and render the application through the DOM:
+我们还必须修改入口文件，导入新文件，通过 DOM 渲染应用程序：
 
 **src/index.js**
 
@@ -99,23 +100,23 @@ import component from "./component";
 document.body.appendChild(component());
 ```
 
-Examine the output after building (`node_modules/.bin/webpack --mode development`). You should see both modules in the bundle that webpack wrote to the `dist` directory.
+构建后查看输出文件（`node_modules/.bin/webpack --mode development`）。你应该看到 webpack 已将两个模块写入 `dist` 目录的 bundle。
 
-To make the output clearer to examine, pass `--devtool false` parameter to webpack. Webpack will generate `eval` based source maps by default and doing this will disable the behavior. See the *Source Maps* chapter for more information.
+默认情况下，Webpack 将生成基于 `eval` 的 source maps，它会让输出显得很混乱，可以把 `--devtool false` 参数传递给 webpack 禁用该行为。详细信息请参阅 *Source Maps* 章节。
 
-One problem remains, though. How can we test the application in the browser?
+还有一个问题，我们如何在浏览器中测试应用程序？
 
-## Configuring *html-webpack-plugin*
+## 配置 *html-webpack-plugin*
 
-The problem can be solved by writing an *index.html* file that points to the generated file. Instead of doing that on our own, we can use a plugin and webpack configuration to do this.
+可以通过编写指向生成的文件的 *index.html* 文件来解决该问题。我们无需手动完成这件事，而是借助插件和 webpack 配置来完成此操作。
 
-To get started, install *html-webpack-plugin*:
+先安装 *html-webpack-plugin*：
 
 ```bash
 npm install html-webpack-plugin --save-dev
 ```
 
-To connect the plugin with webpack, set up configuration as below:
+在 webpack 中使用 plugins：
 
 **webpack.config.js**
 
@@ -131,20 +132,20 @@ module.exports = {
 };
 ```
 
-Now that the configuration is done, you should try the following:
+配置完成后，尝试以下操作：
 
-1. Build the project using `node_modules/.bin/webpack --mode production`. You can try the `development` mode too.
-2. Enter the build directory using `cd dist`.
-3. Run the server using `serve` (`npm i serve -g`) or a similar command.
-4. Examine the result through a web browser. You should see something familiar there.
+1. 运行 `node_modules/.bin/webpack --mode production` 构建项目。你也可以试试 `development` 模式。
+2. 运行 `cd dist` 进入构建目录。
+3. 使用 `serve`（`npm i serve -g`）或类似工具运行服务器。
+4. 通过浏览器查看结果。希望结果如你所愿~
 
 ![Hello world](images/hello_01.png)
 
-T> **Trailing commas** are used in the book examples on purpose as it gives cleaner diffs for the code examples.
+T> 本书使用 **Trailing commas（尾逗号）**，这样做 diff 会更清晰简洁。
 
-## Examining the Output
+## 查看输出
 
-If you execute `node_modules/.bin/webpack --mode production`, you should see output:
+现在执行 `node_modules/.bin/webpack --mode production`，应该看到如下输出：
 
 ```bash
 Hash: aafe36ba210b0fbb7073
@@ -166,27 +167,27 @@ Child html-webpack-plugin for "index.html":
         + 2 hidden modules
 ```
 
-The output tells a lot:
+这段输出的信息量很大：
 
-* `Hash: aafe36ba210b0fbb7073` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the *Adding Hashes to Filenames* chapter.
-* `Version: webpack 4.1.1` - Webpack version.
-* `Time: 338ms` - Time it took to execute the build.
-* `main.js  679 bytes       0  [emitted]  main` - Name of the generated asset, size, the IDs of the **chunks** into which it's related, status information telling how it was generated, the name of the chunk.
-* `index.html  181 bytes          [emitted]` - Another generated asset that was emitted by the process.
-* `[0] ./src/index.js + 1 modules 219 bytes {0} [built]` - The ID of the entry asset, name, size, entry chunk ID, the way it was generated.
-* `Child html-webpack-plugin for "index.html":` - This is plugin-related output. In this case *html-webpack-plugin* is creating this output on its own.
+* `Hash: aafe36ba210b0fbb7073`--当前构建的哈希。使用它来通过 `[hash]` 占位符使旧版本资源无效。 填充哈希值将在 *Adding Hashes to Filenames* 章节中详细讨论。
+* `Version: webpack 4.1.1`--Webpack版本。
+* `Time: 338ms`--执行构建所花费的时间。
+* `main.js  679 bytes       0  [emitted]  main`--生成资源的名称，大小，与其相关的 **chunks** 的 ID，状态信息，生成方式以及名称。
+* `index.html  181 bytes          [emitted]`--进程生成的另一个资源。
+* `[0] ./src/index.js + 1 modules 219 bytes {0} [built]`--入口资源的 ID，名称，大小，entry chunk ID，生成方式。
+* `Child html-webpack-plugin for "index.html":`--这是与插件相关的输出。此输出为 *html-webpack-plugin* 创建。
 
-Examine the output below the `dist/` directory. If you look closely, you can see the same IDs within the source.
+查看 `dist/` 目录下面的输出。如果仔细观察，可以在代码中看到相同的 ID。
 
-T> In addition to a configuration object, webpack accepts an array of configurations. You can also return a `Promise` and eventually `resolve` to a configuration for example.
+T> webpack 配置除对象外，也可以通过返回一个 `Promise` 并最终 `resolve` 返回配置信息。
 
-T> If you want a light alternative to *html-webpack-plugin*, see [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin). It does less but it's also simpler to understand.
+T> 如果不想使用 *html-webpack-plugin*，可以尝试功能较少但更好理解的 [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin)。
 
 {pagebreak}
 
-## Adding a Build Shortcut
+## 添加构建快捷方式
 
-Given executing `node_modules/.bin/webpack` is verbose, you should do something about it. Adjust *package.json* to run tasks as below:
+执行 `node_modules/.bin/webpack` 显得过于冗长，我们应该为此提供一个快捷入口。修改 *package.json*：
 
 **package.json**
 
@@ -196,42 +197,43 @@ Given executing `node_modules/.bin/webpack` is verbose, you should do something 
 },
 ```
 
-Run `npm run build` to see the same output as before. npm adds *node_modules/.bin* temporarily to the path enabling this. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, you can do `"build": "webpack"`.
+运行 `npm run build` 应该能看到与之前相同的输出。npm 会自动将 *node_modules/.bin* 添加到路径中。因此，你不必这么写 `"build": "node_modules/.bin/webpack"`，而直接是 `"build": "webpack"`。
 
-You can execute this kind of scripts through *npm run* and you can use *npm run* anywhere within your project. If you run the command as is, it gives you the listing of available scripts.
+你可以通过 *npm run* 执行此类脚本，并且可以在项目中的任何位置使用 *npm run*。如果直接运行 *npm run*，它将为你提供可用脚本的列表。
 
-T> There are shortcuts like *npm start* and *npm test*. You can run these directly without *npm run* although that works too. For those in a hurry, you can use *npm t* to run your tests.
+T> 还有像 *npm start* 和 *npm test* 这样的快捷方式。你可以在不使用 *npm run* 的情况下直接运行它们（尽管也可以）。如果你甚至可以懒到使用 *npm t* 来运行测试。
 
-T> To go one step further, set up system level aliases using the `alias` command in your terminal configuration. You could map `nrb` to `npm run build` for instance.
-
-{pagebreak}
-
-## `HtmlWebpackPlugin` Extensions
-
-Although you can replace `HtmlWebpackPlugin` template with your own, there are premade ones like [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug).
-
-There are also specific plugins that extend `HtmlWebpackPlugin`'s functionality:
-
-* [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) is able to generate favicons.
-* [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
-* [style-ext-html-webpack-plugin](https://www.npmjs.com/package/style-ext-html-webpack-plugin) converts CSS references to inlined CSS. The technique can be used to serve critical CSS to the client fast as a part of the initial payload.
-* [resource-hints-webpack-plugin](https://www.npmjs.com/package/resource-hints-webpack-plugin) adds [resource hints](https://www.w3.org/TR/resource-hints/) to your HTML files to speed up loading time.
-* [preload-webpack-plugin](https://www.npmjs.com/package/preload-webpack-plugin) enables `rel=preload` capabilities for scripts and helps with lazy loading, and it combines well with techniques discussed in the *Building* part of this book.
-* [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) allows you to specify which dependencies to load through a Content Delivery Network (CDN). This common technique is used for speeding up loading of popular libraries.
-* [dynamic-cdn-webpack-plugin](https://www.npmjs.com/package/dynamic-cdn-webpack-plugin) achieves a similar result.
+T> 更进一步，还可以使用终端配置中的 `alias` 命令设置系统级别名。例如将 `nrb` 映射到 `npm run build`。
 
 {pagebreak}
 
+## `HtmlWebpackPlugin` 扩展
 
+你可以自己写 `HtmlWebpackPlugin` 的 template，但有这里也有一些预设模板，如 [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) 或 [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug)。
 
-Even though you have managed to get webpack up and running, it does not do that much yet. Developing against it would be painful. Each time you wanted to check out the application, you would have to build it manually using `npm run build` and then refresh the browser. That's where webpack's more advanced features come in.
+还有一些插件可以扩展 `HtmlWebpackPlugin` 的功能：
 
+* [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) 能够生成favicon。
+* [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) 使你可以更好地控制 script 标记，并允许你进一步调整脚本加载。
+* [style-ext-html-webpack-plugin](https://www.npmjs.com/package/style-ext-html-webpack-plugin) 将 CSS 引用转换为内联 CSS。该技术使 CSS 成为初始加载的一部分，可以快速向客户端提供关键 CSS。
+* [resource-hints-webpack-plugin](https://www.npmjs.com/package/resource-hints-webpack-plugin) 添加 [resource hints](https://www.w3.org/TR/resource-hints/) 到你的HTML文件，以加快加载时间。
+* [preload-webpack-plugin](https://www.npmjs.com/package/preload-webpack-plugin) 为脚本启用 `rel=preload` 功能，对懒加载比较使用，本书 *Building* 部分将会讨论到。
+* [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) 允许你指定通过内容交付网络（CDN）加载的依赖项。这常用于加速流行库的加载。
+* [dynamic-cdn-webpack-plugin](https://www.npmjs.com/package/dynamic-cdn-webpack-plugin) 功能类似。
 
+{pagebreak}
 
-* It's a good idea to use a locally installed version of webpack over a globally installed one. This way you can be sure of what version you are using. The local dependency also works in a Continuous Integration environment.
-* Webpack provides a command line interface through the *webpack-cli* package. You can use it even without configuration, but any advanced usage requires configuration.
-* To write more complicated setups, you most likely have to write a separate *webpack.config.js* file.
-* `HtmlWebpackPlugin` can be used to generate an HTML entry point to your application. In the *Multiple Pages* chapter you will see how to generate multiple separate pages using it.
-* It's handy to use npm *package.json* scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.
+## 总结
 
-In the next chapter, you will learn how to improve the developer experience by enabling automatic browser refresh.
+虽然你成功运行了 webpack，但这还远远不够，后续开发仍需努力。现在每次要查看应用程序时，都必须使用 `npm run build` 手动构建，然后刷新浏览器。这个痛点是 webpack 高级功能的用武之地。
+
+回顾一下：
+
+* 本地安装 webpack 比全局安装 webpack 更有优势。这样你可以保证你正在使用的是哪个版本。本地依赖项也适用于持续集成环境。
+* Webpack 通过 *webpack-cli* 包提供命令行界面。虽然没有配置也可以使用，但任何进阶使用都需要配置。
+* 对于更复杂的设置，你很可能需要编写单独的 *webpack.config.js* 文件。
+* `HtmlWebpackPlugin` 可用于生成应用程序的 HTML 入口。在 *Multiple Pages* 一章中，你将了解如何使用它生成多个独立的页面。
+* 使用 npm *package.json* 脚本来管理 webpack 很方便。你可以将它用作轻型任务运行器，也可以使用于 webpack 之外的其他功能。
+
+在下一章中，你将学习如何通过启用自动浏览器刷新来改善开发体验。
+
