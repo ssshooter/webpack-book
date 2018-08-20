@@ -24,7 +24,7 @@ T> 你可以在 *~/.npmrc* 中设置 `npm init` 的默认值。
 
 T> 这是使用 [Git](https://git-scm.com/) 进行版本控制的绝佳机会。你可以为每个步骤/每一章节创建一个 commit，这样你可以轻松做到回滚。
 
-T> 本书的例子使用 [Prettier](https://www.npmjs.com/package/prettier) 进行格式化。使用选项为 `"trailingComma": "es5",` 和``"printWidth": 68`，这样可以使 diff 看起来更舒服，更适合页面展示。
+T> 本书的例子使用 [Prettier](https://www.npmjs.com/package/prettier) 进行格式化。使用选项为 `"trailingComma": "es5",` 和 `"printWidth": 68`，这样可以使 diff 看起来更舒服，更适合页面展示。
 
 ## 安装 Webpack
 

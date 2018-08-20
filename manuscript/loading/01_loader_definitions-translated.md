@@ -1,26 +1,23 @@
 # Loader 的定义 
 
-Webpack 提供了多种配置模块 loader 的方法。 Webpack 2 开始通过引入了 `use` 字段，简化了 loader 使用。在这里选择绝对路径是一个好主意，因为它们允许你在不破坏假设的情况下移动配置。
-Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing the `use` field. It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions.
+Webpack 提供了多种配置模块 loader 的方法。 Webpack 2 开始通过引入 `use` 字段，简化了 loader 使用。在这里使用绝对路径是一个好主意，因为它们允许你在不影响构建的情况下移动配置。
 
-另一种方法是设置`context`字段，因为这会产生类似的效果并影响入口点和loader的解析方式。但是它对输出没有影响，你仍然需要使用绝对路径或`/`。
-The other way is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It doesn't have an impact on the output, though, and you still need to use an absolute path or `/` there.
+另一种方法是设置 `context` 字段，因为这会产生类似的效果并影响 entry 和 loader 的路径解析。但是它对输出没有影响，你仍然需要使用绝对路径或 `/`。
 
 假设你设置了`include`或`exclude`规则，从* node_modules *加载的包仍然可以正常工作，因为它们的编译方式使它们能够开箱即用。如果他们不这样做，那么你必须应用 **Consuming Packages** 章节中涵盖的技术。
 Assuming you set an `include` or `exclude` rule, packages loaded from *node_modules* still work as the assumption is that they have been compiled in such a way that they work out of the box. If they don't, then you have to apply techniques covered in the *Consuming Packages* chapter.
 
-T> `include`/`exclude` 在使用* node_modules *时非常方便，因为当你将JavaScript文件导入项目时，webpack会默认处理并遍历已安装的包。因此，你需要配置它以避免该行为。其他文件类型不会遇到此问题。
+T> `include`/`exclude` 在使用 **node_modules** 时非常方便，因为当你将 JavaScript 文件导入项目时，webpack 会默认处理并遍历已安装的包。因此，你需要 `exclude` **node_modules**。其他文件类型不会遇到此问题。
 T> `include`/`exclude` is handy with *node_modules* as webpack processes and traverses the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. Other file types don't suffer from this issue.
 
 ## 剖析 Loader
 
-Webpack 通过**loaders**支持多种格式。此外，它支持一些开箱即用的JavaScript模块格式。这个想法是一样的。你总是设置一个loader或loader，并将它们与你的目录结构连接起来。
+Webpack 通过 **loader** 支持多种格式的文件。此外，它支持一些开箱即用的 JavaScript 模块规范。思路都是一致的，你必须设置一个或多个 loader，并将它们与你的目录结构连接起来。
 Webpack supports a large variety of formats through *loaders*. Also, it supports a couple of JavaScript module formats out of the box. The idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
 
 {pagebreak}
 
-考虑下面的例子，webpack通过Babel处理JavaScript：
-Consider the example below where webpack processes JavaScript through Babel:
+下例中 webpack 通过 Babel 处理 JavaScript：
 
 **webpack.config.js**
 
@@ -100,8 +97,7 @@ Lint 是一个很好的例子，因为 Lint 必须先于任何其他行为。`en
 },
 ```
 
-如果你仔细地将与'test`相关的其他loader链接到声明，那么可以在没有`enforce`的情况下编写相同的配置。使用`enforce`删除了它的必要性，并允许你将加载程序执行拆分为更容易编写的单独阶段。
-It would be possible to write the same configuration without `enforce` if you chained the declaration with other loaders related to the `test` carefully. Using `enforce` removes the necessity for that and allows you to split loader execution into separate stages that are easier to compose.
+如果你可以保证 `test` 中的 loader 顺序无误，那么可以不使用 `enforce`。不过使用 `enforce` 方便你把不同步骤的 loader 分离开来，更容易组织。
 
 ## Loader 的传参
 
@@ -142,8 +138,7 @@ It's preferable to go through `use`:
 },
 ```
 
-如果你想使用多个loader，你可以将一个数组传递给`use`并从那里扩展：
-If you wanted to use more than one loader, you could pass an array to `use` and expand from there:
+如果你想使用多个 loader，你可以将一个对象数组传递给 `use`：
 
 ```javascript
 {

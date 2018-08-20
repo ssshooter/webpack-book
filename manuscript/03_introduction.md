@@ -1,4 +1,4 @@
-# 介绍
+# 本书概况
 
 [Webpack](https://webpack.js.org/) 解决了 Web 开发的基本问题：打包，从而简化了 Web 开发。它接收各种资源，例如 JavaScript，CSS 和 HTML，并将它们转换为便于通过浏览器使用的格式。这样做很好地消除了 Web 开发带来的巨大痛苦。
 

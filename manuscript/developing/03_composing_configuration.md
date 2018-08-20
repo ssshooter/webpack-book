@@ -4,14 +4,12 @@ webpack 还没做什么，配置量就开始变得很大。现在你必须要小
 
 使用单个配置文件会影响理解,并且无法复用。随着项目需求的增长，你必须找到更有效地管理 webpack 配置的方法。
 
-## 管理配置的可能方法
+## 管理配置的方法
 
 你可以通过以下方式管理 webpack 配置：
 
-* 在每个环境的多个文件中维护配置，并通过`--config`参数将webpack指向每个文件，通过模块导入共享配置。
-* Maintain configuration within multiple files for each environment and point webpack to each through the `--config` parameter, sharing configuration through module imports.
-* 将配置推送到库，然后使用该库。示例：[hjs-webpack]（https://www.npmjs.com/package/hjs-webpack），[Neutrino]（https://neutrino.js.org/），[webpack-blocks]（https：/ /www.npmjs.com/package/webpack-blocks）。
-* Push configuration to a library, which you then consume. Examples: [hjs-webpack](https://www.npmjs.com/package/hjs-webpack), [Neutrino](https://neutrino.js.org/), [webpack-blocks](https://www.npmjs.com/package/webpack-blocks).
+* 为每个环境维护多个配置，并通过 `--config` 参数指引 webpack，通过模块导入共享配置。
+* 将配置推送到库，然后使用该库。示例：[hjs-webpack](https://www.npmjs.com/package/hjs-webpack)，[Neutrino](https://neutrino.js.org/)，[webpack-blocks](https：/ /www.npmjs.com/package/webpack-blocks)。
 * 将配置推送到工具。例如：[create-react-app](https://www.npmjs.com/package/create-react-app), [kyt](https://www.npmjs.com/package/kyt), [nwb](https://www.npmjs.com/package/nwb)。
 * 在单个文件中维护所有配置，然后依赖 `--env` 参数建立分支，稍后会详细介绍该方法。
 
