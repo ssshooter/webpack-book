@@ -89,8 +89,7 @@ The way you write your CSS definition matters. To make sure you are getting the 
 }
 ```
 
-T> [MDN详细讨论了字体系列规则]（https://developer.mozilla.org/en/docs/Web/CSS/@font-face）。
-T> [MDN discusses the font-family rule](https://developer.mozilla.org/en/docs/Web/CSS/@font-face) in detail.
+T> [MDN 详细讨论了 font-family 规则](https://developer.mozilla.org/en/docs/Web/CSS/@font-face)。
 
 {pagebreak}
 
@@ -128,11 +127,9 @@ If you prefer to use SVG based fonts, they can be bundled as a single font file 
 W>如果已经安装了SVG特定图像设置，请注意SVG图像。如果要以不同方式处理字体SVG，请仔细设置其定义。 * Loader Definitions *章节涵盖了替代方案。
 W> Take care with SVG images if you have SVG specific image setup in place already. If you want to process font SVGs differently, set their definitions carefully. The *Loader Definitions* chapter covers alternatives.
 
-## 使用 Google 字体
-## Using Google Fonts
+## 使用 Google Fonts
 
-[google-fonts-webpack-plugin]（https://www.npmjs.com/package/google-fonts-webpack-plugin）可以将Google字体下载到webpack构建目录或使用CDN连接到它们。
-[google-fonts-webpack-plugin](https://www.npmjs.com/package/google-fonts-webpack-plugin) can download Google Fonts to webpack build directory or connect to them using a CDN.
+[google-fonts-webpack-plugin](https://www.npmjs.com/package/google-fonts-webpack-plugin) 可以将 Google 字体下载到 webpack 构建目录或通过 CDN 加载。
 
 ## 使用图标字体
 
@@ -141,16 +138,14 @@ W> Take care with SVG images if you have SVG specific image setup in place alrea
 
 ## 总结
 
-加载字体与加载其他资源类似。你必须考虑要支持的浏览器，并根据该选择加载策略。
-Loading fonts is similar to loading other assets. You have to consider the browsers you want to support and choose the loading strategy based on that.
+加载字体与加载其他资源类似。你必须考虑要支持的浏览器，根据浏览器选择加载策略。
 
 回顾一下：
 
-*加载字体时，应用与图像相同的技术。你可以选择内联小字体，而较大字体则作为单独资源。
+* 加载字体时，应用与图像相同的技术。你可以选择内联小字体，而较大字体则作为单独资源。
 * When loading fonts, the same techniques as for images apply. You can choose to inline small fonts while bigger ones are served as separate assets.
-*如果你决定仅为现代浏览器提供一流支持，则只能选择一种或两种字体格式，并让旧版浏览器使用系统级字体。
+* 如果你决定仅为现代浏览器提供一流支持，则只能选择一种或两种字体格式，并让旧版浏览器使用系统级字体。
 * If you decide to provide first class support to only modern browsers, you can select only a font format or two and let the older browsers to use system level fonts.
 
-在下一章中，你将学习使用Babel和webpack加载JavaScript。 Webpack默认加载JavaScript，但主题还有更多内容，因为你必须考虑要支持的浏览器。
-In the next chapter, you'll learn to load JavaScript using Babel and webpack. Webpack loads JavaScript by default, but there's more to the topic as you have to consider what browsers you want to support.
+在下一章中，你将学习使用 Babel 和 webpack 加载 JavaScript。虽然 Webpack 默认可以加载 JavaScript，但还有不少问题，因为你必须考虑要支持的浏览器。
 
