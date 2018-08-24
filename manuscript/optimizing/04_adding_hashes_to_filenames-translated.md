@@ -1,4 +1,4 @@
-# 文件名中加入hash
+# 在文件名中添加 hash 值
 
 即使生成的构建工作，它使用的文件名也是有问题的。它不允许有效利用客户端级别缓存，因为无法判断文件是否已更改。可以通过在文件名中包含hash来实现缓存失效。
 Even though the generated build works the file names it uses is problematic. It doesn't allow to leverage client level cache efficiently as there's no way tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to the filenames.
@@ -51,7 +51,7 @@ vendor.dc746a5db4ed650296e1.js
 
 ## 设置 hash
 
-构建需要调整以生成适当的hash。图像和字体应该接收`hash`，而块应该在名称中使用`chunkhash`来正确地使它们无效：
+构建需要调整以生成适当的hash。图片和字体应该接收`hash`，而块应该在名称中使用`chunkhash`来正确地使它们无效：
 The build needs tweaking to generate proper hashes. Images and fonts should receive `hash` while chunks should use `chunkhash` in their names to invalidate them correctly:
 
 **webpack.config.js**

@@ -521,7 +521,7 @@ Mocking is a technique that allows you to replace test objects. Consider the sol
 ##从测试中删除文件
 ## Removing Files From Tests
 
-如果你通过webpack执行测试，你可能希望改变它处理像图像这样的资产的方式。你可以匹配它们，然后使用`noop`函数替换模块，如下所示：
+如果你通过webpack执行测试，你可能希望改变它处理像图片这样的资产的方式。你可以匹配它们，然后使用`noop`函数替换模块，如下所示：
 If you execute tests through webpack, you may want to alter the way it treats assets like images. You can match them and then use a `noop` function to replace the modules as follows:
 
 ```javascript

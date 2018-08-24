@@ -189,7 +189,7 @@ T> [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpac
 
 ## 压缩图片
 
-使用[img-loader]（https://www.npmjs.com/package/img-loader），[imagemin-webpack]（https://www.npmjs.com/package/imagemin--可以减少图像大小webpack）和[imagemin-webpack-plugin]（https://www.npmjs.com/package/imagemin-webpack-plugin）。这些包使用下面的图像优化器。
+使用[img-loader]（https://www.npmjs.com/package/img-loader），[imagemin-webpack]（https://www.npmjs.com/package/imagemin--可以减少图片大小webpack）和[imagemin-webpack-plugin]（https://www.npmjs.com/package/imagemin-webpack-plugin）。这些包使用下面的图片优化器。
 Image size can be reduced by using [img-loader](https://www.npmjs.com/package/img-loader), [imagemin-webpack](https://www.npmjs.com/package/imagemin-webpack), and [imagemin-webpack-plugin](https://www.npmjs.com/package/imagemin-webpack-plugin). The packages use image optimizers underneath.
 
 使用* cache-loader *和* thread-loader *可以是一个好主意，如* Performance *章节中所述，因为它们可以是实质性操作。

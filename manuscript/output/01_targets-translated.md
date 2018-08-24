@@ -1,4 +1,3 @@
-＃构建目标
 # Build Targets
 
 尽管webpack最常用于捆绑Web应用程序，但它可以做得更多。你可以使用它来定位节点或桌面环境，例如Electron。 Webpack还可以捆绑为库，同时编写适当的输出包装器，从而可以使用库。
@@ -8,18 +7,16 @@ Webpack的输出目标由`target`字段控制。你将了解下一个主要目�
 Webpack's output target is controlled by the `target` field. You'll learn about the primary targets next and dig into library specific options after that.
 
 ## Web Targets
-## Web Targets
 
-Webpack默认使用* web *目标。该目标非常适合你在本书中开发的Web应用程序。 Webpack引导应用程序并加载其模块。要加载的模块的初始列表在清单中维护，然后模块可以按照定义相互加载。
+Webpack默认使用 **web** 目标。该目标非常适合你在本书中开发的Web应用程序。 Webpack引导应用程序并加载其模块。要加载的模块的初始列表在清单中维护，然后模块可以按照定义相互加载。
 Webpack uses the *web* target by default. The target is ideal for a web application like the one you have developed in this book. Webpack bootstraps the application and loads its modules. The initial list of modules to load is maintained in a manifest, and then the modules can load each other as defined.
 
 ### Web Workers
-### Web Workers
 
-* webworker *目标将你的应用程序包装为[Web worker]（https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API）。如果要在应用程序的主线程之外执行计算而不降低用户界面的速度，则使用Web worker非常有用。你应该注意以下几个限制：
+**webworker**目标将你的应用程序包装为[Web worker]（https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API）。如果要在应用程序的主线程之外执行计算而不降低用户界面的速度，则使用Web worker非常有用。你应该注意以下几个限制：
 The *webworker* target wraps your application as a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Using web workers is valuable if you want to execute computation outside of the main thread of the application without slowing down the user interface. There are a couple of limitations you should be aware of:
 
-*使用* webworker *目标时，无法使用webpack的散列功能。
+*使用**webworker**目标时，无法使用webpack的散列功能。
 * You cannot use webpack's hashing features when the *webworker* target is used.
 *你无法操纵Web工作者的DOM。如果你将图书项目包装为工人，则不会显示任何内容。
 * You cannot manipulate the DOM from a web worker. If you wrapped the book project as a worker, it would not display anything.
@@ -36,7 +33,7 @@ Webpack provides two Node-specific targets: `node` and `async-node`. It uses sta
 使用Node目标的主要用例是* Server Side Rendering *（SSR）。这个想法在* Server Side Rendering *章节中讨论。
 The main use case for using the Node target is *Server Side Rendering* (SSR). The idea is discussed in the *Server Side Rendering* chapter.
 
-##桌面目标
+## 桌面目标
 ## Desktop Targets
 
 有桌面shell，例如[NW.js]（https://nwjs.io/）（以前是* node-webkit *）和[Electron]（http://electron.atom.io/）（以前是* Atom） *）。 Webpack可以如下定位：
@@ -56,20 +53,17 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously *node-we
 
 ## 总结
 
-
 Webpack支持Web以外的目标。基于此，你可以说名称“webpack”考虑其功能是轻描淡写。
 Webpack supports targets beyond the web. Based on this you can say name "webpack" is an understatement considering its capabilities.
 
 回顾一下：
 
-
-* Webpack的输出目标可以通过`target`字段控制。它默认为“web”，但也接受其他选项。
+* Webpack 的输出目标可以通过`target`字段控制。它默认为“web”，但也接受其他选项。
 * Webpack's output target can be controlled through the `target` field. It defaults to `web` but accepts other options too.
-*除了Web目标之外，Webpack还可以定位桌面，节点和Web工作者。
+* 除了Web目标之外，Webpack还可以定位桌面，节点和Web工作者。
 * Webpack can target the desktop, Node, and web workers in addition to its web target.
-*如果特别是在服务器端渲染设置中，节点目标会派上用场。
+* 如果特别是在服务器端渲染设置中，节点目标会派上用场。
 * The Node targets come in handy if especially in Server Side Rendering setups.
 
 你将在下一章学习如何处理多页设置。
-You'll learn how to handle multi-page setups in the next chapter.
 

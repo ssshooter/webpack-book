@@ -27,7 +27,6 @@ Historically speaking, there have been many build tools. *Make* is perhaps the b
 尽管Make主要用于C项目，但它并没有以任何方式与C相关联。 James Coglan详细讨论了[如何使用Make with JavaScript]（https://blog.jcoglan.com/2014/02/05/building-javascript-projects-with-make/）。考虑基于James的帖子的缩写代码：
 Even though Make is mostly used with C projects, it's not tied to C in any way. James Coglan discusses in detail [how to use Make with JavaScript](https://blog.jcoglan.com/2014/02/05/building-javascript-projects-with-make/). Consider the abbreviated code based on James' post below:
 
-** **的Makefile
 **Makefile**
 
 ```makefile

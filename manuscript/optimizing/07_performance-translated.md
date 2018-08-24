@@ -149,7 +149,7 @@ Loaders have their optimizations as well:
 * Perform less processing by skipping loaders during development. Especially if you are using a modern browser, you can skip using *babel-loader* or equivalent altogether.
 *对JavaScript特定的加载器使用`include`或`exclude`。 Webpack默认遍历* node_modules *并对文件执行* babel-loader *，除非它已正确配置。
 * Use either `include` or `exclude` with JavaScript specific loaders. Webpack traverses *node_modules* by default and executes *babel-loader* over the files unless it has been configured correctly.
-*使用[cache-loader]（https://www.npmjs.com/package/cache-loader）将昂贵的加载器（例如图像处理）的结果缓存到磁盘。
+*使用[cache-loader]（https://www.npmjs.com/package/cache-loader）将昂贵的加载器（例如图片处理）的结果缓存到磁盘。
 * Cache the results of expensive loaders (e.g., image manipulation) to the disk using the [cache-loader](https://www.npmjs.com/package/cache-loader).
 *使用[thread-loader]（https://www.npmjs.com/package/thread-loader）并行执行昂贵的加载器。鉴于工作人员在Node中有开销，使用* thread-loader *只有在并行操作很重的情况下才值得。
 * Parallelize the execution of expensive loaders using [thread-loader](https://www.npmjs.com/package/thread-loader). Given workers come with an overhead in Node, using *thread-loader* is worth it only if the parallelized operation is heavy.

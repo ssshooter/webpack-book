@@ -42,7 +42,7 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 ###资产
 ### Assets
 
-*通过webpack加载图像时，优化它们，以便用户下载更少。 * Loading Images *章节显示了如何执行此操作。
+*通过webpack加载图片时，优化它们，以便用户下载更少。 * Loading Images *章节显示了如何执行此操作。
 * When loading images through webpack, optimize them, so the users have less to download. The *Loading Images* chapter shows how to do this.
 *根据你必须支持的浏览器，仅加载你需要的字体。 * Loading Fonts *章节讨论了该主题。
 * Load only the fonts you need based on the browsers you have to support. The *Loading Fonts* chapter discusses the topic.

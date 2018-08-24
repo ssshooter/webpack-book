@@ -1,18 +1,16 @@
-＃多页
-# Multiple Pages
+
+# 多页
 
 即使webpack经常用于捆绑单页面应用程序，也可以将它与多个单独的页面一起使用。这个想法类似于在* Targets *章节中生成多个输出文件的方式。但是，这一次，你必须生成单独的页面。这可以通过`HtmlWebpackPlugin`和一些配置来实现。
 Even though webpack is often used for bundling single page applications, it's possible to use it with multiple separate pages as well. The idea is similar to the way you generated multiple output files in the *Targets* chapter. This time, however, you have to generate separate pages. That's achievable through `HtmlWebpackPlugin` and a bit of configuration.
 
-##可能的方法
-## Possible Approaches
+## 实现方法
 
-使用webpack生成多个页面时，你有以下几种可能性：
-When generating multiple pages with webpack, you have a couple of possibilities:
+以下方法可以使用 webpack 生成多页面项目：
 
 *通过*多编译器模式*并返回一系列配置。只要页面是分开的，并且跨越它们共享代码的最小需求，该方法就可以工作。这种方法的好处是你可以通过[parallel-webpack]（https://www.npmjs.com/package/parallel-webpack）处理它，以提高构建性能。
 * Go through the *multi-compiler mode* and return an array of configurations. The approach would work as long as the pages are separate and there is a minimal need for sharing code across them. The benefit of this approach is that you can process it through [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) to improve build performance.
-*设置单个配置并提取共性。你执行此操作的方式可能会有所不同，具体取决于你的方式。
+* 设置单个配置并提取共性。你执行此操作的方式可能会有所不同，具体取决于你的方式。
 * Set up a single configuration and extract the commonalities. The way you do this can differ depending on how you chunk it up.
 *如果你遵循[渐进式网络应用程序]（https://developers.google.com/web/progressive-web-apps/）（PWA）的想法，你最终可以使用** app shell **或a **页面shell **并在使用时加载应用程序的部分。
 * If you follow the idea of [Progressive Web Applications](https://developers.google.com/web/progressive-web-apps/) (PWA), you can end up with either an **app shell** or a **page shell** and load portions of the application as it's used.
@@ -20,19 +18,18 @@ When generating multiple pages with webpack, you have a couple of possibilities:
 在实践中，你有更多的维度。例如，你必须为页面生成i18n变体。这些想法在基本方法之上发展。
 In practice, you have more dimensions. For example, you have to generate i18n variants for pages. These ideas grow on top of the basic approaches.
 
-##生成多个页面
+## 生成多个页面
 ## Generating Multiple Pages
 
 要生成多个单独的页面，应以某种方式初始化它们。你还应该能够返回每个页面的配置，因此webpack会选择它们并通过多编译器模式处理它们。
 To generate multiple separate pages, they should be initialized somehow. You should also be able to return a configuration for each page, so webpack picks them up and process them through the multi-compiler mode.
 
-###抽象页面
+### 抽象页面
 ### Abstracting Pages
 
 要初始化页面，它至少应该接收页面标题，输出路径和可选模板。每个页面都应该接收可选的输出路径和用于自定义的模板。这个想法可以建模为配置部分：
 To initialize a page, it should receive page title, output path, and an optional template at least. Each page should receive optional output path and a template for customization. The idea can be modeled as a configuration part:
 
-** ** webpack.parts.js
 **webpack.parts.js**
 
 ```javascript
@@ -58,13 +55,12 @@ exports.page = ({
 
 {pagebreak}
 
-###集成到配置
+### 集成到配置
 ### Integrating to Configuration
 
 要将这个想法融入到配置中，它的组合方式必须改变。此外，还需要页面定义。首先，让我们暂时为每个页面重用相同的JavaScript逻辑：
 To incorporate the idea into the configuration, the way it's composed has to change. Also, a page definition is required. To get started, let's reuse the same JavaScript logic for each page for now:
 
-** ** webpack.config.js
 **webpack.config.js**
 
 ```javascript

@@ -1,5 +1,4 @@
-＃ 故障排除
-# Troubleshooting
+# 故障排除
 
 使用webpack可能会导致各种运行时警告或错误。通常，构建的特定部分由于某种原因而失败。可以使用基本过程来解决这些问题：
 Using webpack can lead to a variety of runtime warnings or errors. Often a particular part of the build fails for a reason or another. A basic process can be used to figure out these problems:
@@ -33,25 +32,21 @@ Sometimes it's fastest to drop the error to a search engine and gain an answer t
 你将了解下一个最常见的错误以及如何处理它们。
 You'll learn about the most common errors next and how to deal with them.
 
-找不到Entry模块中的## ERROR
 ## ERROR in Entry module not found
 
 如果在不存在的位置创建入口路径点，则最终可能会出现此错误。该错误消息告诉你webpack无法找到的路径。
 You can end up with this error if you make an entry path point at a place that does not exist. The error message tells you what path webpack fails to find.
 
-## ERROR ...未找到模块
 ## ERROR ... Module not found
 
 你可以通过两种方式获得错误。通过破坏加载程序定义以使其指向不存在的加载程序或通过破坏代码中的导入路径以使其导致不存在的模块。该消息指出要修复的内容。
 You can get the error in two ways. Either by breaking a loader definition so that it points to a loader that does not exist or by breaking an import path within your code so that it leads to a module that doesn't exist. The message points out what to fix.
 
-##模块解析失败
 ## Module parse failed
 
 即使webpack可以很好地解析你的模块，它仍然无法构建它们。如果你使用的是加载程序无法理解的语法，则可能会发生这种情况。你可能会遗漏处理过程中的某些内容。
 Even though webpack could resolve to your modules fine, it can still fail to build them. This case can happen if you are using syntax that your loaders don't understand. You could be missing something in your processing pass.
 
-## Loader not Found
 ## Loader Not Found
 
 还有另一个微妙的加载器相关错误。如果存在与未实现加载程序接口的加载程序名称匹配的程序包，则webpack与该程序包匹配并给出运行时错误，指出程序包不是加载程序。
@@ -60,19 +55,16 @@ There's another subtle loader related error. If a package matching to a loader n
 这个错误可以通过编写`loader：“eslint”`而不是`loader：“eslint-loader”`来实现。如果加载器根本不存在，将引发“未找到模块”错误。
 This mistake can be made by writing `loader: "eslint"` instead of `loader: "eslint-loader"`. If the loader doesn't exist at all, the `Module not found` error will be raised.
 
-##模块构建失败：未知单词
 ## Module build failed: Unknown word
 
 此错误适合相同的类别。解析文件成功，但有未知的语法。很可能问题是拼写错误，但是当Webpack遵循导入并遇到它不理解的语法时，也会发生此错误。这很可能意味着该特定文件类型缺少加载程序。
 This error fits the same category. Parsing the file succeeded, but there was the unknown syntax. Most likely the problem is a typo, but this error can also occur when Webpack has followed an import and encountered syntax it doesn't understand. Most likely this means that a loader is missing for that particular file type.
 
-## SyntaxError：意外的令牌
 ## SyntaxError: Unexpected token
 
 `SyntaxError`是同一类别的另一个错误。如果你使用尚未与UglifyJS一起编译的ES2015语法，则可能出现此错误。当遇到它无法识别的语法构造时，它会引发错误。
 `SyntaxError` is another error for the same category. This error is possible if you use ES2015 syntax that hasn't been transpiled alongside UglifyJS. As it encounters a syntax construct it does not recognize, it raises an error.
 
-## DeprecationWarning
 ## DeprecationWarning
 
 特别是在webpack更新为新的主要版本之后，Node可能会给出“DeprecationWarning”。你正在使用的插件或加载程序可能需要更新。通常所需的更改很少。要找出警告的来源，请通过Node运行webpack：`node --trace-deprecation node_modules / .bin / webpack --env production`。
@@ -82,7 +74,6 @@ Node may give a `DeprecationWarning` especially after webpack has been updated t
 It's important to pass the `--trace-deprecation` flag to Node to see where the warning originates from. Using `--trace-warnings` is another way and it will capture the tracing information for all warnings, not only deprecations.
 
 ## 总结
-
 
 这些只是错误的例子。 webpack方面发生了特定的错误，但其余的都来自它通过加载器和插件使用的软件包。简化你的项目是一个很好的步骤，因为这样可以更容易地理解错误发生的位置。
 These are only examples of errors. Specific errors happen on the webpack side, but the rest comes from the packages it uses through loaders and plugins. Simplifying your project is a good step as that makes it easier to understand where the error happens.

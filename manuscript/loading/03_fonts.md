@@ -1,20 +1,20 @@
-# Loading Fonts
+# 加载字体文件
 
-Loading fonts is similar to loading images. It does come with unique challenges, though. How to know what font formats to support? There can be up to four font formats to worry about if you want to provide first class support to each browser.
+加载字体与加载图片类似。但它确实带来了独特的挑战，如何知道浏览器支持哪种字体格式？如果要为每个浏览器提供最好的支持，最多需要四种字体格式。
 
-The problem can be solved by deciding a set of browsers and platforms that should receive first class service. The rest can use system fonts.
+你需要确定你的用户主要使用什么浏览器以及操作系统，尽量满足他们的字体显示要求，其余的浏览器可以使用系统字体。
 
-You can approach the problem in several ways through webpack. You can still use *url-loader* and *file-loader* as with images. Font `test` patterns tend to be more complicated, though, and you have to worry about font file related lookups.
+你仍然可以像处理图片一样使用 **url-loader** 和 **file-loader**。但是，字体的 `test` 模式往往更复杂，你需要考虑字体文件的查找问题。
 
-T> [canifont](https://www.npmjs.com/package/canifont) helps you to figure out which font formats you should support. It accepts a **.browserslistrc** definition and then checks font support of each browser based on the definition.
+T> [canifont]（https://www.npmjs.com/package/canifont）收录了各大浏览器支持的字体格式。它根据 **.browserslistrc** 配置检查每个浏览器的字体支持情况。
 
-## Choosing One Format
+## 选择字体格式
 
-If you exclude Opera Mini, all browsers support the *.woff* format. Its newer version, *.woff2*, is widely supported by modern browsers and can be a good alternative.
+除了 Opera Mini，所有浏览器都支持 *.woff* 格式。另一个选择是它的新版本 *.woff2* 在现代浏览器得到广泛支持。
 
 {pagebreak}
 
-Going with one format, you can use a similar setup as for images and rely on both *file-loader* and *url-loader* while using the limit option:
+格式较少时你可以使用与图片处理类似的设置，在设置时 limit 选项时同时依赖于 *file-loader* 和 *url-loader*：
 
 ```javascript
 {
@@ -28,7 +28,7 @@ Going with one format, you can use a similar setup as for images and rely on bot
 },
 ```
 
-A more elaborate approach to achieve a similar result that includes *.woff2* and others would be to end up with the code as below:
+以下是一种更精确的写法，包括 *.woff2*：
 
 ```javascript
 {
@@ -53,9 +53,9 @@ A more elaborate approach to achieve a similar result that includes *.woff2* and
 
 {pagebreak}
 
-## Supporting Multiple Formats
+## 支持多种格式
 
-In case you want to make sure the site looks good on a maximum amount of browsers, you can use *file-loader* and forget about inlining. Again, it's a trade-off as you get extra requests, but perhaps it's the right move. Here you could end up with a loader configuration:
+如果需要确保你的网站在大多数浏览器上正常展示，你可以只使用 **file-loader**。这是也是一个权衡，因为这需要发送更多的请求：
 
 ```javascript
 {
@@ -69,7 +69,7 @@ In case you want to make sure the site looks good on a maximum amount of browser
 },
 ```
 
-The way you write your CSS definition matters. To make sure you are getting the benefit from the newer formats, they should become first in the definition. This way the browser picks them up.
+在 CSS 中定义字体时，为了确保浏览器优先使用最先进的字体，应该把他们写在最前面。
 
 ```css
 @font-face {
@@ -82,15 +82,15 @@ The way you write your CSS definition matters. To make sure you are getting the 
 }
 ```
 
-T> [MDN discusses the font-family rule](https://developer.mozilla.org/en/docs/Web/CSS/@font-face) in detail.
+T> [MDN 详细讨论了 font-family 规则](https://developer.mozilla.org/en/docs/Web/CSS/@font-face)。
 
 {pagebreak}
 
-## Manipulating *file-loader* Output Path and `publicPath`
+## **file-loader** 输出路径与 `publicPath`
 
-As discussed above and in [webpack issue tracker](https://github.com/webpack/file-loader/issues/32#issuecomment-250622904), *file-loader* allows shaping the output. This way you can output your fonts below `fonts/`, images below `images/`, and so on over using the root.
+[webpack issue](https://github.com/webpack/file-loader/issues/32#issuecomment-250622904) 和本书前面也提到，**file-loader** 可以调整输出位置。这样你就可以在根目录的 `fonts/` 下输出字体，`images/` 下输出图片。
 
-Furthermore, it's possible to manipulate `publicPath` and override the default per loader definition. The following example illustrates these techniques together:
+此外，可以使用 `publicPath` 覆盖单个 loader 的默认设置：
 
 ```javascript
 {
@@ -108,27 +108,28 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 },
 ```
 
-## Generating Font Files Based on SVGs
+## 基于 SVG 生成字体文件
 
-If you prefer to use SVG based fonts, they can be bundled as a single font file by using [webfonts-loader](https://www.npmjs.com/package/webfonts-loader).
+如果你更喜欢使用基于 SVG 的字体，可以使用 [webfonts-loader](https://www.npmjs.com/package/webfonts-loader) 将它们打包为单个字体文件。
 
-W> Take care with SVG images if you have SVG specific image setup in place already. If you want to process font SVGs differently, set their definitions carefully. The *Loader Definitions* chapter covers alternatives.
+W> 如果已经对 SVG 配置了 webpack，对用于字体的 SVG 要做其他处理。**Loader Definitions** 章节提到了替代方案。
 
-## Using Google Fonts
+## 使用 Google Fonts
 
-[google-fonts-webpack-plugin](https://www.npmjs.com/package/google-fonts-webpack-plugin) can download Google Fonts to webpack build directory or connect to them using a CDN.
+[google-fonts-webpack-plugin](https://www.npmjs.com/package/google-fonts-webpack-plugin) 可以将 Google 字体下载到 webpack 构建目录或通过 CDN 加载。
 
-## Using Icon Fonts
+## 使用图标字体
 
-[iconfont-webpack-plugin](https://www.npmjs.com/package/iconfont-webpack-plugin) was designed to simplify loading icon based fonts. It inlines SVG references within CSS files.
+[iconfont-webpack-plugin](https://www.npmjs.com/package/iconfont-webpack-plugin) 旨在简化字体图标的加载。它在 CSS 文件中内联为 SVG 引用。
 
+## 总结
 
+加载字体与加载其他资源类似。你必须考虑要支持的浏览器，根据浏览器选择加载策略。
 
-Loading fonts is similar to loading other assets. You have to consider the browsers you want to support and choose the loading strategy based on that.
+回顾一下：
 
+* 加载字体时可以使用对图片一样的处理，内联体积小的字体，而较大字体则作为单独资源。
+* 如果你决定仅为现代浏览器提供一流支持，可以只选择一两种字体格式，让旧版浏览器使用系统字体。
 
+在下一章中，你将学习使用 Babel 和 webpack 加载 JavaScript。虽然 Webpack 默认可以加载 JavaScript，但还有不少问题，因为你必须考虑要支持的浏览器。
 
-* When loading fonts, the same techniques as for images apply. You can choose to inline small fonts while bigger ones are served as separate assets.
-* If you decide to provide first class support to only modern browsers, you can select only a font format or two and let the older browsers to use system level fonts.
-
-In the next chapter, you'll learn to load JavaScript using Babel and webpack. Webpack loads JavaScript by default, but there's more to the topic as you have to consider what browsers you want to support.

@@ -17,7 +17,7 @@ Given webpack comes with specific terminology, the principal terms and their exp
 
 * ** Entry **是指webpack使用的文件作为捆绑的起点。应用程序可以有多个条目，根据配置，每个条目可以生成多个包。条目在webpack的`entry`配置中定义。条目是依赖图开头的**模块**。
 * **Entry** refers to a file used by webpack as a starting point for bundling. An application can have multiple entries and depending on configuration, each entry can result in multiple bundles. Entries are defined in webpack's `entry` configuration. Entries are **modules** at the beginning of the dependency graph.
-* **模块**是描述一部分应用程序的通用术语。在webpack中，它可以引用JavaScript，样式表，图像或其他内容。 ** Loaders **允许webpack支持不同的文件类型，因此支持不同类型的模块。如果从代码库的多个位置指向同一个模块，webpack将在输出中生成单个模块，从而在模块级别启用单例模式。
+* **模块**是描述一部分应用程序的通用术语。在webpack中，它可以引用JavaScript，样式表，图片或其他内容。 ** Loaders **允许webpack支持不同的文件类型，因此支持不同类型的模块。如果从代码库的多个位置指向同一个模块，webpack将在输出中生成单个模块，从而在模块级别启用单例模式。
 * **Module** is a general term to describe a piece of the application. In webpack, it can refer to JavaScript, a style sheet, an image or something else. **Loaders** allows webpack to support different file types and therefore different types of module. If you point to the same module from multiple places of a code base, webpack will generate a single module in the output which enables the singleton pattern on module level.
 * **插件**连接到webpack的事件系统，可以将功能注入其中。它们允许webpack扩展，并可与装载机组合以实现最大程度的控制。虽然加载器在单个文件上工作，但插件具有更广泛的访问权限，并且能够进行更全面的控制。
 * **Plugins** connect to webpack's event system and can inject functionality into it. They allow webpack to be extended and can be combined with loaders for maximum control. Whereas a loader works on a single file, a plugin has much broader access and is capable of more global control.
@@ -58,7 +58,7 @@ Given webpack comes with specific terminology, the principal terms and their exp
 * **散列**是指生成附加到资产/捆绑路径的散列以在客户端上使其无效的过程。散列包名称的示例：* app.f6f78b2fd2c38e8200d.js *。
 * **Hashing** refers to the process of generating a hash that is attached to the asset/bundle path to invalidate it on the client. Example of a hashed bundle name: *app.f6f78b2fd2c38e8200d.js*.
 
-##输出
+## 输出
 ## Output
 
 * **输出**是指webpack发出的文件。更具体地说，webpack根据输出设置发出**包**和**资产**。

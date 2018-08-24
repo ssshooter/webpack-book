@@ -4,21 +4,17 @@ HTTP/1 应用程序加载大量小文件会变得缓慢，因为每个请求都�
 
 Webpack 可以使用 [url-loader](https://www.npmjs.com/package/url-loader) 内联资源。它会在 JavaScript 包中将你的图片作为 base64 字符串生成。该过程减少了所需的请求数，增加了 bundle 大小。在开发过程中使用 *url-loader* 就足够了。但在生产构建需要其他替代方案。
 
-Webpack 可以控制内联过程，并可以将加载延迟到 [file-loader](https://www.npmjs.com/package/url-loader)。 * file-loader *输出图片文件并返回它们的路径而不是内联。此技术适用于其他资源类型，例如字体，如后面章节中所示。
-Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). *file-loader* outputs image files and returns paths to them instead of inlining. This technique works with other assets types, such as fonts, as you see in the later chapters.
+Webpack 可以控制内联处理，将加载推送到 [file-loader](https://www.npmjs.com/package/url-loader)。**file-loader** 不会把图片内联到包中，而是直接输出图片文件并返回它们的路径。此技术也适用于其他资源类型，例如字体，这会在后面章节提到。
 
 ## 配置 *url-loader*
 
 *url-loader* 是开发环境的完美选择，因为你不必关心 bundle 的大小。它带有一个 *limit* 选项，可用于把超过限制的图片交给 *file-loader*。这样，你可以将小文件内联到 JavaScript 包中，同时为较大的文件生成单独的文件。
 
-如果使用limit选项，则需要在项目中同时安装* url-loader *和* file-loader *。假设你已正确配置样式，webpack将解析样式包含的任何`url（）`语句。你也可以通过JavaScript代码指向图片资源。
-If you use the limit option, you need to install both *url-loader* and *file-loader* to your project. Assuming you have configured your styles correctly, webpack resolves any `url()` statements your styling contains. You can point to the image assets through your JavaScript code as well.
+使用 limit 选项，需要在项目中同时安装 **url-loader** 和 **file-loader**。假设你已正确配置样式，webpack 将解析样式包含的所有 `url()` 语句。你也可以通过 JavaScript 代码引用图片资源。
 
-如果使用`limit`选项，* url-loader *会将可能的附加选项传递给* file-loader *，从而可以进一步配置其行为。
-In case the `limit` option is used, *url-loader* passes possible additional options to *file-loader* making it possible to configure its behavior further.
+如果使用 `limit` 选项，**url-loader** 会将可能的附加选项传递给 **file-loader**，从而进一步配置。
 
-要在内联25kB以下的文件时加载 *.jpg* 和 *.png* 文件，你必须设置一个加载器：
-To load *.jpg* and *.png* files while inlining files below 25kB, you would have to set up a loader:
+加载 **.jpg** 和 **.png** 文件时要内联 25kB 以下的文件，你应该如此设置 loader：
 
 ```javascript
 {
@@ -110,8 +106,7 @@ leanpub-end-insert
 ]);
 ```
 
-要测试设置是否有效，请下载图片或生成图片（`convert -size 100x100 gradient：blue logo.png`）并从项目中引用它：
-To test that the setup works, download an image or generate it (`convert -size 100x100 gradient:blue logo.png`) and refer to it from the project:
+测试一下设置是否有效，在项目中引用一张图片：
 
 **src/main.css**
 
@@ -126,12 +121,12 @@ leanpub-end-insert
 }
 ```
 
-行为会根据你设置的“限制”而改变。低于限制，它应该内联图片，而它应该发出一个单独的资源和一个路径。 CSS查找因* css-loader *而起作用。你还可以尝试从JavaScript代码导入图片，看看会发生什么。
+行为会根据你设置的 `limit` 而改变。低于限制，它应该内联图片，而它应该发出一个单独的资源和一个路径。 CSS查找因* css-loader *而起作用。你还可以尝试从JavaScript代码导入图片，看看会发生什么。
 The behavior changes depending on the `limit` you set. Below the limit, it should inline the image while above it should emit a separate asset and a path to it. The CSS lookup works because of *css-loader*. You can also try importing the image from JavaScript code and see what happens.
 
 ## 加载 SVG
 
-Webpack 有[几种方式](https://github.com/webpack/webpack/issues/595)加载 SVG。最简单的方法是通过 *file-loader* 加载：
+Webpack 有[几种方式](https://github.com/webpack/webpack/issues/595)加载 SVG。最简单的方法是通过 **file-loader** 加载：
 
 ```javascript
 {
@@ -149,8 +144,7 @@ Assuming you have set up your styling correctly, you can refer to your SVG files
 }
 ```
 
-还要考虑以下 loader：
-Consider also the following loaders:
+还可以使用以下 loader：
 
 * [raw-loader](https://www.npmjs.com/package/raw-loader) 可以访问原始 SVG 内容。
 * [svg-inline-loader](https://www.npmjs.com/package/svg-inline-loader) 清理了一些 SVG 中不必要的标记.
@@ -167,7 +161,6 @@ T> 也可以跟图片一样用 *url-loader* 处理 SVG。
 压缩在生产环境尤其有用，可以使你的站点或应用程序高速加载。
 
 ## 使用 `srcset`
-## Utilizing `srcset`
 
 [resize-image-loader](https://www.npmjs.com/package/resize-image-loader) 和 [responsive-loader](https://www.npmjs.com/package/responsive-loader) 允许你为现代浏览器生成`srcset`兼容的图片集合。 `srcset` 为浏览器提供了更多控制权，可以加载哪些图片以及何时提高性能。
 [resize-image-loader](https://www.npmjs.com/package/resize-image-loader) and [responsive-loader](https://www.npmjs.com/package/responsive-loader) allow you to generate `srcset` compatible collections of images for modern browsers. `srcset` gives more control to the browsers over what images to load and when resulting in higher performance.
@@ -178,8 +171,7 @@ Webpack 可以根据条件动态加载图片。 *Code Splitting* 和 *Dynamic Lo
 
 ## 加载雪碧图
 
-** Spriting **技术允许你将多个较小的图片组合成单个图片。它已经被用于游戏来描述动画，它对于Web开发很有价值，同时也避免了请求开销。
-**Spriting** technique allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's valuable for web development as well as you avoid request overhead.
+**Spriting** 技术可以将多个较小的图片组合成单个图片，常被用于游戏动画中。它对于 Web 开发很有价值，大大减少了请求开销。
 
 [webpack-spritesmith]（https://www.npmjs.com/package/webpack-spritesmith）将提供的图片转换为精灵表和Sass / Less / Stylus mixins。你必须设置一个`SpritesmithPlugin`，将其指向目标图片，并设置生成的mixin的名称。之后，你的造型可以拿起它：
 [webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a sprite sheet and Sass/Less/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that, your styling can pick it up:
@@ -209,8 +201,7 @@ Webpack 可以根据条件动态加载图片。 *Code Splitting* 和 *Dynamic Lo
 有时只获得对图片的引用是不够的。 [image-size-loader]（https://www.npmjs.com/package/image-size-loader）除了对图片本身的引用外，还会发出图片尺寸，类型和大小。
 Sometimes getting the only reference to an image isn't enough. [image-size-loader](https://www.npmjs.com/package/image-size-loader) emits image dimensions, type, and size in addition to the reference to the image itself.
 
-## 参考图片
-## Referencing to Images
+## 引用图片
 
 假设* css-loader *已经配置，Webpack可以通过`@ import`和`url（）`从样式表中获取图片。你还可以在代码中引用你的图片。在这种情况下，你必须显式导入文件：
 Webpack can pick up images from style sheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within the code. In this case, you have to import the files explicitly:
@@ -248,16 +239,11 @@ Webpack 可以把图片内联到 bundle 中。你需要评估图片的内联大�
 
 回顾一下：
 
-* * url-loader *内嵌JavaScript中的资源。它带有一个`limit`选项，允许你将它上面的资源推迟到* file-loader *。
-* *url-loader* inlines the assets within JavaScript. It comes with a `limit` option that allows you to defer assets above it to *file-loader*.
-* *file-loader* 发出图片资源并将它们返回到代码的路径。它允许散列资源名称。
-* *file-loader* emits image assets and returns paths to them to the code. It allows hashing the asset names.
-* 你可以找到与图片优化相关的加载器和插件，以便你进一步调整其大小。
-* You can find image optimization related loaders and plugins that allow you to tune their size further.
-* 可以组合较小的图片生成**雪碧图**。
-* It's possible to generate **sprite sheets** out of smaller images to combine them into a single request.
-* Webpack 允许你根据给定条件动态加载图片。
-* Webpack allows you to load images dynamically based on a given condition.
+* **url-loader** 会把资源内联到 JavaScript 中。它带有一个 `limit` 选项，可以把超过大小限制的资源推送到 **file-loader** 处理。
+* *file-loader* 生成图片资源并返回它们路径。另外，可以资源名称中填充哈希值。
+* 你可以找到与图片优化相关的 loader 和 plugins，以便你优化图片大小。
+* 可以组合较小的图片，生成**雪碧图**。
+* Webpack 可以根据给定条件动态加载图片。
 * 如果你使用 source maps，你应该记住将 `output.publicPath` 设置为要显示的图片的绝对值。
 * If you are using source maps, you should remember to set `output.publicPath` to an absolute value for the images to show up.
 
