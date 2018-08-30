@@ -59,11 +59,11 @@ Entrypoint main = main.js main.css main.js.map main.css.map
 ...
 ```
 
-如你所见，*main.js* 的体积很大，这是接下来要解决的问题。
+如你所见，**main.js** 的体积很大，这是接下来要解决的问题。
 
 ## 设置 `vendor` bundle
 
-在 webpack 4 之前，`CommonsChunkPlugin` 可以用于管理 bundle 拆分。该插件已被自动化和配置所取代。要从 *node_modules* 目录中提取第三方 bundle，可以如此调整代码：
+在 webpack 4 之前，`CommonsChunkPlugin` 可以用于管理 bundle 拆分。该插件已被自动化和配置所取代。要从 **node_modules** 目录中提取第三方 bundle，可以如此调整代码：
 
 **webpack.config.js**
 
@@ -116,7 +116,7 @@ Entrypoint main = vendors~main.js vendors~main.css ...
 
 ## bundle 拆分的控制
 
-可以调整一下上面的配置，让拆分只针对 *node_modules*，如下所示：
+可以调整一下上面的配置，让拆分只针对 **node_modules**，如下所示：
 
 **webpack.config.js**
 

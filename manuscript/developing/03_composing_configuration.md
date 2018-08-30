@@ -110,8 +110,7 @@ module.exports = mode => {
 };
 ```
 
-不是直接返回配置，而是返回捕获传递的`env`的函数。该函数返回基于它的配置，并将webpack`mode`映射到它。这样做意味着* package.json *需要修改：
-Instead of returning a configuration directly, a function capturing the passed `env` is returned. The function returns configuration based on it and also maps webpack `mode` to it. Doing this means *package.json* needs a modification:
+不是直接返回配置，而是返回接受 `env` 参数的函数。该函数返回基于它的配置，并将 webpack `mode` 映射到它。这样做意味着 **package.json** 需要修改：
 
 **package.json**
 
@@ -130,7 +129,7 @@ leanpub-end-delete
 
 作以上更改后，构建还是跟以前一样。但是现在你有了扩展的空间，不必再迷惑于配置的管理。
 
-通过扩展 **package.json** 脚本，在 *webpack.config.js* 建立分支。*webpack.parts.js* 在之后也会添加各种配置。
+通过扩展 **package.json** 脚本，在 **webpack.config.js** 建立分支。**webpack.parts.js** 在之后也会添加各种配置。
 
 T> `productionConfig` 现在还没用上，但先把结构写出来，我们进一步扩展配置时它会被改写。
 

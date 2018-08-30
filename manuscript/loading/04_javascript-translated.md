@@ -1,6 +1,6 @@
 # 加载 JavaScript
 
-Webpack 默认处理 ES2015 模块并将其转换为浏览器可用代码。但它**不会**转换特定的语法，例如 `const`，在旧版浏览器中可能会出现问题。
+Webpack 默认处理 ES2015 模块并将其转换为浏览器可用代码。但它**不会**转换大部分语法，例如 `const`，在旧版浏览器中可能会出现问题。
 
 为了更好地了解 Webpack 默认转换，请看以下输出（`npm run build -- --devtool false --mode development`）：
 
@@ -23,11 +23,9 @@ __webpack_require__.r(__webpack_exports__);
 ...
 ```
 
-通过 [Babel](https://babeljs.io/) 处理代码可以解决这个问题，这不止是一个支持 ES2015+ 功能的着名 JavaScript 编译器。它类似于 ESLint，建立在预设和插件之上。预设是一系列插件的集合，你也可以定义自己的插件。
-The problem can be worked around by processing the code through [Babel](https://babeljs.io/), a famous JavaScript compiler that supports ES2015+ features and more. It resembles ESLint in that it's built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
+[Babel](https://babeljs.io/) 是一个以支持 ES2015+ 功能着名的 JavaScript 编译器，它处理上述问题。它类似于 ESLint，建立在预设和插件之上。预设是一系列插件的集合，你也可以定义自己的插件。
 
-T> 鉴于有时扩展现有的预设是不够的，[modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) 允许你进一步以更灵活的方式配置基本预设。
-T> Given sometimes extending existing presets is not enough, [modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) allows you to go a step further and configure the base preset in a more flexible way.
+T> [modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) 能以更灵活的方式配置基本预设。
 
 ## 在 Webpack 中使用 Babel
 
@@ -35,22 +33,19 @@ T> Given sometimes extending existing presets is not enough, [modify-babel-prese
 
 但是，当你编译生产代码时，为了你的大多数用户能正常使用，Babel 处理几乎是必需的。
 
-你可以通过 [babel-loader](https://www.npmjs.com/package/babel-loader) 在 webpack 中使用 Babel。它可以获取项目级别的 Babel 配置（译者注：dotfile），或者你可以在 webpack loader 中进行配置。 [babel-webpack-plugin](https://www.npmjs.com/package/babel-webpack-plugin) 是另一个鲜为人知的选择。
+你可以通过 [babel-loader](https://www.npmjs.com/package/babel-loader) 在 webpack 中使用 Babel。它可以获取项目级别的 Babel 配置（译者注：dotfile），或者你可以在 webpack loader 中进行配置。[babel-webpack-plugin](https://www.npmjs.com/package/babel-webpack-plugin) 是另一个鲜为人知的选择。
 
-将 Babel 与项目连接允许你通过它处理 webpack 配置。要实现此目的，请使用 *webpack.config.babel.js* 约定命名你的 webpack 配置。 [解释]（https://www.npmjs.com/package/interpret）包支持这个，它也支持其他编译器。
-Connecting Babel with a project allows you to process webpack configuration through it. To achieve this, name your webpack configuration using the *webpack.config.babel.js* convention. [interpret](https://www.npmjs.com/package/interpret) package enables this, and it supports other compilers as well.
+Babel 还可以处理 webpack 配置（译者注：配置本身，区别于需要打包的内容）。要实现此目的，请把你的 webpack 配置命名为 *webpack.config.babel.js*。这依赖于 [interpret](https://www.npmjs.com/package/interpret)，它也支持其他编译器。
 
 T> 最近 [Node 支持了 ES2015 规范](http://node.green/)，你可以无需通过 Babel 处理配置在 Node 使用许多 ES2015 功能。
 
-W> 如果你使用 *webpack.config.babel.js*，请注意 `"modules": false,` setting。如果要使用ES2015模块，可以跳过全局Babel配置中的设置，然后按照下面的讨论为每个环境配置它。
-W> If you use *webpack.config.babel.js*, take care with the `"modules": false,` setting. If you want to use ES2015 modules, you could skip the setting in your global Babel configuration and then configure it per environment as discussed below.
+W> 如果你使用 **webpack.config.babel.js**，请注意 `"modules": false,` 这一项配置。如果要使用 ES2015 模块，可以跳过全局 Babel 配置中的设置，然后按照下面的讨论为每个环境配置它。
 
 {pagebreak}
 
 ### 配置 **babel-loader**
 
-在 webpack 使用 Babel 的第一步是设置 [babel-loader](https://www.npmjs.com/package/babel-loader)。它需要代码并将其转换为旧浏览器可以理解的格式。安装 **babel-loader** 并包含其同版本依赖（Peer Dependencies） **babel-core**：
-The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It takes the code and turns it into a format older browsers can understand. Install *babel-loader* and include its peer dependency *babel-core*:
+在 webpack 使用 Babel 的第一步是设置 [babel-loader](https://www.npmjs.com/package/babel-loader)。babel-loader 会把代码转换为旧浏览器可以运行的格式。安装 **babel-loader** 并包含其同版本依赖（Peer Dependencies） **babel-core**：
 
 ```bash
 npm install babel-loader babel-core --save-dev
@@ -92,16 +87,14 @@ leanpub-end-insert
 ]);
 ```
 
-这样你用上了 Babel，但还缺少一点东西：Babel 配置。我们可以使用 *.babelrc* dotfile，其他工具也通用这个设置文件。
-Even though you have Babel installed and set up, you are still missing one bit: Babel configuration. The configuration can be set up using a *.babelrc* dotfile as then other tooling can use the same.
+这样你用上了 Babel，但还缺少一点东西：Babel 配置。我们可以使用 *.babelrc* dotfile，这个设置文件也适用于其他工具。
 
-W> 如果你尝试导入配置根目录**之外的文件**然后通过 **babel-loader** 处理它们，则会失败。这是[已知问题]（https://github.com/babel/babel-loader/issues/313），并且有一些解决方法，包括在项目的更高级别维护* .babelrc *并通过`解决Babel预设在webpack配置中的require.resolve`。
+W> 如果你尝试导入配置根目录**之外的文件**然后通过 **babel-loader** 处理它们，则会失败。这是[已知问题](https://github.com/babel/babel-loader/issues/313)，解决方法是，包括在项目的更高级别维护 **.babelrc** 并通过解决Babel预设在webpack配置中的 `require.resolve`。
 W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining *.babelrc* at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
 
-### 设置 *.babelrc*
+### 关于 **.babelrc**
 
 至少，你需要 [babel-preset-env](https://www.npmjs.com/package/babel-preset-env)。它是一个 Babel 预设，可根据你传递给它的可选环境定义启用所需的插件。
-At a minimum, you need [babel-preset-env](https://www.npmjs.com/package/babel-preset-env). It's a Babel preset that enables the required plugins based on the optional environment definition you pass to it.
 
 首先安装预设：
 
@@ -109,10 +102,9 @@ At a minimum, you need [babel-preset-env](https://www.npmjs.com/package/babel-pr
 npm install babel-preset-env --save-dev
 ```
 
-要让 Babel 使用预设，需要写一个 *.babelrc*。鉴于 webpack 支持开箱即用的 ES2015 模块，你可以让 Babel 跳过处理它们。跳过这一步将破坏 webpack 的 HMR 机制，尽管生产构建仍然有效。你还可以限制构建输出仅在最新版本的 Chrome 中有效。
+要让 Babel 使用预设，需要写一个 **.babelrc**。鉴于 webpack 支持开箱即用的 ES2015 模块，你可以让 Babel 跳过处理它们。跳过这一步将破坏 webpack 的 HMR 机制，尽管生产构建仍然有效。你还可以限制构建输出仅在最新版本的 Chrome 中有效。
 
-根据需要调整目标定义。只要你按照 [browserslist](https://www.npmjs.com/package/browserslist) 进行操作即可。这是一个示例配置：
-Adjust the target definition as you like. As long as you follow [browserslist](https://www.npmjs.com/package/browserslist), it should work. Here's a sample configuration:
+根据需要调整目标浏览器，只要你按照 [browserslist](https://www.npmjs.com/package/browserslist) 进行操作即可。这是一个示例配置：
 
 **.babelrc**
 
@@ -130,7 +122,6 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 ```
 
 现在执行 `npm run build -- --devtool false --mode development` 并查看 **dist/main.js**，你会看到基于你的 `.browserslistrc` 文件的不同内容。
-If you execute `npm run build -- --devtool false --mode development` now and examine *dist/main.js*, you will see something different based on your `.browserslistrc` file.
 
 {pagebreak}
 

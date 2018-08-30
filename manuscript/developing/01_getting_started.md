@@ -36,16 +36,15 @@ T> 本书的例子使用 [Prettier](https://www.npmjs.com/package/prettier) 进�
 npm install webpack webpack-cli --save-dev # -D to type less
 ```
 
-你应该可以在你的 *package.json* 文件中 `devDependencies` 部分看到 webpack。除了在 *node_modules* 目录下本地安装软件包之外，npm 还会为可执行文件生成一个 entry。
-You should see webpack at your *package.json* `devDependencies` section after this. In addition to installing the package locally below the *node_modules* directory, npm also generates an entry for the executable.
+你应该可以在你的 **package.json** 文件中 `devDependencies` 部分看到 webpack。除了在 **node_modules** 目录下本地安装软件包之外，npm 还会为可执行文件生成一个入口。
 
-T> 你可以使用 `--save` 和 `--save-dev` 来分离应用程序和开发依赖项。前者安装并写入 *package.json* `dependencies`字段，而后者则写入 `devDependencies`。
+T> 你可以使用 `--save` 和 `--save-dev` 来分离应用程序和开发依赖项。前者安装并写入 **package.json** `dependencies`字段，而后者则写入 `devDependencies`。
 
-T> [webpack-cli](https://www.npmjs.com/package/webpack-cli) 附带了其他功能，包括`init`和`migrate`命令，可以快速创建新的 webpack 配置或从旧版本更新版本。
+T> [webpack-cli](https://www.npmjs.com/package/webpack-cli) 附带了其他功能，包括 `init` 和 `migrate` 命令，可以快速创建新的 webpack 配置或从旧版本更新版本。
 
 ## 执行 Webpack
 
-你可以使用 `npm bin` 显示可执行文件的确切路径。它很有可能指向 *./node_modules/.bin*。尝试使用 `node_modules/.bin/webpack` 或类似命令从终端运行webpack。
+你可以使用 `npm bin` 显示可执行文件的确切路径。它很有可能指向 **./node_modules/.bin**。尝试使用 `node_modules/.bin/webpack` 或类似命令从终端运行 webpack。
 
 运行后，你应该能看到版本号，一条指南链接以及一个选项列表。大多数的选项都没有在这个项目中使用，但了解一下也是极好的。
 
@@ -231,7 +230,7 @@ T> 更进一步，还可以使用终端配置中的 `alias` 命令设置系统�
 
 * 本地安装 webpack 比全局安装 webpack 更有优势。这样你可以保证你正在使用的是哪个版本。本地依赖项也适用于持续集成环境。
 * Webpack 通过 *webpack-cli* 包提供命令行界面。虽然没有配置也可以使用，但任何进阶使用都需要配置。
-* 对于更复杂的设置，你很可能需要编写单独的 *webpack.config.js* 文件。
+* 对于更复杂的设置，你很可能需要编写单独的 **webpack.config.js** 文件。
 * `HtmlWebpackPlugin` 可用于生成应用程序的 HTML 入口。在 *Multiple Pages* 一章中，你将了解如何使用它生成多个独立的页面。
 * 使用 npm *package.json* 脚本来管理 webpack 很方便。你可以将它用作轻型任务运行器，也可以使用于 webpack 之外的其他功能。
 

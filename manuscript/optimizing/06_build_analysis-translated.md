@@ -80,7 +80,6 @@ Webpack allows you to define a **performance budget**. The idea is that it gives
 要将该功能集成到项目中，请调整配置：
 To integrate the feature into the project, adjust the configuration:
 
-** ** webpack.config.js
 **webpack.config.js**
 
 ```javascript
@@ -118,23 +117,20 @@ You can increase the limit or remove the configuration to get rid of the warning
 
 {pagebreak}
 
-##可用的分析工具
-## Available Analysis Tools
+## 分析工具
 
 即使查看文件本身可以让你了解正在发生的事情，但通常最好使用特定的工具。考虑以下。
 Even though having a look at the file itself gives you an idea of what's going on, often it's preferable to use a particular tool for that. Consider the following.
 
-###官方分析工具
-### The Official Analyse Tool
+### 官方分析工具
 
 ![The Official Analyse Tool](images/analyse.png)
 
-[官方分析工具]（https://github.com/webpack/analyse）为你提供建议，并对你的应用程序的依赖图有一个很好的了解。它也可以在本地运行。
+[官方分析工具](https://github.com/webpack/analyse) 为你提供建议，并对你的应用程序的依赖图有一个很好的了解。它也可以在本地运行。
 [The official analyse tool](https://github.com/webpack/analyse) gives you recommendations and a good idea of your application's dependency graph. It can be run locally as well.
 
 {pagebreak}
 
-### Webpack Visualizer
 ### Webpack Visualizer
 
 ![Webpack Visualizer](images/webpack-visualizer.png)
@@ -142,41 +138,32 @@ Even though having a look at the file itself gives you an idea of what's going o
 [Webpack Visualizer]（https://chrisbateman.github.io/webpack-visualizer/）提供了一个饼图，显示了你的包组合，可以了解哪些依赖关系有助于整体结果的大小。
 [Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/) provides a pie chart showing your bundle composition allowing to understand which dependencies contribute to the size of the overall result.
 
-###`DuplicatePackageCheckerPlugin`
 ### `DuplicatePackageCheckerPlugin`
 
 [duplicate-package-checker-webpack-plugin]（https://www.npmjs.com/package/duplicate-package-checker-webpack-plugin）会在你的构建中多次发现单个包时发出警告。否则这种情况很难发现。
 [duplicate-package-checker-webpack-plugin](https://www.npmjs.com/package/duplicate-package-checker-webpack-plugin) warns you if it finds single package multiple times in your build. This situation can be hard to spot otherwise.
 
 ### Webpack Chart
-### Webpack Chart
 
 ![Webpack Chart](images/webpack-chart.png)
 
-[Webpack Chart]（https://alexkuz.github.io/webpack-chart/）是另一个类似的可视化。
-[Webpack Chart](https://alexkuz.github.io/webpack-chart/) is another similar visualization.
+[Webpack Chart](https://alexkuz.github.io/webpack-chart/) 是另一个类似的可视化工具。
 
 ### webpack-unused
-### webpack-unused
 
-[webpack-unused]（https://www.npmjs.com/package/webpack-unused）打印出未使用的文件，可用于了解哪些资产不再使用，可以从项目中删除。
-[webpack-unused](https://www.npmjs.com/package/webpack-unused) prints out unused files and can be used to understand which assets are no longer used and can be removed from the project.
+[webpack-unused](https://www.npmjs.com/package/webpack-unused) 打印出未使用的文件，可用于了解哪些资源不再使用，可以从项目中删除。
 
-### Stellar Webpack
 ### Stellar Webpack
 
 ![Stellar Webpack](images/stellar-webpack.jpg)
 
-[Stellar Webpack]（https://alexkuz.github.io/stellar-webpack/）提供基于Universe的可视化，并允许你以3D形式检查应用程序。
-[Stellar Webpack](https://alexkuz.github.io/stellar-webpack/) gives a universe based visualization and allows you to examine your application in a 3D form.
+[Stellar Webpack](https://alexkuz.github.io/stellar-webpack/) webpack 可视化 + 星空模拟器。
 
 ### webpack-bundle-tracker
-### webpack-bundle-tracker
 
-[webpack-bundle-tracker]（https://www.npmjs.com/package/webpack-bundle-tracker）可以在webpack编译时捕获数据。它使用JSON来实现此目的。
+[webpack-bundle-tracker](https://www.npmjs.com/package/webpack-bundle-tracker) 可以在webpack编译时捕获数据。它使用JSON来实现此目的。
 [webpack-bundle-tracker](https://www.npmjs.com/package/webpack-bundle-tracker) can capture data while webpack is compiling. It uses JSON for this purpose.
 
-### webpack-bundle-analyzer
 ### webpack-bundle-analyzer
 
 ![webpack-bundle-analyzer](images/webpack-bundle-analyzer.jpg)
@@ -187,10 +174,8 @@ Even though having a look at the file itself gives you an idea of what's going o
 {pagebreak}
 
 ### webpack-bundle-size-analyzer
-### webpack-bundle-size-analyzer
 
-[webpack-bundle-size-analyzer]（https://www.npmjs.com/package/webpack-bundle-size-analyzer）给出了基于文本的组合。
-[webpack-bundle-size-analyzer](https://www.npmjs.com/package/webpack-bundle-size-analyzer) gives a text based composition.
+[webpack-bundle-size-analyzer](https://www.npmjs.com/package/webpack-bundle-size-analyzer) 提供了文字 bundle 大小分析。
 
 ```bash
 $ webpack-bundle-size-analyzer stats.json
@@ -203,7 +188,6 @@ css-loader: 1.47 KB (1.17%)
 <self>: 572 B (0.445%)
 ```
 
-### inspectpack
 ### inspectpack
 
 [inspectpack]（https://www.npmjs.com/package/inspectpack）可用于确定要改进的特定代码位置。以下示例执行重复分析：
@@ -225,7 +209,6 @@ $ inspectpack --action=duplicates --bundle=bundle.js
 
 {pagebreak}
 
-###贾维斯
 ### Jarvis
 
 [Jarvis]（https://www.npmjs.com/package/webpack-jarvis）是一个用户界面，旨在显示与你的webpack构建相关的所有信息。例如，它显示项目中可跳过树的模块的数量以及资产对不同连接类型的执行情况。
@@ -246,12 +229,12 @@ $ inspectpack --action=duplicates --bundle=bundle.js
 ### webpack-deps-tree
 ### webpack-deps-tree
 
-[webpack-deps-tree]（https://restrry.github.io/webpack-deps-tree/static/）显示webpack模块图。使用它，你可以了解捆绑包的模块是如何相互关联的。
+[webpack-deps-tree](https://restrry.github.io/webpack-deps-tree/static/) 显示webpack模块图。使用它，你可以了解捆绑包的模块是如何相互关联的。
 [webpack-deps-tree](https://restrry.github.io/webpack-deps-tree/static/) displays webpack module graph. Using it you can understand how modules of your bundles are related to each other.
 
 {pagebreak}
 
-##重复分析
+## 重复分析
 ## Duplication Analysis
 
 除了inspectpack之外，还有其他工具可用于计算重复项：
@@ -279,8 +262,6 @@ In addition to tools that work with webpack output, there are a couple that are 
 [source-map-explorer](https://www.npmjs.com/package/source-map-explorer) is a tool independent of webpack. It allows you to get insight into your build by using source maps. It gives a treemap based visualization showing what code contributes to the result.
 
 ### madge
-### madge
-
 ![madge](images/madge.png)
 
 [madge]（https://www.npmjs.com/package/madge）是另一个可以根据模块输入输出图表的独立工具。图形输出允许你更详细地了解项目的依赖关系。
@@ -290,12 +271,10 @@ In addition to tools that work with webpack output, there are a couple that are 
 
 ## 总结
 
-
 当你优化捆绑输出的大小时，这些工具是非常宝贵的。官方工具具有最多的功能，但即使是基本的可视化也可以揭示问题点。你可以使用与旧项目相同的技术来了解它们的组成。
 When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even a rudimentary visualization can reveal problem spots. You can use the same technique with old projects to understand their composition.
 
 回顾一下：
-
 
 * Webpack允许你提取包含有关构建的信息的JSON文件。数据可以包括构建组成和时间。
 * Webpack allows you to extract a JSON file containing information about the build. The data can include the build composition and timing.
