@@ -9,20 +9,17 @@ T> 要使旧的 bundle 无效，必须将 hash 添加到生成的 bundle 中，�
 
 ## Bundle 拆分的思路
 
-通过 bundle 拆分，你可以将依赖的其他 npm 包打包到自己的 bundle，这对客户端缓存大有脾益。如此处理后，整个应用的包大小基本不变，但浏览器请求会增加，以此为代价，好处是你可以缓存一些不常变化的文件。
+通过 bundle 拆分，你可以将依赖的其他 npm 包打包到自己的 bundle，这对客户端缓存大有脾益。如此处理后，整个应用的包大小基本不变，但浏览器请求会增加，以此为代价，好处是你可以缓存一些不常变化的文件。（译者注：这里是重点，拆分不为别的，就是为了部分缓存）
 
-（译者注：这里是重点，拆分不为别的，就是为了部分缓存）
-
-为了给你一个快速的例子，你可以得到* main.js *（10 kB）和* vendor.js *（90 kB），而不是* main.js *（100 kB）。现在，对于已经使用过该应用程序的客户端，对应用程序所做的更改很便宜。
-To give you a quick example, instead of having *main.js* (100 kB), you could end up with *main.js* (10 kB) and *vendor.js* (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
+为了给你一个快速的例子，你可以得到 **main.js**（10 kB）和 **vendor.js**（90 kB），而不是 **main.js**（100 kB）。这么做对于二次访问该应用会很方便。
 
 缓存也会带来一些问题，其中之一是缓存失效。相关问题会在 *Adding Hashes to Filenames* 章节中讨论。
 
-Bundle 拆分不是唯一的出路。*Code Splitting* 章节中会讨论另一种更细粒度的方法。
+Bundle 拆分不是唯一的出路。**Code Splitting** 章节中会讨论另一种更细粒度的方法。
 
 ## 添加要拆分的东西
 
-现在还没什么可以拆分出去，所以应该先添加点东西。首先将 React 添加到项目中：
+现在还没什么可以拆分出去，所以应该先添加一些代码。首先将 React 添加到项目中：
 
 ```bash
 npm install react react-dom --save
@@ -108,7 +105,7 @@ Entrypoint main = vendors~main.js vendors~main.css ...
 ```
 
 （译者注：chunk 和 bundle 大概可以理解为一个东西）
-现在的bundle看起来应如下图所示：
+现在的 bundle 看起来应如下图所示：
 
 ![Main and vendor bundles after applying configuration](images/bundle_02.png)
 
