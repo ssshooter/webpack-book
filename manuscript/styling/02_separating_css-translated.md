@@ -63,8 +63,7 @@ T> 如果要将结果文件输出到特定目录，可以通过传递路径来�
 
 {pagebreak}
 
-### 连接配置
-### Connecting with Configuration
+### 添加到主配置
 
 加入主配置中：
 

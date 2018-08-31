@@ -105,11 +105,11 @@ document.body.appendChild(component());
 
 还有一个问题，我们如何在浏览器中测试应用程序？
 
-## 配置 *html-webpack-plugin*
+## 配置 **html-webpack-plugin**
 
-可以通过编写指向生成的文件的 *index.html* 文件来解决该问题。我们无需手动完成这件事，而是借助插件和 webpack 配置来完成此操作。
+**index.html** 引用生成的 js 文件即可在浏览器中测试我们的应用，这件事无需手动完成，只需借助插件和 webpack 配置来完成此操作。
 
-先安装 *html-webpack-plugin*：
+先安装 **html-webpack-plugin**：
 
 ```bash
 npm install html-webpack-plugin --save-dev

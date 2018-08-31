@@ -6,7 +6,7 @@
 
 提高开发体验的第一步是开启 webpack **watch** 模式。你可以通过将 `--watch` 传递给 webpack 来激活它。示例：`npm run build -- --watch`。
 
-启用后，监视模式会检测对文件是否更改，并自动重新编译。*webpack-dev-server*（WDS）进一步加强了 watch 模式。
+启用后，监视模式会检测对文件是否更改，并自动重新编译。**webpack-dev-server**（WDS）进一步加强了 watch 模式。
 
 WDS 是一个运行于**内存**的开发服务器，这意味着 bundle 内容不会写入文件而会存储在内存中。在调试代码和样式时，在速度上区别显著。
 

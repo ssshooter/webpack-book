@@ -84,7 +84,6 @@ These scripts can be listed using `npm run` and then executed using `npm run <sc
 你可能希望使用[rimraf]（https://www.npmjs.com/package/rimraf）等实用程序而不是`rm -rf`。可以在此处调用其他任务运行程序来隐藏你正在使用的任务。这样，你可以在保持界面相同的同时重构工具。
 Instead of `rm -rf`, you likely want to use utilities such as [rimraf](https://www.npmjs.com/package/rimraf) and so on. It's possible to invoke other tasks runners here to hide the fact that you are using one. This way you can refactor your tooling while keeping the interface as the same.
 
-###土地
 ### Grunt
 
 ![Grunt](images/grunt.png)
