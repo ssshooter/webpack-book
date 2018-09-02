@@ -2,8 +2,7 @@
 
 目前，应用程序的生产版本是单个 JavaScript 文件。如果应用程序发生更改，客户端必须重新下载供应商依赖项（引入的其他 npm 包）。
 
-最好只下载更改的部分。如果供应商依赖项发生更改，则客户端应仅获取供应商依赖项。实际的应用程序代码也是如此。 **使用`optimization.splitChunks.cacheGroups`可以实现捆绑拆分**。在生产模式下运行时，[webpack 4可以开箱即可执行一系列拆分]（https://gist.github.com/sokra/1522d586b8e5c0f5072d7565c2bee693）但在这种情况下，我们会手动执行某些操作。
-It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. **Bundle splitting** can be achieved using `optimization.splitChunks.cacheGroups`. When running in production mode, [webpack 4 can perform a series of splits out of the box](https://gist.github.com/sokra/1522d586b8e5c0f5072d7565c2bee693) but in this case, we'll do something manually.
+最好设定为只下载修改过的部分。如果 npm 依赖项发生更改，则客户端应仅获取依赖项,对于应用代码也是一个道理。**使用 `optimization.splitChunks.cacheGroups` 可以实现捆绑拆分**。在生产模式下运行时，[webpack 4 有一系列开箱即用的拆分配置](https://gist.github.com/sokra/1522d586b8e5c0f5072d7565c2bee693),但在本文，我们会手动设置拆分。
 
 T> 要使旧的 bundle 无效，必须将 hash 添加到生成的 bundle 中，之后的 *Adding Hashes to Filenames* 章节将会提到。
 
@@ -159,8 +158,7 @@ Webpack 通过两个插件提供对生成的 chunk 作更多控制：`Aggressive
 },
 ```
 
-如果你分成多个小 bundle，那么在缓存中会失败，这是一种权衡。你还会在HTTP / 1环境中获得请求开销。目前，由于[插件中的一个错误]启用`HtmlWebpackPlugin`（https://github.com/ampedandwired/html-webpack-plugin/issues/446），该方法不起作用。
-There's a trade-off as you lose out in caching if you split to multiple small bundles. You also get request overhead in HTTP/1 environment. For now, the approach doesn't work when `HtmlWebpackPlugin` is enabled due to [a bug in the plugin](https://github.com/ampedandwired/html-webpack-plugin/issues/446).
+但是分过多的包可能会导致缓存失败，并且在 HTTP/1 环境的请求开销会很大。目前，由于 `HtmlWebpackPlugin` [插件中的一个错误](https://github.com/ampedandwired/html-webpack-plugin/issues/446)，导致该方法不起作用。
 
 积极合并（aggressive merging）插件以相反的方式工作，允许你将小 bundle 组合成更大的：
 
@@ -175,19 +173,18 @@ There's a trade-off as you lose out in caching if you split to multiple small bu
 },
 ```
 
-如果使用 webpack **记录**，则可以使用这些插件获得良好的缓存行为。这个想法在 *Adding Hashes to Filenames* 章节中有详细讨论。
-It's possible to get good caching behavior with these plugins if a webpack **records** are used. The idea is discussed in detail in the *Adding Hashes to Filenames* chapter.
+使用 webpack **records**，这些插件获得良好的缓存行为。这个想法在 *Adding Hashes to Filenames* 章节中有详细讨论。
 
 `webpack.optimize` 的 `LimitChunkCountPlugin` 和 `MinChunkSizePlugin`，它们可以进一步控制 chunk 大小。
 
-T> Tobias Koppers 在 webpack的官方博客上讨论[积极合并（aggressive merging）](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6)。
+T> Tobias Koppers 在 webpack 的官方博客上讨论[积极合并（aggressive merging）](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6)。
 
 ## Webpack 中的 Chunk 类型
 
 在上面的示例中，你使用了不同类型的 webpack chunk。 Webpack 把 chunk 分为三种类型：
 
 * **Entry chunks** - Entry chunks 包括 webpack 运行时和它即将加载的模块。
-* **Normal chunks** - Normal chunks **不** 包含 webpack 运行时。它们可以在应用运行时被动态加载。webpack 会为其生成一个合适的包裹器（例如 JSONP）。下一章做代码分割生成的便是 normal chunk。
+* **Normal chunks** - Normal chunks **不包含** webpack 运行时。它们可以在应用运行时被动态加载。webpack 会为其生成一个合适的包裹器（例如 JSONP）。下一章做代码分割生成的便是 normal chunk。
 * **Initial chunks** - Initial chunks 是一种 normal chunks，但是它的加载算进初始加载中。作为用户不用太关注这类，知道它们介于两者之间就好了。（It's the split between entry chunks and normal chunks that is important）
 
 ## 总结

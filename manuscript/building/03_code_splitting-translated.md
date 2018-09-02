@@ -85,15 +85,13 @@ leanpub-end-insert
 }
 ```
 
-W> 如果你正在使用ESLint，你应该在ESLint配置中安装`babel-eslint`并设置`parser：“babel-eslint”`以及`parserOptions.allowImportExportEverywhere：true`。
-W> If you are using ESLint, you should install `babel-eslint` and set `parser: "babel-eslint"` in addition to `parserOptions.allowImportExportEverywhere: true` at ESLint configuration.
+W> 如果你正在使用ESLint，你应该安装 `babel-eslint` 并在 ESLint 配置中设置 `parser: "babel-eslint"` 以及 `parserOptions.allowImportExportEverywhere：true`。
 
 {pagebreak}
 
 ### 使用动态 `import` 定义分割点
 
-可以通过设置一个包含替换演示按钮文本的字符串的模块来演示这个想法：
-The idea can be demonstrated by setting up a module that contains a string that replaces the text of the demo button:
+以下例子可以替换按钮中的文本：
 
 **src/lazy.js**
 
@@ -152,8 +150,7 @@ leanpub-end-insert
 
 T> 如果要调整块的名称，请设置 `output.chunkFilename`。例如，将其设置为 `"chunk.[id].js"` 将为每个拆分块添加单词 `chunk`。
 
-T> [bundle-loader]（https://www.npmjs.com/package/bundle-loader）给出了类似的结果，但是通过加载器接口。它通过`name`选项支持bundle命名。
-T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface. It supports bundle naming through its `name` option.
+T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) 功能类似，但是它是通过 loader 接口实现。它通过 `name` 选项使用 bundle 命名。
 
 T> **动态加载**章节介绍了当你必须处理更复杂的拆分时可以派上用场的其他技术。
 
@@ -193,7 +190,7 @@ AsyncComponent.propTypes = {
 };
 ```
 
-T> [react-async-component]（https://www.npmjs.com/package/react-async-component）将模式包装在`createAsyncComponent`调用中，并提供服务器端呈现特定功能。 [loadable-components]（https://www.npmjs.com/package/loadable-components）是另一种选择。
+T> [react-async-component](https://www.npmjs.com/package/react-async-component) 将模式包装在`createAsyncComponent`调用中，并提供服务器端呈现特定功能。 [loadable-components](https://www.npmjs.com/package/loadable-components) 是另一种选择。
 T> [react-async-component](https://www.npmjs.com/package/react-async-component) wraps the pattern in a `createAsyncComponent` call and provides server side rendering specific functionality. [loadable-components](https://www.npmjs.com/package/loadable-components) is another option.
 
 ## 禁用代码拆分
