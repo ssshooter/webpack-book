@@ -26,8 +26,7 @@ As discussed in the previous chapter, generating stats can be used to measure bu
 
 {pagebreak}
 
-##高级优化
-## High-Level Optimizations
+## 上层优化
 
 默认情况下，Webpack仅使用单个实例，这意味着你无需额外工作就无法从多核处理器中受益。这是第三方解决方案，例如[parallel-webpack]（https://www.npmjs.com/package/parallel-webpack）和[HappyPack]（https://www.npmjs.com/package/happypack）进来。
 Webpack uses only a single instance by default meaning you aren't able to benefit from a multi-core processor without extra effort. This where third-party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
@@ -107,8 +106,7 @@ The example above contains enough information for webpack to run the given loade
 也许HappyPack的问题在于它将你的配置与它结合在一起。有可能通过设计克服这个问题并使注入更容易。一种选择是构建更高级别的抽象，可以在vanilla配置之上执行替换。
 Perhaps the problem with HappyPack is that it couples your configuration with it. It would be possible to overcome this issue by design and make it easier to inject. One option would be to build a higher level abstraction that can perform the replacement on top of vanilla configuration.
 
-## 低级优化
-## Low-Level Optimizations
+## 底层优化
 
 特定的低级优化可以很好地了解。关键是允许webpack执行更少的工作。你已经实现了其中的几个，但枚举它们是个好主意：
 Specific lower-level optimizations can be good to know. The key is to allow webpack to perform less work. You have already implemented a couple of these, but it's a good idea to enumerate them:
@@ -126,8 +124,7 @@ Specific lower-level optimizations can be good to know. The key is to allow webp
 *将更少的包推送到**动态加载库**（DLL）以避免不必要的处理。 [官方webpack示例]（https://github.com/webpack/webpack/tree/master/examples/dll-user）在[Rob Knight的博客文章]（https://robertknight.me.uk）中找到了重点。 / posts / webpack-dll-plugins /）进一步解释了这个想法。 [autodll-webpack-plugin]（https://www.npmjs.com/package/autodll-webpack-plugin）可以自动完成此过程。
 * Push bundles that change less to **Dynamically Loaded Libraries** (DLL) to avoid unnecessary processing. The [official webpack example](https://github.com/webpack/webpack/tree/master/examples/dll-user) gets to the point while [Rob Knight's blog post](https://robertknight.me.uk/posts/webpack-dll-plugins/) explains the idea further. [autodll-webpack-plugin](https://www.npmjs.com/package/autodll-webpack-plugin) can automate the process.
 
-###插件特定优化
-### Plugin Specific Optimizations
+### 插件优化
 
 有一系列特定于插件的优化需要考虑：
 There are a series of plugin specific optimizations to consider:
@@ -139,8 +136,7 @@ There are a series of plugin specific optimizations to consider:
 
 {pagebreak}
 
-### Loader特定优化
-### Loader Specific Optimizations
+### Loader 优化
 
 加载器也有它们的优化：
 Loaders have their optimizations as well:
@@ -154,8 +150,7 @@ Loaders have their optimizations as well:
 *使用[thread-loader]（https://www.npmjs.com/package/thread-loader）并行执行昂贵的加载器。鉴于工作人员在Node中有开销，使用* thread-loader *只有在并行操作很重的情况下才值得。
 * Parallelize the execution of expensive loaders using [thread-loader](https://www.npmjs.com/package/thread-loader). Given workers come with an overhead in Node, using *thread-loader* is worth it only if the parallelized operation is heavy.
 
-##优化开发过程中的重新绑定速度
-## Optimizing Rebundling Speed During Development
+## 优化开发过程中的重新打包速度
 
 通过将开发设置指向库的缩小版本（例如React），可以在开发期间优化重新绑定时间。在React的情况下，你将失去基于“propType”的验证。如果速度很重要，这种技术是值得的。
 It's possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React's case, you lose `propType`-based validation. If speed is important, this technique is worth it.
@@ -212,7 +207,6 @@ You can optimize webpack's performance in multiple ways. Often it's a good idea 
 
 回顾一下：
 
-
 *从最先实施的高级技术开始。
 * Start with higher level techniques that are fast to implement first.
 *较低级别的技术更多涉及但是获得胜利。
@@ -222,8 +216,6 @@ You can optimize webpack's performance in multiple ways. Often it's a good idea 
 *特别是在开发过程中，由于现代浏览器，跳过工作是可以接受的。
 * Especially during development, skipping work can be acceptable thanks to modern browsers.
 
-T> [官方构建性能指南]（https://webpack.js.org/guides/build-performance/）有更多提示。另请参阅[保持webpack Fast：现场指南以获得更好的构建性能]（https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1），[
-T> [The official build performance guide](https://webpack.js.org/guides/build-performance/) has more tips. See also [Keep webpack Fast: A Field Guide for Better Build Performance](https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1), [
-我们如何将webpack构建性能提高95％]（https://blog.box.com/blog/how-we-improved-webpack-build-performance-95/），[webpack优化 - 案例研究]（https： //medium.com/walmartlabs/webpack-optimization-a-case-study-92b130334b6c）和[Web基础知识]（https://developers.google.com/web/fundamentals/performance/webpack/）。
-How we improved webpack build performance by 95%](https://blog.box.com/blog/how-we-improved-webpack-build-performance-95/), [webpack optimization — A Case Study](https://medium.com/walmartlabs/webpack-optimization-a-case-study-92b130334b6c), and [Web Fundamentals by Google](https://developers.google.com/web/fundamentals/performance/webpack/).
+T> [官方构建性能指南]（https://webpack.js.org/guides/build-performance/）有更多提示。另请参阅[保持webpack Fast：现场指南以获得更好的构建性能]（https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1），[我们如何将webpack构建性能提高95％]（https://blog.box.com/blog/how-we-improved-webpack-build-performance-95/），[webpack优化 - 案例研究]（https： //medium.com/walmartlabs/webpack-optimization-a-case-study-92b130334b6c）和[Web基础知识]（https://developers.google.com/web/fundamentals/performance/webpack/）。
+T> [The official build performance guide](https://webpack.js.org/guides/build-performance/) has more tips. See also [Keep webpack Fast: A Field Guide for Better Build Performance](https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1), [How we improved webpack build performance by 95%](https://blog.box.com/blog/how-we-improved-webpack-build-performance-95/), [webpack optimization — A Case Study](https://medium.com/walmartlabs/webpack-optimization-a-case-study-92b130334b6c), and [Web Fundamentals by Google](https://developers.google.com/web/fundamentals/performance/webpack/).
 

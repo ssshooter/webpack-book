@@ -69,10 +69,9 @@ If you want to manage stats through a plugin, check out [stats-webpack-plugin](h
 [webpack-stats-plugin]（https://www.npmjs.com/package/webpack-stats-plugin）是另一种选择。它允许你在输出数据之前转换数据。
 [webpack-stats-plugin](https://www.npmjs.com/package/webpack-stats-plugin) is another option. It allows you to transform the data before outputting it.
 
-##启用效果预算
-## Enabling a Performance Budget
+## 启用性能预算
 
-Webpack允许你定义**性能预算**。这个想法是它给出了你必须遵循的构建大小约束。默认情况下禁用该功能，并且计算包括提取的块到条目计算。如果未满足预算并且已将其配置为发出错误，则会终止整个构建。
+Webpack 允许你定义**性能预算**。这个想法是它给出了你必须遵循的构建大小约束。默认情况下禁用该功能，并且计算包括提取的块到条目计算。如果未满足预算并且已将其配置为发出错误，则会终止整个构建。
 Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint which it has to follow. The feature is disabled by default and the calculation includes extracted chunks to entry calculation. If a budget isn't met and it has been configured to emit an error, it would terminate the entire build.
 
 {pagebreak}
@@ -112,7 +111,7 @@ Entrypoints:
       main.d5d711b1.css
 ```
 
-你可以增加限制或删除配置以消除警告。一个有吸引力的选择是用*消费包*章节中讨论的更轻的替代品替换React。
+你可以增加限制或删除配置以消除警告。一个有吸引力的选择是用 **Consuming Packages** 章节中讨论的更轻的替代品替换React。
 You can increase the limit or remove the configuration to get rid of the warning. An attractive option would be to replace React with a lighter alternative as discussed in the *Consuming Packages* chapter.
 
 {pagebreak}

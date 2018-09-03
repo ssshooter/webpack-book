@@ -1,6 +1,6 @@
 # Minifying
 
-从 webpack 4 开始，生产环境默认使用 UglifyJS 压缩输出。所以，了解这项技术和进一步的可能性是很好的。
+从 webpack 4 开始，生产环境默认使用 UglifyJS 压缩输出，了解这项技术及其高阶使用方法是很有必要的。
 
 ## 压缩 JavaScript
 
@@ -50,10 +50,9 @@ leanpub-end-insert
 ]);
 ```
 
-如果你现在执行 `npm run build`，你应该看到与之前相同的结果。结果可能略好一些，因为你可能会以这种方式使用较新版本的 UglifyJS。
-If you execute `npm run build` now, you should see result close to the same as before. The outcome may be a slightly better as you are likely using a newer version of UglifyJS this way.
+现在执行 `npm run build`，虽然结果跟之前的区别应该不大，不过使用这种方式你可以使用较新版本的 UglifyJS。
 
-T> 默认情况下禁用 Source maps。你可以通过 `sourceMap` 属性启用它们。可以查看 *uglifyjs-webpack-plugin* 以获取更多可选参数。
+T> 默认情况下禁用 Source maps。你可以通过 `sourceMap` 属性启用它们。可以查看 **uglifyjs-webpack-plugin** 以获取更多可选参数。
 
 T> 要从源中删除 `console.log` 调用，可以将 `uglifyOptions.compress.drop_console` 设置为 `true`，如 [discussed on Stack Overflow](https://stackoverflow.com/questions/49101152/webpack-v4-remove-console-logs-with-webpack-uglify) 提到。
 
@@ -61,12 +60,11 @@ T> 要从源中删除 `console.log` 调用，可以将 `uglifyOptions.compress.d
 
 ## 压缩 JavaScript 的其他方法
 
-虽然默认值和 *uglifyjs-webpack-plugin* 适用于此用例，但你可以考虑更多选项：
-Although the defaults and *uglifyjs-webpack-plugin* works for this use case, there are more options you can consider:
+除了 **uglifyjs-webpack-plugin**，还有更多的选择：
 
 * [babel-minify-webpack-plugin](https://www.npmjs.com/package/babel-minify-webpack-plugin) 依赖于 [babel-preset-minify](https://www.npmjs.com/package/babel-preset-minify)。它由Babel团队开发的。比UglifyJS要慢一点。
-* [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) 并行运行，有时甚至比 *babel-minify-webpack-plugin* 的输出更小。[closure-webpack-plugin](https://www.npmjs.com/package/closure-webpack-plugin) 是另一种选择。
-* [butternut-webpack-plugin](https://www.npmjs.com/package/butternut-webpack-plugin) 使用 Rich Harris 的实验性[butternut](https://www.npmjs.com/package/butternut) 压缩器。
+* [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) 并行运行，有时甚至比 **babel-minify-webpack-plugin** 的输出更小。[closure-webpack-plugin](https://www.npmjs.com/package/closure-webpack-plugin) 是另一种选择。
+* [butternut-webpack-plugin](https://www.npmjs.com/package/butternut-webpack-plugin) 使用了 Rich Harris 的实验性 [butternut](https://www.npmjs.com/package/butternut) 压缩器。
 
 ## 加快 JavaScript 执行速度
 
@@ -88,8 +86,7 @@ T> 将 `--display-optimization-bailout` flag 传入 webpack，以获取与提升
 
 ## 压缩 HTML
 
-如果你使用[html-loader]（https://www.npmjs.com/package/html-loader）通过代码使用HTML模板，则可以通过[posthtml]（https://www.npmjs.com）对其进行预处理。 / package / posthtml）与[posthtml-loader]（https://www.npmjs.com/package/posthtml-loader）。你可以使用[posthtml-minifier]（https://www.npmjs.com/package/posthtml-minifier）通过它缩小HTML。
-If you consume HTML templates through your code using [html-loader](https://www.npmjs.com/package/html-loader), you can preprocess it through [posthtml](https://www.npmjs.com/package/posthtml) with [posthtml-loader](https://www.npmjs.com/package/posthtml-loader). You can use [posthtml-minifier](https://www.npmjs.com/package/posthtml-minifier) to minify your HTML through it.
+如果你通过 [html-loader](https://www.npmjs.com/package/html-loader) 使用 HTML 模板，可以使用 [posthtml-minifier](https://www.npmjs.com/package/posthtml-minifier) 压缩你的 HTML 文件。
 
 ## 压缩 CSS
 
@@ -113,8 +110,7 @@ npm install optimize-css-assets-webpack-plugin cssnano --save-dev
 
 {pagebreak}
 
-与JavaScript一样，你可以将这个想法包含在配置部分中：
-Like for JavaScript, you can wrap the idea in a configuration part:
+与 JavaScript 一样，你可以封装这个配置：
 
 **webpack.parts.js**
 
@@ -189,10 +185,9 @@ T> [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpac
 
 ## 压缩图片
 
-使用[img-loader]（https://www.npmjs.com/package/img-loader），[imagemin-webpack]（https://www.npmjs.com/package/imagemin--可以减少图片大小webpack）和[imagemin-webpack-plugin]（https://www.npmjs.com/package/imagemin-webpack-plugin）。这些包使用下面的图片优化器。
-Image size can be reduced by using [img-loader](https://www.npmjs.com/package/img-loader), [imagemin-webpack](https://www.npmjs.com/package/imagemin-webpack), and [imagemin-webpack-plugin](https://www.npmjs.com/package/imagemin-webpack-plugin). The packages use image optimizers underneath.
+[img-loader](https://www.npmjs.com/package/img-loader)， [imagemin-webpack](https://www.npmjs.com/package/imagemin-webpack) 和 [imagemin-webpack-plugin](https://www.npmjs.com/package/imagemin-webpack-plugin) 可用于压缩图片。
 
-使用* cache-loader *和* thread-loader *可以是一个好主意，如* Performance *章节中所述，因为它们可以是实质性操作。
+使用 **cache-loader** 和 **thread-loader** 可以是一个好主意，如 **Performance** 章节中所述，因为它们可以是实质性操作。
 It can be a good idea to use *cache-loader* and *thread-loader* with these as discussed in the *Performance* chapter given they can be substantial operations.
 
 ## 总结
@@ -200,8 +195,8 @@ It can be a good idea to use *cache-loader* and *thread-loader* with these as di
 压缩是最舒服的步骤了，只要配置一下就可以让你的项目构建更小。回顾一下：
 
 * **压缩**过程分析你的源代码并将其转换为具有相同含义的较小形式（如果你使用安全转换）。特定的不安全转换允许你达到更小的结果，同时可能破坏依赖于精确参数命名的代码。
-* 在生产模式下，Webpack 使用 UglifyJS 默认进行压缩。其他解决方案，例如 *babel-minify-webpack-plugin*，提供功能，不过有时会有其他代价。
+* 在生产模式下，Webpack 使用 UglifyJS 默认进行压缩。其他解决方案，例如 **babel-minify-webpack-plugin**，提供功能，不过有时会有其他代价。
 * 除了 JavaScript 之外，还可以压缩其他资源，例如 CSS，HTML 和图片。压缩它们需要特定的技术，这些技术必须通过各自的 loader 和插件来应用。
 
-你将在下一章中学习如何对代码应用 tree shaking。
+你将在下一章中学习如何使用 tree shaking。
 

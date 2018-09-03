@@ -13,12 +13,12 @@ Webpack 为此提供**占位符**。这些字符串用于将特定信息附加�
 * `[name]` - 返回文件名。
 * `[ext]` - 返回扩展名。 `[ext]`适用于大多数可用字段。`MiniCssExtractPlugin`是一个值得注意的例外。
 * `[hash]` - 返回构建hash。如果构建的任何部分发生变化，hash值也会发生变化。
-* `[chunkhash]` - 返回一个 entry chunk-specific hash。配置中定义的每个 `entry` 都会收到自己的hash值。如果条目的任何部分发生更改，则hash值也会更改。根据定义，`[chunkhash]` 比 `[hash]` 更精细。
+* `[chunkhash]` - 返回一个 entry chunk-specific hash。配置中定义的每个 `entry` 都会收到自己的 hash 值。如果条目的任何部分发生更改，则 hash 值也会更改。`[chunkhash]` 比 `[hash]` 更精细。
 * `[contenthash]` - 返回根据内容生成的hash。
 
-`hash` 和 `chunkhash` 用在生产环境是极好的，但hash在开发环境没有太大作用。
+`hash` 和 `chunkhash` 用在生产环境是极好的，但在开发环境中没有太大作用。
 
-T> 可以使用特定语法对 `hash` 和 `chunkhash` 进行分割：`[chunkhash：4]`。这样会生成 `8c4c`，而不是像 `8c4cbfdb91ff93f3f3c5` 这样的hash。
+T> 可以使用特定语法对 `hash` 和 `chunkhash` 进行分割：`[chunkhash：4]`，这样会生成 `8c4c`，而不是 `8c4cbfdb91ff93f3f3c5`。
 
 T>有更多可用选项，你甚至可以修改hash和摘要类型，如[loader-utils]（https://www.npmjs.com/package/loader-utils#interpolatename）文档中所述。
 T> There are more options available, and you can even modify the hashing and digest type as discussed at [loader-utils](https://www.npmjs.com/package/loader-utils#interpolatename) documentation.
@@ -153,6 +153,6 @@ Including hashes related to the file contents to their names allows to invalidat
 * 最实用的占位符是 `[name]`，`[chunkhash]` 和 `[ext]`。chunk hash 基于它所属的入口生成。
 * 如果你使用的是 `MiniCssExtractPlugin`，你应该使用 `[contenthash]`。这样，只有在它们的内容发生更改时，资源才会失效。
 
-即使该项目现在产生hash，输出也不完美。问题是如果应用程序发生更改，它也会使供应商包无效。下一章将深入探讨该主题，并向你展示如何提取**清单**以解决问题。
+即使该项目现在产生hash，输出也不完美。问题是如果应用程序发生更改，它也会使供应商包无效。下一章将深入探讨该主题，并向你展示如何提取 **manifest** 以解决问题。
 Even though the project generates hashes now, the output isn't flawless. The problem is that if the application changes, it invalidates the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract a **manifest** to resolve the issue.
 
